@@ -1,0 +1,47 @@
+body {
+    /* font-family: 'Noto Sans', sans-serif; */
+    /* font-family: 'Hind Siliguri', sans-serif; */
+    /* font-family: 'Cabin', sans-serif; */
+    overflow-x:hidden;
+    position: relative;
+};
+head {
+    overflow-x:hidden;
+}
+.card-shadow {
+    box-shadow: 0px 5px 10px #00000013;
+}
+.rubik {
+    font-family: 'Rubik', sans-serif;
+}
+.blue {
+    color:#3D526C;
+    background-color: #3D526C;
+}
+.green {
+    background-color:#97C35E;
+}
+.blue-text {
+    color:#8AC6D0;
+}
+.cardhead {
+    color:'#36213E',
+}
+.input-category {
+    color:lightgrey;
+    font-size: small;
+    margin-bottom:4px;
+    margin-top:6px;
+}
+.grow-shadow {
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    box-shadow: 0px 0px 15px #00000013;
+  }
+  
+.grow-shadow:hover {
+    -webkit-transform: scale(1.15);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+    box-shadow: 0px 10px 25px #00000023;
+  }
