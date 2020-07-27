@@ -99,7 +99,7 @@ class Admin extends React.Component {
           bgColor={this.state.backgroundColor}
           activeColor={this.state.activeColor}
         />
-        <div className="main-panel" ref="mainPanel" style={{backgroundColor:'#f7faff'}}>
+        <div className="main-panel" ref="mainPanel" style={{backgroundColor:'#FFFFFF'}}>
           <AdminNavbar {...this.props} handleMiniClick={this.handleMiniClick} />
           <Switch>{this.getRoutes(routes)}</Switch>
           {

@@ -143,7 +143,7 @@ class TransactionSearch extends Component {
     return (
       <>
       {this.state.alert}
-          <div style={{backgroundColor:'white', borderRadius:'1rem'}} className='card-shadow'>
+          <div style={{backgroundColor:'white'}}>
           <Col lg='12' style={{marginBottom:'0rem', padding:'1.5rem', marginTop:'-1rem'}}>
               <h4 style={{marginTop:'0rem', fontFamily:'Rubik'}}>Transaction Search</h4>
           </Col>

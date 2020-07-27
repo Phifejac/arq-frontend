@@ -76,7 +76,7 @@ class Applications extends React.Component {
   render() {
     return (
       <>
-        <div className="content">
+        <div className="content" style={{padding:0, paddingLeft:'1rem'}}>
           <div style={{display:'flex', flexDirection:'row'}}  onClick={ () => {this.toggle(); this.rotate()}}>
             <h4 style={{marginBottom:-5, margin:0, color:'#3E526D', fontWeight:'500'}}>App Menu</h4>
             <div style={{paddingTop:'.4rem', marginLeft:'.6rem'}} className='grow-big'>

@@ -113,7 +113,7 @@ class TransactionTable extends React.Component {
                 className="btn-icon btn-link edit"
                 style={{marginTop:'-.4rem', marginRight:'-.6rem'}}
               >
-                <i className="fa fa-files-o" />
+                <i className="fa fa-eye" />
               </Button>{" "}
               <Button
                 onClick={() => {this.editButton()}}
