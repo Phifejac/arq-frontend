@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 // react plugin used to create charts
 import { Line, Bar, Doughnut } from "react-chartjs-2";
 // react plugin for creating vector maps
@@ -19,7 +19,8 @@ import {
   Label,
   Progress,
   Input,
-  Button
+  Button,
+  Collapse
 } from "reactstrap";
 import ReactBSAlert from "react-bootstrap-sweetalert";
 
@@ -27,8 +28,18 @@ import ReactBSAlert from "react-bootstrap-sweetalert";
 import Select from "react-select";
 import ReportTable from "../internal-reports/ReportTable";
 import TransactionTable from "./TransactionTable";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import TransactionData from './TransactionData'
+import TransactionColumn from "./TransactionColumn";
 
-class TransactionSearch extends React.Component {
+const Transactions = [
+  // {id: uuid(), content:'First Task'},
+  // {id: uuid(), content:'First Task'}
+]
+
+
+class TransactionSearch extends Component {
+  state = TransactionData;
   constructor(props) {
     super(props);
     this.state = {
@@ -41,7 +52,17 @@ class TransactionSearch extends React.Component {
       singleSelect: null,
       multipleSelect: null,
       tagsinput: ["Amsterdam", "Washington", "Sydney", "Beijing"],
+      collapse: false
     };
+    this.toggle = this.toggle.bind(this);
+  }
+
+  onDragEnd = result => {
+    console.log(result)
+  };
+
+  toggle() {
+    this.setState({ collapse: !this.state.collapse });
   }
 
   // to stop the warning of calling setState of unmounted component
@@ -122,175 +143,204 @@ class TransactionSearch extends React.Component {
     return (
       <>
       {this.state.alert}
-          <Row lg='12' style={{marginBottom:'3rem', display:'flex', flexDirection:'row', justifyContent:'space-between', backgroundColor:'white', borderRadius:'1rem', padding:'.5rem'}} className='card-shadow'>
-              <Col lg='5'>
-              <h4 style={{marginTop:'.5rem'}}>Transaction Search</h4>
-              <Row>
-                        <Col md="4">
-                          <p className="input-category">Fund</p>
-                          <Select
-                            className="react-select primary"
-                            classNamePrefix="react-select"
-                            name="singleSelect"
-                            value={this.state.fund}
-                            onChange={(value) =>
-                              this.setState({ fund: value })
-                            }
-                            options={[
-                              {
-                                value: "",
-                                label: "Select One",
-                                isDisabled: true,
-                              },
-                              { value: "2", label: "Fund" },
-                              { value: "3", label: "Option2" },
-                            ]}
-                            placeholder="Select fund..."
-                          />
-                        </Col>
-                        <Col md="4">
-                          <p className="input-category">Client</p>
-                          <Select
-                            className="react-select primary"
-                            classNamePrefix="react-select"
-                            name="singleSelect"
-                            value={this.state.client}
-                            onChange={(value) =>
-                              this.setState({ client: value })
-                            }
-                            options={[
-                              {
-                                value: "",
-                                label: "Select One",
-                                isDisabled: true,
-                              },
-                              { value: "2", label: "Foobar" },
-                              { value: "3", label: "Is great" },
-                            ]}
-                            placeholder="Select client..."
-                          />
-                        </Col>
-                        <Col md="4">
-                          <p className="input-category">Book</p>
-                                                    <Select
-                            className="react-select primary"
-                            classNamePrefix="react-select"
-                            name="singleSelect"
-                            value={this.state.book}
-                            onChange={(value) =>
-                              this.setState({ book: value })
-                            }
-                            options={[
-                              {
-                                value: "",
-                                label: "Select One",
-                                isDisabled: true,
-                              },
-                              { value: "2", label: "Foobar" },
-                              { value: "3", label: "Is great" },
-                            ]}
-                            placeholder="Select book..."
-                          />
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="6">
-                          <p className="input-category">Counterparty</p>
-                          <Select
-                            className="react-select primary"
-                            classNamePrefix="react-select"
-                            name="singleSelect"
-                            value={this.state.counterparty}
-                            onChange={(value) =>
-                              this.setState({ counterparty: value })
-                            }
-                            options={[
-                              {
-                                value: "",
-                                label: "Single Option",
-                                isDisabled: true,
-                              },
-                              { value: "2", label: "Foobar" },
-                              { value: "3", label: "Is great" },
-                            ]}
-                            placeholder="Select counterparty..."
-                          />
-                        </Col>
-                        <Col md="6">
-                          <p className="input-category">Account</p>
-                          <Select
-                            className="react-select primary"
-                            classNamePrefix="react-select"
-                            name="singleSelect"
-                            value={this.state.excounterparty}
-                            onChange={(value) =>
-                              this.setState({ excounterparty: value })
-                            }
-                            options={[
-                              {
-                                value: "",
-                                label: "Single Option",
-                                isDisabled: true,
-                              },
-                              { value: "2", label: "Foobar" },
-                              { value: "3", label: "Is great" },
-                            ]}
-                            placeholder="Select account..."
-                          />
-                        </Col>
-                      </Row>
-              </Col>
-              <Col lg='2' style={{justifyContent:'center', display:'flex', flexDirection:'column'}}>
-                <p className="input-category">Select Daily Funding</p>
-                <Select
-                  className="react-select primary"
-                  classNamePrefix="react-select"
-                  name="singleSelect"
-                  value={this.state.book}
-                  onChange={(value) =>
-                    this.setState({ book: value })
-                  }
-                  options={[
-                    {
-                      value: "",
-                      label: "Select One",
-                      isDisabled: true,
-                    },
-                    { value: "2", label: "Foobar" },
-                    { value: "3", label: "Is great" },
-                  ]}
-                  placeholder="Select daily funding..."
-                />
-              </Col>
-              <Col lg='2' style={{justifyContent:'center', display:'flex', flexDirection:'column'}}>
-                <p className="input-category text-left">From</p>
-                <FormGroup>
-                  <ReactDatetime
-                    inputProps={{
-                      className: "form-control",
-                      placeholder: "Set date...",
-                    }}
-                    timeFormat={false}
-                  />
-                </FormGroup>
-                <p className="input-category text-left">To</p>
-                <FormGroup>
-                  <ReactDatetime
-                    inputProps={{
-                      className: "form-control",
-                      placeholder: "Set date...",
-                    }}
-                    timeFormat={false}
-                  />
-                </FormGroup>
-              </Col>
-              <Col lg='2' style={{justifyContent:'center', display:'flex', flexDirection:'column'}}>
-                <Button className="btn-round" color="primary" onClick={this.warningWithConfirmAndCancelMessage} style={{marginLeft:'2.5rem', marginRight:'2.5rem', marginTop:'1.5rem'}} outline>
-                  Search
-                </Button>
-              </Col>
-          <TransactionTable/>
-          </Row> 
+          <div style={{backgroundColor:'white', borderRadius:'1rem'}} className='card-shadow'>
+          <Col lg='12' style={{marginBottom:'0rem', padding:'1.5rem', marginTop:'-1rem'}}>
+              <h4 style={{marginTop:'0rem', fontFamily:'Rubik'}}>Transaction Search</h4>
+          </Col>
+          <Col lg='12'>
+          <p className='info' style={{color:'lightgrey', fontSize:'1.1rem', marginTop:'-1rem', marginLeft:'33%'}}>Quick Analytics</p>
+          <Row style={{display:'flex', flexDirection:'row'}}>
+            <div style={{flex:.8, display:'flex', justifyContent:'flex-start', alignItems:'center', marginTop:'-3rem', paddingLeft:'2rem'}}>
+              <div>
+                <p className="input-category">Start Date</p>
+                    <FormGroup>
+                      <ReactDatetime
+                        inputProps={{
+                          className: "form-control",
+                          placeholder: "Set date...",
+                        }}
+                        // timeFormat={false}
+                      />
+                    </FormGroup>
+                    <p className="input-category">End Date</p>
+                    <FormGroup>
+                      <ReactDatetime
+                        inputProps={{
+                          className: "form-control",
+                          placeholder: "Set date...",
+                        }}
+                        // timeFormat={false}
+                      />
+                    </FormGroup>
+              </div>
+              <div style={{paddingLeft:'1rem'}}>
+                  <Button className="btn-round" color="primary" onClick={this.warningWithConfirmAndCancelMessage} style={{}}>
+                    Search
+                  </Button>
+              </div>
+            </div>
+            <div style={{display:'flex', flexDirection:'row', flex:1}}>
+            <Col>
+              <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+                <span style={{color:'grey', fontFamily:'Rubik', fontSize:'2rem', color:'#96C35E'}}>1000</span>
+                <p style={{color:'grey', fontFamily:'Rubik', fontSize:'1rem'}}>Net Notional</p>
+              </div>
+            </Col>
+            <Col>
+              <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+                <span style={{color:'grey', fontFamily:'Rubik', fontSize:'2rem', color:'#3E526D'}}>1000</span>
+                <p style={{color:'grey', fontFamily:'Rubik', fontSize:'1rem'}}>Avg. Weighted Price</p>
+              </div>
+            </Col>
+            <Col>
+              <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
+                <span style={{color:'grey', fontFamily:'Rubik', fontSize:'2rem', color:'#3E526D'}}>1000</span>
+                <p style={{color:'grey', fontFamily:'Rubik', fontSize:'1rem'}}>Other Stat</p>
+              </div>
+            </Col>
+            </div>
+            <div style={{flex:.8}}></div>
+          </Row>
+          <div style={{display:'flex', flexDirection:'row', justifyContent:'flex-end', paddingRight:'1rem', marginTop:'0rem', zIndex:1}}>
+            <Button className="btn-round" color="info" outline>
+              {this.state.collapse ? <span>Custom Export</span> : <span>Quick Export</span> }
+            </Button>
+            <Button className="btn-round" color="primary" outline onClick={this.toggle}>
+              Customize Report
+            </Button>
+            </div>
+            <Collapse isOpen={this.state.collapse}>
+            <div style={{display:'flex', flexDirection:'row', justifyContent:'flex-end', paddingRight:'1rem', marginTop:'0rem', marginBottom:'.5rem', zIndex:1}}>
+              <div>
+                <p style={{fontSize:'small', marginBottom:'.5rem', color:'#3E526D'}}>Default</p>
+                <div style={{display:'flex', flexDirection:'row'}}>
+
+                  <div style={{display:'flex', flexDirection:'column'}}>
+                    <div style={{flex:1, justifyContent:'center'}}>
+                      <FormGroup check inline>
+                        <Label check>
+                          <Input defaultChecked type="checkbox" />
+                          <span className="form-check-sign" />ID
+                        </Label>
+                      </FormGroup>{" "}
+                    </div>
+                    <div style={{flex:1, justifyContent:'center'}}>
+                      <FormGroup check inline>
+                        <Label check>
+                          <Input defaultChecked type="checkbox" />
+                          <span className="form-check-sign" />Trade Date
+                        </Label>
+                      </FormGroup>{" "}
+                    </div>
+                  </div>
+
+                  <div style={{display:'flex', flexDirection:'column'}}>
+                    <div style={{flex:1, justifyContent:'center'}}>
+                      <FormGroup check inline>
+                        <Label check>
+                          <Input defaultChecked type="checkbox" />
+                          <span className="form-check-sign" />Type
+                        </Label>
+                      </FormGroup>{" "}
+                    </div>
+                    <div style={{flex:1, justifyContent:'center'}}>
+                      <FormGroup check inline>
+                        <Label check>
+                          <Input defaultChecked type="checkbox"/>
+                          <span className="form-check-sign" />Counterparty
+                        </Label>
+                      </FormGroup>{" "}
+                    </div>
+                  </div>
+
+                  <div style={{display:'flex', flexDirection:'column'}}>
+                    <div style={{flex:1, justifyContent:'center'}}>
+                      <FormGroup check inline>
+                        <Label check>
+                          <Input defaultChecked type="checkbox" />
+                          <span className="form-check-sign" />Fund
+                        </Label>
+                      </FormGroup>{" "}
+                    </div>
+                    <div style={{flex:1, justifyContent:'center'}}>
+                      <FormGroup check inline>
+                        <Label check>
+                          <Input defaultChecked type="checkbox"/>
+                          <span className="form-check-sign" />Amount
+                        </Label>
+                      </FormGroup>{" "}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div style={{paddingLeft:'2rem'}}>
+                <p style={{fontSize:'small', marginBottom:'.5rem', color:'grey'}}>Advanced</p>
+                <div style={{display:'flex', flexDirection:'row'}}>
+
+                  <div style={{display:'flex', flexDirection:'column'}}>
+                    <div style={{flex:1, justifyContent:'center'}}>
+                      <FormGroup check inline>
+                        <Label check>
+                          <Input type="checkbox" />
+                          <span className="form-check-sign" />Direction
+                        </Label>
+                      </FormGroup>{" "}
+                    </div>
+                    <div style={{flex:1, justifyContent:'center'}}>
+                      <FormGroup check inline>
+                        <Label check>
+                          <Input  type="checkbox" />
+                          <span className="form-check-sign" />Currency
+                        </Label>
+                      </FormGroup>{" "}
+                    </div>
+                  </div>
+
+                  <div style={{display:'flex', flexDirection:'column'}}>
+                    <div style={{flex:1, justifyContent:'center'}}>
+                      <FormGroup check inline>
+                        <Label check>
+                          <Input  type="checkbox"/>
+                          <span className="form-check-sign" />Confirmed
+                        </Label>
+                      </FormGroup>{" "}
+                    </div>
+                    <div style={{flex:1, justifyContent:'center'}}>
+                      <FormGroup check inline>
+                        <Label check>
+                          <Input  type="checkbox"/>
+                          <span className="form-check-sign" />Client
+                        </Label>
+                      </FormGroup>{" "}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            </Collapse>
+          <div style={{zIndex:-1}}>
+            <TransactionTable/>
+          </div>  
+          {/* <Col lg='12'>
+            <DragDropContext
+              // onDragStart
+              // onDragUpdate
+              onDragEnd={this.onDragEnd}
+              >
+                {this.state.columnOrder.map((columnId) => {
+                const column = this.state.columns[columnId];
+                const items = column.itemIds.map(itemId => this.state.items[itemId]);
+                
+                return <TransactionColumn key={column.id} column={items} items={items}/>;
+              })}
+            </DragDropContext>
+
+          </Col> */}
+
+          </Col> 
+          </div>
       </>
     );
   }

@@ -123,7 +123,54 @@ class InternalReports extends React.Component {
       {this.state.alert}
         <div className="content" style={{justifyContent:'center', alignItems:'center'}}>
           <Row lg='12' style={{marginBottom:'3rem', display:'flex', flexDirection:'row', justifyContent:'space-between', backgroundColor:'white', borderRadius:'1rem', padding:'.5rem'}} className='card-shadow'>
-            <Col  lg='6' style={{}}>
+          <Col  lg='6'>
+            <h4>Select Report Type</h4>
+              <Row>
+                <Col lg="3" style={{height:'3.5rem', marginBottom:'2rem', borderRight:'solid 1px lightgrey', borderBottom:'solid 1px lightgrey'}}>
+                    <div style={{width:'100%', height:'100%', display:'flex', justifyContent:'center', alignItems:'center'}} className='grow'>
+                      <p style={{margin:0, fontSize:'.8rem'}} className='blue-text'>Daily Funding</p>
+                    </div>
+                </Col>
+                <Col lg="3" style={{height:'3.5rem', marginBottom:'2rem', borderRight:'solid 1px lightgrey', borderBottom:'solid 1px lightgrey'}}>
+                  <div style={{width:'100%', height:'100%', display:'flex', justifyContent:'center', alignItems:'center'}} className='grow'>
+                    <p style={{margin:0, fontSize:'.8rem'}} className='blue-text'>Bond Inventory</p>
+                  </div>
+                </Col>
+                <Col lg="3" style={{height:'3.5rem', marginBottom:'2rem', borderRight:'solid 1px lightgrey', borderBottom:'solid 1px lightgrey'}}>
+                    <div style={{width:'100%', height:'100%', display:'flex', justifyContent:'center', alignItems:'center'}} className='grow'>
+                      <p style={{margin:0, fontSize:'.8rem'}} className='blue-text'>Future Settlements</p>
+                    </div>
+                </Col>
+                <Col lg="3" style={{height:'3.5rem', marginBottom:'2rem', borderBottom:'solid 1px lightgrey'}}>
+                  <div style={{width:'100%', height:'100%', display:'flex', justifyContent:'center', alignItems:'center'}} className='grow'>
+                    <p style={{margin:0, fontSize:'.8rem'}} className='blue-text'>Bank Rec</p>
+                  </div>
+                </Col>
+              </Row>
+              <Row style={{marginTop:'-2rem'}}>
+                <Col lg="3" style={{height:'3.5rem', marginBottom:'2rem', borderRight:'solid 1px lightgrey'}}>
+                    <div style={{width:'100%', height:'100%', display:'flex', justifyContent:'center', alignItems:'center'}} className='grow'>
+                      <p style={{margin:0, fontSize:'.8rem'}} className='blue-text'>Option Expiration</p>
+                    </div>
+                </Col>
+                <Col lg="3" style={{height:'3.5rem', marginBottom:'2rem', borderRight:'solid 1px lightgrey'}}>
+                  <div style={{width:'100%', height:'100%', display:'flex', justifyContent:'center', alignItems:'center'}} className='grow'>
+                    <p style={{margin:0, fontSize:'.8rem'}} className='blue-text'>Rate Reset</p>
+                  </div>
+                </Col>
+                <Col lg="3" style={{height:'3.5rem', marginBottom:'2rem', borderRight:'solid 1px lightgrey'}}>
+                    <div style={{width:'100%', height:'100%', display:'flex', justifyContent:'center', alignItems:'center'}} className='grow'>
+                      <p style={{margin:0, fontSize:'.8rem'}} className='blue-text'>Unwinds</p>
+                    </div>
+                </Col>
+                <Col lg="3" style={{height:'3.5rem', marginBottom:'2rem'}}>
+                  <div style={{width:'100%', height:'100%', display:'flex', justifyContent:'center', alignItems:'center'}} className='grow'>
+                    <p style={{margin:0, fontSize:'.8rem'}} className='blue-text'>Outstanding Confirms</p>
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+            {/* <Col  lg='6' style={{}}>
             <h4>Select Report Type</h4>
               <Row>
                 <Col lg="3" style={{height:'3.5rem', marginBottom:'2rem'}}>
@@ -169,8 +216,8 @@ class InternalReports extends React.Component {
                   </div>
                 </Col>
               </Row>
-            </Col>
-              <Col lg='2' style={{justifyContent:'center', display:'flex', flexDirection:'column'}}>
+            </Col> */}
+              {/* <Col lg='2' style={{justifyContent:'center', display:'flex', flexDirection:'column'}}>
                 <p className="input-category">Select Daily Funding</p>
                 <Select
                   className="react-select primary"
@@ -191,8 +238,8 @@ class InternalReports extends React.Component {
                   ]}
                   placeholder="Select book..."
                 />
-              </Col>
-              <Col lg='2' style={{justifyContent:'center', display:'flex', flexDirection:'column'}}>
+              </Col> */}
+              <Col lg='2' style={{justifyContent:'center', display:'flex', flexDirection:'column', marginTop:'1.8rem'}}>
                 <p className="input-category text-left">From</p>
                 <FormGroup>
                   <ReactDatetime
@@ -214,7 +261,7 @@ class InternalReports extends React.Component {
                   />
                 </FormGroup>
               </Col>
-              <Col lg='2' style={{justifyContent:'center', display:'flex', flexDirection:'column'}}>
+              <Col lg='2' style={{justifyContent:'center', display:'flex', flexDirection:'column', marginTop:'1.8rem'}}>
                 <Button className="btn-round" color="primary" onClick={this.warningWithConfirmAndCancelMessage} style={{marginLeft:'2.5rem', marginRight:'2.5rem', marginTop:'1.5rem'}} outline>
                   Search
                 </Button>

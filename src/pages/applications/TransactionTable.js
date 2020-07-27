@@ -26,119 +26,110 @@ import {
   Row,
   Col,
   FormGroup,
+  Label,
+  Input,
 } from "reactstrap";
+
+import Select from "react-select";
+
+import { DragDropContext } from 'react-beautiful-dnd';
+
+import ReactBSAlert from "react-bootstrap-sweetalert";
+import { Line} from "react-chartjs-2";
+import {
+  chartExample1,
+  chartExample4,
+  chartExample9,
+  chartExample10,
+  chartExample11,
+  chartExample12,
+} from "variables/charts.js";
 
 // react plugin used to create datetimepicker
 import ReactDatetime from "react-datetime";
 
 // core components
 import ReactTable from "components/ReactTable/ReactTable.js";
+import OptionTransaction from "./OptionTransaction";
+import EditTransaction from "./EditTransaction";
+import Transaction from "./Transaction";
 
 const dataTable = [
-  ["Tiger Nixon", "System Architect", "Edinburgh", "61"],
-  ["Garrett Winters", "Accountant", "Tokyo", "63"],
-  ["Ashton Cox", "Junior Technical Author", "San Francisco", "66"],
-  ["Cedric Kelly", "Senior Javascript Developer", "Edinburgh", "22"],
-  ["Airi Satou", "Accountant", "Tokyo", "33"],
-  ["Brielle Williamson", "Integration Specialist", "New York", "61"],
-  ["Herrod Chandler", "Sales Assistant", "San Francisco", "59"],
-  ["Rhona Davidson", "Integration Specialist", "Tokyo", "55"],
-  ["Colleen Hurst", "Javascript Developer", "San Francisco", "39"],
-  ["Sonya Frost", "Software Engineer", "Edinburgh", "23"],
-  ["Jena Gaines", "Office Manager", "London", "30"],
-  ["Quinn Flynn", "Support Lead", "Edinburgh", "22"],
-  ["Charde Marshall", "Regional Director", "San Francisco", "36"],
-  ["Haley Kennedy", "Senior Marketing Designer", "London", "43"],
-  ["Tatyana Fitzpatrick", "Regional Director", "London", "19"],
-  ["Michael Silva", "Marketing Designer", "London", "66"],
-  ["Paul Byrd", "Chief Financial Officer (CFO)", "New York", "64"],
-  ["Gloria Little", "Systems Administrator", "New York", "59"],
-  ["Bradley Greer", "Software Engineer", "London", "41"],
-  ["Dai Rios", "Personnel Lead", "Edinburgh", "35"],
-  ["Jenette Caldwell", "Development Lead", "New York", "30"],
-  ["Yuri Berry", "Chief Marketing Officer (CMO)", "New York", "40"],
-  ["Caesar Vance", "Pre-Sales Support", "New York", "21"],
-  ["Doris Wilder", "Sales Assistant", "Sidney", "23"],
-  ["Angelica Ramos", "Chief Executive Officer (CEO)", "London", "47"],
-  ["Gavin Joyce", "Developer", "Edinburgh", "42"],
-  ["Jennifer Chang", "Regional Director", "Singapore", "28"],
-  ["Brenden Wagner", "Software Engineer", "San Francisco", "28"],
-  ["Fiona Green", "Chief Operating Officer (COO)", "San Francisco", "48"],
-  ["Shou Itou", "Regional Marketing", "Tokyo", "20"],
-  ["Michelle House", "Integration Specialist", "Sidney", "37"],
-  ["Suki Burks", "Developer", "London", "53"],
-  ["Prescott Bartlett", "Technical Author", "London", "27"],
-  ["Gavin Cortez", "Team Leader", "San Francisco", "22"],
-  ["Martena Mccray", "Post-Sales support", "Edinburgh", "46"],
-  ["Unity Butler", "Marketing Designer", "San Francisco", "47"],
-  ["Howard Hatfield", "Office Manager", "San Francisco", "51"],
-  ["Hope Fuentes", "Secretary", "San Francisco", "41"],
-  ["Vivian Harrell", "Financial Controller", "San Francisco", "62"],
-  ["Timothy Mooney", "Office Manager", "London", "37"],
-  ["Jackson Bradshaw", "Director", "New York", "65"],
-  ["Olivia Liang", "Support Engineer", "Singapore", "64"],
+  ["912810SN9", "7/13/20", "4:50:27 PM", "T 1 1/4 05/15/50", "S", "2000", "98.578125", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3077"],
+  ["912810SN9", "7/13/20", "4:48:43 PM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "HEXAGON AM LLC", "BGC PARTNERS", "Accepted", "1.3083"],
+  ["912810SN9", "7/13/20", "4:33:06 PM", "T 1 1/4 05/15/50", "S", "1000", "98.515625", "BGC PARTNERS", "ARQ ADVISORS LLC", "Accepted", "1.3102"],
+  ["912810SN9", "7/13/20", "4:22:52 PM", "T 1 1/4 05/15/50", "B", "1000", "98.515625", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3186"],
+  ["912810SN9", "7/13/20", "4:19:47 PM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "ARQ ADVISORS LLC", "BGC PARTNERS", "Accepted", "1.3083"],
+  ["912810SN9", "7/13/20", "1:14:09 PM", "T 1 1/4 05/15/50", "S", "2000", "98.578125", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3077"],
+  ["912810SN9", "7/13/20", "1:03:54 PM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "HEXAGON AM LLC", "BGC PARTNERS", "Accepted", "1.3083"],
+  ["912810SN9", "7/13/20", "12:20:44 PM", "T 1 1/4 05/15/50", "S", "1000", "98.515625", "BGC PARTNERS", "ARQ ADVISORS LLC", "Accepted", "1.3102"],
+  ["912810SN9", "7/13/20", "12:12:25 PM", "T 1 1/4 05/15/50", "B", "1000", "98.515625", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3186"],
+  ["912810SN9", "7/13/20", "10:44:43 AM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "ARQ ADVISORS LLC", "BGC PARTNERS", "Accepted", "1.3083"],
+  ["912810SN9", "7/12/20", "4:50:27 PM", "T 1 1/4 05/15/50", "S", "2000", "98.578125", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3077"],
+  ["912810SN9", "7/12/20", "4:48:43 PM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "HEXAGON AM LLC", "BGC PARTNERS", "Accepted", "1.3083"],
+  ["912810SN9", "7/12/20", "4:33:06 PM", "T 1 1/4 05/15/50", "S", "1000", "98.515625", "BGC PARTNERS", "ARQ ADVISORS LLC", "Accepted", "1.3102"],
+  ["912810SN9", "7/12/20", "4:22:52 PM", "T 1 1/4 05/15/50", "B", "1000", "98.515625", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3186"],
+  ["912810SN9", "7/12/20", "4:19:47 PM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "ARQ ADVISORS LLC", "BGC PARTNERS", "Accepted", "1.3083"],
+  ["912810SN9", "7/12/20", "1:14:09 PM", "T 1 1/4 05/15/50", "S", "2000", "98.578125", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3077"],
+  ["912810SN9", "7/12/20", "1:03:54 PM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "HEXAGON AM LLC", "BGC PARTNERS", "Accepted", "1.3083"],
+  ["912810SN9", "7/12/20", "12:20:44 PM", "T 1 1/4 05/15/50", "S", "1000", "98.515625", "BGC PARTNERS", "ARQ ADVISORS LLC", "Accepted", "1.3102"],
+  ["912810SN9", "7/12/20", "12:12:25 PM", "T 1 1/4 05/15/50", "B", "1000", "98.515625", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3186"],
+  ["912810SN9", "7/12/20", "10:44:43 AM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "ARQ ADVISORS LLC", "BGC PARTNERS", "Accepted", "1.3083"],
 ];
 
 class TransactionTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      alert: null,
+      // fund: null,
+      // client: null,
+      // book: null,
+      // counterparty: null,
+      // excounterparty: null,
+      // singleSelect: null,
+      // multipleSelect: null,
       data: dataTable.map((prop, key) => {
         return {
           id: key,
-          name: prop[0],
-          position: prop[1],
-          office: prop[2],
-          age: prop[3],
+          cusip: prop[0],
+          tradedate: prop[1],
+          time:prop[2] ,
+          security:prop[3] ,
+          side:prop[4] ,
+          qty:prop[5],
+          price:prop[6],
+          customer:prop[7],
+          broker:prop[8],
+          status:prop[9],
+          yield:prop[10],
           actions: (
             // we've added some custom button actions
             <div className="actions-right">
-              {/* use this button to add a like kind of action */}
               <Button
-                onClick={() => {
-                  let obj = this.state.data.find((o) => o.id === key);
-                  alert(
-                    "You've clicked LIKE button on \n{ \nName: " +
-                      obj.name +
-                      ", \nposition: " +
-                      obj.position +
-                      ", \noffice: " +
-                      obj.office +
-                      ", \nage: " +
-                      obj.age +
-                      "\n}."
-                  );
-                }}
-                color="info"
-                size="sm"
-                className="btn-icon btn-link like"
-              >
-                <i className="fa fa-heart" />
-              </Button>{" "}
-              {/* use this button to add a edit kind of action */}
-              <Button
-                onClick={() => {
-                  let obj = this.state.data.find((o) => o.id === key);
-                  alert(
-                    "You've clicked EDIT button on \n{ \nName: " +
-                      obj.name +
-                      ", \nposition: " +
-                      obj.position +
-                      ", \noffice: " +
-                      obj.office +
-                      ", \nage: " +
-                      obj.age +
-                      "\n}."
-                  );
-                }}
-                color="warning"
-                size="sm"
+                onClick={() => {this.viewButton()}}
+                style={{color:'grey'}}
+                size="md"
                 className="btn-icon btn-link edit"
+                style={{marginTop:'-.4rem', marginRight:'-.6rem'}}
+              >
+                <i className="fa fa-files-o" />
+              </Button>{" "}
+              <Button
+                onClick={() => {this.editButton()}}
+                style={{color:'grey'}}
+                size="md"
+                className="btn-icon btn-link edit"
+                style={{marginTop:'-.3rem', marginRight:'2rem'}}
               >
                 <i className="fa fa-edit" />
               </Button>{" "}
+              <Input style={{marginTop:'.5rem'}} type="checkbox" />
+
+              {/* use this button to add a edit kind of action */}
+
               {/* use this button to remove the data row */}
-              <Button
+              {/* <Button
                 onClick={() => {
                   var data = this.state.data;
                   data.find((o, i) => {
@@ -158,95 +149,249 @@ class TransactionTable extends React.Component {
                 className="btn-icon btn-link remove"
               >
                 <i className="fa fa-times" />
-              </Button>{" "}
+              </Button>{" "} */}
             </div>
           ),
         };
       }),
     };
   }
+  editButton = () => {
+    this.setState({
+      alert: (
+        <ReactBSAlert
+          // warning
+          style={{ display: "block", marginTop: "-100px", width:'60%'}}
+          className='text-left'
+          // title="Edit Transaction"
+          onConfirm={() => this.confirmEdit()}
+          onCancel={() => this.cancelDetele()}
+          confirmBtnBsStyle="info"
+          cancelBtnBsStyle="danger"
+          confirmBtnText="Save Changes"
+          cancelBtnText="Cancel"
+          showCancel
+          btnSize=""
+        >
+          <div className='text-left'>
+            <h5>Edit Transaction</h5>
+              <p style={{fontSize:'.8rem'}}>Edit and confirm changes to save.</p>
+              <hr/>
+            <EditTransaction/>
+          </div>
+        </ReactBSAlert>
+      ),
+    });
+  };
+  confirmEdit = () => {
+    this.setState({
+      alert: (
+        <ReactBSAlert
+          warning
+          style={{ display: "block", marginTop: "-100px" }}
+          title="Confirm Edit"
+          onConfirm={() => this.successEdit()}
+          onCancel={() => this.editButton()}
+          confirmBtnBsStyle="info"
+          cancelBtnBsStyle="danger"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          btnSize=""
+          showCancel
+        >
+          Are you sure you want to make these changes?
+        </ReactBSAlert>
+      ),
+    });
+  };
+  successEdit = () => {
+    this.setState({
+      alert: (
+        <ReactBSAlert
+          success
+          style={{ display: "block", marginTop: "-100px" }}
+          title="Changes Saved!"
+          onConfirm={() => this.hideAlert()}
+          onCancel={() => this.hideAlert()}
+          confirmBtnBsStyle="info"
+          btnSize=""
+        >
+          Changes to the transaction have been saved.
+        </ReactBSAlert>
+      ),
+    });
+  };
+  viewButton = () => {
+    this.setState({
+      alert: (
+        <ReactBSAlert
+          // warning
+          style={{ display: "block", marginTop: "-100px", width:'60%'}}
+          className='text-left'
+          // title="Edit Transaction"
+          onConfirm={() => this.confirmEdit()}
+          onCancel={() => this.hideAlert()}
+          confirmBtnBsStyle="info"
+          cancelBtnBsStyle="primary"
+          confirmBtnText="Save Changes"
+          cancelBtnText="Close"
+          showCancel
+          showConfirm={false}
+          btnSize=""
+        >
+          <div className='text-left' style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+            <span className='input-category' style={{marginTop:'-1rem'}}>Security</span>
+            <h5>T 1 1/4 05/15/50</h5>
+              <hr/>
+              <div style={{width:'80%'}}>
+              <Line
+                    data={chartExample1.data}
+                    options={chartExample1.options}
+                  />
+                <br/><br/>
+              </div>
+            <Transaction/>
+          </div>
+        </ReactBSAlert>
+      ),
+    });
+  };
+  warningWithConfirmAndCancelMessage = () => {
+    this.setState({
+      alert: (
+        <ReactBSAlert
+          // warning
+          style={{ display: "block", marginTop: "-100px", width:'90%'}}
+          className='text-left'
+          // title="Edit Transaction"
+          onConfirm={() => this.successDelete()}
+          onCancel={() => this.cancelDetele()}
+          confirmBtnBsStyle="info"
+          cancelBtnBsStyle="danger"
+          confirmBtnText="Save Changes"
+          cancelBtnText="Cancel"
+          showCancel
+          btnSize=""
+        >
+          <div className='text-left'>
+            <EditTransaction/>
+          </div>
+        </ReactBSAlert>
+      ),
+    });
+  };
+  successDelete = () => {
+    this.setState({
+      alert: (
+        <ReactBSAlert
+          success
+          style={{ display: "block", marginTop: "-100px" }}
+          title="Changes Saved!"
+          onConfirm={() => this.hideAlert()}
+          onCancel={() => this.hideAlert()}
+          confirmBtnBsStyle="info"
+          btnSize=""
+        >
+          Transaction data has been updated.
+        </ReactBSAlert>
+      ),
+    });
+  };
+  cancelDetele = () => {
+    this.setState({
+      alert: (
+        <ReactBSAlert
+          danger
+          style={{ display: "block", marginTop: "-100px" }}
+          title="Cancelled"
+          onConfirm={() => this.hideAlert()}
+          onCancel={() => this.hideAlert()}
+          confirmBtnBsStyle="info"
+          btnSize=""
+        >
+          No changes have been saved.
+        </ReactBSAlert>
+      ),
+    });
+  };
+  
+
+  hideAlert = () => {
+    this.setState({
+      alert: null,
+    });
+  };
   render() {
     return (
       <>
-        <div className="content">
-
-          <Row style={{justifyContent:'flex-end'}}>
-            {/* <h4 style={{marginBottom:'2rem'}}>Report Table</h4> */}
-            <Row>
-              <Col md="3">
-                <p className="input-category">Start Date</p>
-                <FormGroup>
-                  <ReactDatetime
-                    inputProps={{
-                      className: "form-control",
-                      placeholder: "Set date...",
-                    }}
-                    timeFormat={false}
-                  />
-                </FormGroup>
-              </Col>
-              <Col md="3">
-                <p className="input-category">End Date</p>
-                <FormGroup>
-                  <ReactDatetime
-                    inputProps={{
-                      className: "form-control",
-                      placeholder: "Set date...",
-                    }}
-                    timeFormat={false}
-                  />
-                </FormGroup>
-              </Col>
-              <Row style={{padding:'1rem'}}>
-                <Button className="btn-round" color="primary" onClick={this.warningWithConfirmAndCancelMessage}>
-                  Search
-                </Button>
-                <Button className="btn-round" color="primary" outline>
-                  Load
-                </Button>
-                <Button className="btn-round" color="info" outline>
-                  Excel
-                </Button>
-              </Row>
-            </Row>
-            <Col md="12">
-              <Card>
-                <CardBody>
+      {this.state.alert}
+        <div className="content" style={{marginTop:'-.5rem'}}>
+            <Col>
                   <ReactTable
                     data={this.state.data}
+                    
                     columns={[
+                      // {
+                      //   Header: "ID",
+                      //   accessor: "transactionId",
+                      // },
                       {
-                        Header: "Name",
-                        accessor: "name",
+                        Header: "Date",
+                        accessor: "tradedate",
                       },
                       {
-                        Header: "Position",
-                        accessor: "position",
+                        Header: "Time",
+                        accessor: "time",
+                        sortable: false,
+                        filterable: false,
                       },
                       {
-                        Header: "Office",
-                        accessor: "office",
+                        Header: "Side",
+                        accessor: "side",
                       },
                       {
-                        Header: "Age",
-                        accessor: "age",
+                        Header: "Security",
+                        accessor: "security",
                       },
                       {
-                        Header: "Actions",
+                        Header: "Price",
+                        accessor: "price",
+                      },
+                      {
+                        Header: "Qty (M)",
+                        accessor: "qty",
+                      },
+                      // {
+                      //   Header: "Broker",
+                      //   accessor: "broker",
+                      // },
+                      {
+                        Header: "Customer",
+                        accessor: "customer",
+                      },
+                      // {
+                      //   Header: "Cusip",
+                      //   accessor: "cusip",
+                      // },
+                      // {
+                      //   Header: "Status",
+                      //   accessor: "status",
+                      // },
+                      {
+                        Header: "Yield",
+                        accessor: "yield",
+                      },
+                      {
+                        Header: "",
                         accessor: "actions",
                         sortable: false,
                         filterable: false,
                       },
                     ]}
-                    /*
-                      You can choose between primary-pagination, info-pagination, success-pagination, warning-pagination, danger-pagination or none - which will make the pagination buttons gray
-                    */
+                    
                     className="-striped -highlight primary-pagination"
                   />
-                </CardBody>
-              </Card>
             </Col>
-          </Row>
         </div>
       </>
     );

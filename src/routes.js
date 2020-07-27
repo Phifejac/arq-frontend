@@ -46,6 +46,7 @@ import Applications from "pages/applications/Applications";
 import TradeInstance from "pages/TradeInstace";
 import InternalReports from "pages/internal-reports/InternalReports";
 import CollateralCalls from "pages/internal-reports/CollateralCalls";
+import TransactionSearch from "pages/applications/TransactionSearch";
 
 const routes = [
   {
@@ -57,9 +58,46 @@ const routes = [
   },
   {
     collapse: true,
-    name: "Deal Capture",
+    name: "Transactions",
     icon: "nc-icon nc-book-bookmark",
-    state: "pagesCollapse",
+    state: "componentsCollapse",
+    layout: "/admin",
+    views: [
+      {
+        path: "/search",
+        name: "Transaction Search",
+        mini: "T",
+        component: Applications,
+        layout: "/admin",
+      },
+      {
+        path: "/linking",
+        name: "Trade Linking",
+        mini: "TL",
+        component: SweetAlert,
+        layout: "/admin",
+      },
+      {
+        path: "/reconcile",
+        name: "Reconcile Transactions",
+        mini: "RT",
+        component: Widgets,
+        layout: "/admin",
+      },
+      {
+        path: "/strategies",
+        name: "Transaction Strategies",
+        mini: "TS",
+        component: Dashboard,
+        layout: "/admin",
+      },
+    ],
+  },
+  {
+    collapse: true,
+    name: "Deal Capture",
+    icon: "nc-icon nc-zoom-split",
+    state: "formsCollapse",
     views: [
       {
         path: "/transactions",
@@ -78,73 +116,30 @@ const routes = [
       {
         path: "/tradeinstance",
         name: "Trade Instance",
-        mini: "R",
+        mini: "TI",
         component: TradeInstance,
         layout: "/admin",
       },
-      {
-        path: "/bondmanager",
-        name: "Bond Manager",
-        mini: "LS",
-        component: Dashboard,
-        layout: "/admin",
-      },
     ],
   },
   {
-    collapse: true,
+    path: "/internalreports",
     name: "Reports",
     icon: "nc-icon nc-layout-11",
-    state: "componentsCollapse",
-    views: [
-      {
-        path: "/internalreports",
-        name: "Internal Reports",
-        mini: "IR",
-        component: InternalReports,
-        layout: "/admin",
-      },
-      {
-        path: "/cashtransfers",
-        name: "Cash Transfers",
-        mini: "CT",
-        component: Dashboard,
-        layout: "/admin",
-      },
-      {
-        path: "/collateralcalls",
-        name: "Collateral Calls",
-        mini: "CC",
-        component: CollateralCalls,
-        layout: "/admin",
-      },
-      {
-        path: "/repocollateralcalls",
-        name: "Repo Collateral Calls",
-        mini: "RCC",
-        component: Dashboard,
-        layout: "/admin",
-      },
-    ],
-  },
-  {
-    path: "/applications",
-    name: "Applications",
-    icon: "nc-icon nc-app",
-    component: Applications,
-    layout: "/admin",
-  },
-  {
-    path: "/administration",
-    name: "Admin",
-    icon: "nc-icon nc-settings",
-    component: Dashboard,
+    component: InternalReports,
     layout: "/admin",
   },
   {
     path: "/pll",
     name: "PnL",
     icon: "nc-icon nc-money-coins",
+    component: Dashboard,
+    layout: "/admin",
+  },
+  {
+    path: "/administration",
+    name: "Admin",
+    icon: "nc-icon nc-settings",
     component: Dashboard,
     layout: "/admin",
   },

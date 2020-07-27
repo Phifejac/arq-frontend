@@ -265,7 +265,7 @@ class RegularForms extends React.Component {
             <Col md="12">
               <Card>
                 <CardHeader>
-                  <CardTitle tag="h4">Input Variants</CardTitle>
+                  <CardTitle tag="h4" className='info'>Input Variants</CardTitle>
                 </CardHeader>
                 <CardBody>
                   <Form action="/" className="form-horizontal" method="get">

@@ -14,7 +14,9 @@ import matchSorter from "match-sorter";
 import Select from "react-select";
 
 // reactstrap components
-import { Container, Row, Col, FormGroup, Input } from "reactstrap";
+import { Container, Row, Col, FormGroup, Input, Button, Label } from "reactstrap";
+import ReactBSAlert from "react-bootstrap-sweetalert";
+import { isThisTypeNode } from "typescript";
 
 // Define a default UI for filtering
 function DefaultColumnFilter({
@@ -23,15 +25,19 @@ function DefaultColumnFilter({
   const count = preFilteredRows.length;
 
   return (
-    <FormGroup>
-      <Input
-        placeholder={`Search ${count} records...`}
-        type="text"
-        onChange={(e) => {
-          setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
-        }}
-      />
-    </FormGroup>
+    <div style={{}}>
+      <FormGroup>
+        <Input
+          // placeholder={`Search ${count}...`}
+          placeholder={`Search...`}
+          type="text"
+          style={{borderWidth:0, marginBottom:5, padding:0, paddingTop:5, paddingLeft:3, paddingBottom:5, fontSize:'.8rem', backgroundColor:'#F3F2F160'}}
+          onChange={(e) => {
+            setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
+          }}
+        />
+      </FormGroup>
+    </div>
   );
 }
 
@@ -72,6 +78,7 @@ function Table({ columns, data }) {
     []
   );
 
+  
   const defaultColumn = React.useMemo(
     () => ({
       // Let's set up our default Filter UI
@@ -117,25 +124,14 @@ function Table({ columns, data }) {
     Array(pageOptions.length)
   ).map(function () {});
   let numberOfRowsData = [5, 10, 20, 25, 50, 100];
+
   return (
+    
     <>
-      <div className="ReactTable -striped -highlight primary-pagination">
+      <div className="ReactTable -highlight primary-pagination">
         <div className="pagination-top">
-          <div className="-pagination">
-            <div className="-previous">
-              <button
-                type="button"
-                onClick={() => previousPage()}
-                disabled={!canPreviousPage}
-                className="-btn"
-              >
-                Previous
-              </button>
-            </div>
-            <div className="-center">
-              <Container>
-                <Row className="justify-content-center">
-                  <Col md="4" sm="6" xs="12">
+          <div style={{display:'flex', flexDirection:'row', justifyContent:'flex-end'}}>
+                  <div style={{width:'10%', marginTop:'.7rem', marginRight:'1rem'}}>
                     <Select
                       className="react-select primary"
                       classNamePrefix="react-select"
@@ -153,8 +149,8 @@ function Table({ columns, data }) {
                       })}
                       placeholder="Choose Page"
                     />
-                  </Col>
-                  <Col md="4" sm="6" xs="12">
+                  </div>
+                  <div style={{width:'10%', marginTop:'.7rem', marginRight:'1rem'}}>
                     <Select
                       className="react-select primary"
                       classNamePrefix="react-select"
@@ -172,23 +168,18 @@ function Table({ columns, data }) {
                       })}
                       placeholder="Choose Rows"
                     />
-                  </Col>
-                </Row>
-              </Container>
-            </div>
-            <div className="-next">
-              <button
-                type="button"
-                onClick={() => nextPage()}
-                disabled={!canNextPage}
-                className="-btn"
-              >
-                Next
-              </button>
-            </div>
+                  </div>
+              <Button className="btn-round" color="primary" outline onClick={() => previousPage()}
+                disabled={!canPreviousPage}>
+                <span>Previous</span>
+              </Button>
+              <Button className="btn-round" color="primary" outline onClick={() => nextPage()}
+                disabled={!canNextPage}>
+                <span>Next</span>
+              </Button>
           </div>
         </div>
-        <table {...getTableProps()} className="rt-table">
+        <table {...getTableProps()} className="rt-table" style={{border:'none'}}>
           <thead className="rt-thead -header">
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()} className="rt-tr">
@@ -206,18 +197,32 @@ function Table({ columns, data }) {
                     </div>
                     {/* Render the columns filter UI */}
                     <div>
-                      {headerGroup.headers.length - 1 === key
+                      { key === 8
+                        
                         ? null
                         : column.canFilter
                         ? column.render("Filter")
                         : null}
                     </div>
                   </th>
+                  
                 ))}
+                <div style={{marginRight:'3.35rem', alignItems:'center', position:'absolute', right:-28, top:'5rem'}}>
+                  <div style={{display:'flex', flexDirection:'column'}}>
+                    <div style={{fontSize:'.7rem', color:'#707070'}}>
+                      <p style={{margin:0, marginRight:14}}>Select All</p>
+                    </div>
+                    <div style={{marginLeft:14}}>
+                    <Input  type="checkbox"/>
+                    </div>
+                    {/* <p>Select All</p> */}
+                    {/* <Input  type="checkbox"/> */}
+                  </div>
+                </div>
               </tr>
             ))}
           </thead>
-          <tbody {...getTableBodyProps()} className="rt-tbody">
+          <tbody {...getTableBodyProps()} className="rt-tbody"style={{ fontFamily:'Rubik'}}>
             {page.map((row, i) => {
               prepareRow(row);
               return (
@@ -228,10 +233,12 @@ function Table({ columns, data }) {
                     { " -odd": i % 2 === 0 },
                     { " -even": i % 2 === 1 }
                   )}
+                  // style={{backgroundColor:'red'}}
+                  // onClick={() => warningWithConfirmAndCancelMessage()}
                 >
                   {row.cells.map((cell) => {
                     return (
-                      <td {...cell.getCellProps()} className="rt-td">
+                      <td {...cell.getCellProps()} className="rt-td" style={{height:'3.25rem', borderRightWidth:0, borderTopColor:'#f0f3f7', fontSize:'.8rem'}}>
                         {cell.render("Cell")}
                       </td>
                     );
@@ -241,7 +248,7 @@ function Table({ columns, data }) {
             })}
           </tbody>
         </table>
-        <div className="pagination-bottom"></div>
+        <div className="pagination-bottom" style={{paddingBottom:'1rem'}}></div>
       </div>
     </>
   );
