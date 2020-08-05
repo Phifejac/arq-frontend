@@ -37,7 +37,7 @@ class Applications extends React.Component {
     this.state = {
       selected:'transaction-search',
       collapse: false,
-      rotation: 0,
+      rotation: 90,
     };
     this.toggle = this.toggle.bind(this);
     this.rotate = this.rotate.bind(this);
@@ -45,8 +45,8 @@ class Applications extends React.Component {
 
   rotate(){
     let newRotation = this.state.rotation + 180;
-    if(newRotation >= 180){
-      newRotation =- 180;
+    if(newRotation >= 270){
+      newRotation =- 270;
     }
     this.setState({
       rotation: newRotation,
@@ -76,51 +76,67 @@ class Applications extends React.Component {
   render() {
     return (
       <>
-        <div className="content" style={{padding:0, paddingLeft:'1rem'}}>
-          <div style={{display:'flex', flexDirection:'row'}}  onClick={ () => {this.toggle(); this.rotate()}}>
-            <h4 style={{marginBottom:-5, margin:0, color:'#3E526D', fontWeight:'500'}}>App Menu</h4>
+        <div className="content" style={{padding:0, paddingLeft:'1rem', borderWidth:0}}>
+          <Row style={{display:'flex', flexDirection:'row'}}>
+          {/* <div style={this.state.collapse ? {backgroundColor:'red', width:'20%'} : {backgroundColor:'red', width:'10%'}}   onClick={ () => {this.toggle(); this.rotate()}}> */}
+            
             <div style={{paddingTop:'.4rem', marginLeft:'.6rem'}} className='grow-big'>
               <img src={require("../../assets/img/caret.svg")} style={{height:'1rem',transform: `rotate(${this.state.rotation}deg)`, transformOrigin:'center center', transition: 'transform .1s linear'}}></img>
             </div>
-          </div>
-          <Collapse isOpen={this.state.collapse}>
-            <Row style={{overflowX:'scroll', flexWrap:'nowrap', paddingTop:10}}>
-            <Col lg="3" md="6" sm="6">
-              <Card className={this.state.selected === 'transaction-search' ? "card-stats transaction-selected grow" : "card-stats grow"} onClick={() => this.openTransactionSearch()}>
-                <CardBody>
-                  <Row>
-                    <Col md="4" xs="5">
-                      <div className="icon-big text-center icon-warning">
-                        <i className="fa fa-search text-warning" />
-                      </div>
-                    </Col>
-                    <Col md="8" xs="7">
-                      <div className="numbers">
-                        <p style={{fontSize:'1.4rem', color:'#3E526D'}}>Transaction Search</p>
-                      </div>
-                    </Col>
-                  </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  {this.state.selected === 'transaction-search' ?
-                    <div className="stats" style={{color:'#3E526D'}}>
-                      <i className="fa fa-check" style={{color:'#FCC658'}}/>
-                      Open Now
-                    </div>
-                  :
-                  <div className="stats">
-                    <Badge color="warning" pill style={{marginBottom:-5}}> 
-                      2
-                    </Badge>
-                    <span style={{paddingLeft:'.7rem'}}>Action Required</span>
-                  </div>
-                  }
-                </CardFooter>
-                <img src={require('../../assets/img/search-bg.svg')} style={{ opacity:.15, position:'absolute', bottom:0, right:0, height:'95%'}}></img>
-              </Card>
-            </Col>
-            <Col lg="3" md="6" sm="6">
+
+                {/* {this.state.collapse ? 
+                <div className={this.state.selected === 'transaction-search' ? "" : ""} onClick={() => this.openTransactionSearch()}>
+                  <p>Search</p>
+                </div>
+                :
+                <div className={this.state.selected === 'transaction-search' ? "" : ""} onClick={() => this.openTransactionSearch()}>
+                  <p>Search</p>
+                </div>
+                } */}
+
+            <nav className='navbarside' style={{zIndex:+1}}>
+              <ul className='navbarside-nav'>
+                
+                <li className='navside-item'>
+                  <a href="#" className='navside-link' onClick={() => this.openTransactionSearch()}>
+                    <span className='sidelink-text'>Search</span>
+                    <span className='sidelink-subtext'>Easily view and sort previous trades on a broad scale.</span>
+                  </a>
+                </li>
+
+                <li className='navside-item' onClick={() => this.openTradeLinking()}>
+                  <a href="#" className='navside-link'>
+                    <span className='sidelink-text'>Advanced </span><span className='sidelink-text'>Search</span>
+                    <span className='sidelink-subtext'>Easily view and sort previous trades on a broad scale.</span>
+                  </a>
+                </li>
+
+                <li className='navside-item'>
+                  <a href="#" className='navside-link'>
+                    <span className='sidelink-text'>Linked </span><span className='sidelink-text'>Transactions</span>
+                    <span className='sidelink-subtext'>Easily view and sort previous trades on a broad scale.</span>
+                  </a>
+                </li>
+
+                <li className='navside-item'>
+                  <a href="#" className='navside-link'>
+                    <span className='sidelink-text'>Reconcile </span><span className='sidelink-text'>Transactions</span>
+                    <span className='sidelink-subtext'>Easily view and sort previous trades on a broad scale.</span>
+                  </a>
+                </li>
+
+                <li className='navside-item'>
+                  <a href="#" className='navside-link'>
+                    <span className='sidelink-text'>Strategies</span>
+                    <span className='sidelink-subtext'>Easily view and sort previous trades on a broad scale.</span>
+                  </a>
+                </li>
+
+
+              </ul>
+            </nav>
+            
+            {/* <Col lg="12" md="6" sm="6">
               <Card className={this.state.selected === 'trade-linking' ? "card-stats linking-selected grow" : "card-stats grow"} onClick={() => this.openTradeLinking()}>
                 <CardBody>
                   <Row>
@@ -155,7 +171,7 @@ class Applications extends React.Component {
                 <img src={require('../../assets/img/link.svg')} style={{ opacity:.15, position:'absolute', bottom:0, right:0, height:'95%'}}></img>
               </Card>
             </Col>
-            <Col lg="3" md="6" sm="6">
+            <Col lg="12" md="6" sm="6">
               <Card className={this.state.selected === 'reconcile-transactions' ? "card-stats reconcile-selected grow" : "card-stats grow"} onClick={() => this.openReconcile()}>
                 <CardBody>
                   <Row>
@@ -190,7 +206,7 @@ class Applications extends React.Component {
                 <img src={require('../../assets/img/shield.svg')} style={{ opacity:.15, position:'absolute', bottom:0, right:0, height:'95%'}}></img>
               </Card>
             </Col>
-            <Col lg="3" md="6" sm="6">
+            <Col lg="12" md="6" sm="6">
               <Card className={this.state.selected === 'transaction-strategies' ? "card-stats strategies-selected grow" : "card-stats grow"} onClick={() => this.openStrategies()}>
                 <CardBody>
                   <Row>
@@ -216,7 +232,7 @@ class Applications extends React.Component {
                 <img src={require('../../assets/img/focus.svg')} style={{ opacity:.15, position:'absolute', bottom:0, right:0, height:'95%'}}></img>
               </Card>
             </Col>
-            <Col lg="3" md="6" sm="6">
+            <Col lg="12" md="6" sm="6">
               <Card className="card-stats">
                 <CardBody>
                   <Row>
@@ -242,13 +258,18 @@ class Applications extends React.Component {
                   </div>
                 </CardFooter>
               </Card>
-            </Col>
-          </Row>
-          </Collapse>
-          <br/>
-
+            </Col> */}
+          {/* </Collapse> */}
+          {/* </div> */}
+          {/* } */}
+          <div 
+          style={{paddingLeft:'6rem'}}
+          // style={this.state.collapse ? {backgroundColor:'red', width:'80%'} : {backgroundColor:'red', width:'90%'}}
+          >
           {this.state.selected === 'transaction-search' ? <TransactionSearch/> : <span/>}
           {this.state.selected === 'trade-linking' ? <TradeLinking/> : <span/>}
+          </div>
+          </Row>
         </div>
       </>
     );

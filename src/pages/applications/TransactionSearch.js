@@ -145,7 +145,7 @@ class TransactionSearch extends Component {
       {this.state.alert}
           <div style={{backgroundColor:'white'}}>
           <Col lg='12' style={{marginBottom:'0rem', padding:'1.5rem', marginTop:'-1rem'}}>
-              <h4 style={{marginTop:'0rem', fontFamily:'Rubik'}}>Transaction Search</h4>
+              <h4 style={{marginTop:'0rem', fontFamily:'Poppins', fontWeight:'500'}}>Transaction Search</h4>
           </Col>
           <Col lg='12'>
           <p className='info' style={{color:'lightgrey', fontSize:'1.1rem', marginTop:'-1rem', marginLeft:'33%'}}>Quick Analytics</p>
@@ -182,20 +182,20 @@ class TransactionSearch extends Component {
             <div style={{display:'flex', flexDirection:'row', flex:1}}>
             <Col>
               <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
-                <span style={{color:'grey', fontFamily:'Rubik', fontSize:'2rem', color:'#96C35E'}}>1000</span>
-                <p style={{color:'grey', fontFamily:'Rubik', fontSize:'1rem'}}>Net Notional</p>
+                <span style={{color:'grey', fontFamily:'Poppins', fontSize:'2rem', color:'#96C35E', fontWeight:'500'}}>1000</span>
+                <p style={{color:'grey', fontFamily:'Poppins', fontSize:'1rem'}}>Net Notional</p>
               </div>
             </Col>
             <Col>
               <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
-                <span style={{color:'grey', fontFamily:'Rubik', fontSize:'2rem', color:'#3E526D'}}>1000</span>
-                <p style={{color:'grey', fontFamily:'Rubik', fontSize:'1rem'}}>Avg. Weighted Price</p>
+                <span style={{color:'grey', fontFamily:'Poppins', fontSize:'2rem', color:'#3E526D', fontWeight:'500'}}>1000</span>
+                <p style={{color:'grey', fontFamily:'Poppins', fontSize:'1rem'}}>Avg. Weighted Price</p>
               </div>
             </Col>
             <Col>
               <div style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
-                <span style={{color:'grey', fontFamily:'Rubik', fontSize:'2rem', color:'#3E526D'}}>1000</span>
-                <p style={{color:'grey', fontFamily:'Rubik', fontSize:'1rem'}}>Other Stat</p>
+                <span style={{color:'grey', fontFamily:'Poppins', fontSize:'2rem', color:'#3E526D', fontWeight:'500'}}>1000</span>
+                <p style={{color:'grey', fontFamily:'Poppins', fontSize:'1rem'}}>Other Stat</p>
               </div>
             </Col>
             </div>

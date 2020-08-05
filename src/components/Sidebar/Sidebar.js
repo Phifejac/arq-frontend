@@ -148,18 +148,16 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div
-        className="sidebar"
+        className="sidebar mainsidebar"
         // data-color={this.props.bgColor}
-        data-active-color={this.props.activeColor}
+        data-active-color='white'
       >
         <div className="logo" style={{paddingTop:'3rem', paddingBottom:'2.5rem', paddingLeft:'2.5rem', paddingRight:'2.5rem'}}>
-          {/* <p>{this.props.activeColor}</p>
-          <p>{this.props.bgColor}</p> */}
           <img src={require("../../assets/img/portislogo.svg")}></img>
         </div>
 
         <div className="sidebar-wrapper" ref="sidebar">
-          {/* <div className="user">
+          <div className="user">
             <div className="photo">
               <img src={avatar} alt="Avatar" />
             </div>
@@ -200,8 +198,8 @@ class Sidebar extends React.Component {
                 </ul>
               </Collapse>
             </div>
-          </div> */}
-          <Nav className='rubik'>{this.createLinks(this.props.routes)}</Nav>
+          </div>
+          <Nav>{this.createLinks(this.props.routes)}</Nav>
         </div>
       </div>
     );

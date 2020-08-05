@@ -92,6 +92,7 @@ class AdminNavbar extends React.Component {
         <Navbar
           className={classnames("navbar-absolute fixed-top", this.state.color)}
           expand="lg"
+          style={{borderBottomWidth:0}}
         >
           <Container fluid>
             <div className="navbar-wrapper">
@@ -101,12 +102,13 @@ class AdminNavbar extends React.Component {
                   color="default"
                   id="minimizeSidebar"
                   onClick={this.props.handleMiniClick}
+                  style={{marginLeft:'1rem'}}
                 >
                   <i className="nc-icon nc-minimal-right text-center visible-on-sidebar-mini" />
                   <i className="nc-icon nc-minimal-left text-center visible-on-sidebar-regular" />
                 </Button>
               </div>
-              <div
+              {/* <div
                 className={classnames("navbar-toggle", {
                   toggled: this.state.sidebarOpen,
                 })}
@@ -120,9 +122,9 @@ class AdminNavbar extends React.Component {
                   <span className="navbar-toggler-bar bar2" />
                   <span className="navbar-toggler-bar bar3" />
                 </button>
-              </div>
+              </div> */}
             </div>
-            <button
+            {/* <button
               aria-controls="navigation-index"
               aria-expanded={this.state.collapseOpen}
               aria-label="Toggle navigation"
@@ -135,8 +137,8 @@ class AdminNavbar extends React.Component {
               <span className="navbar-toggler-bar navbar-kebab" />
               <span className="navbar-toggler-bar navbar-kebab" />
               <span className="navbar-toggler-bar navbar-kebab" />
-            </button>
-            <Collapse
+            </button> */}
+            {/* <Collapse
               className="justify-content-end"
               navbar
               isOpen={this.state.collapseOpen}
@@ -216,7 +218,7 @@ class AdminNavbar extends React.Component {
                   </NavLink>
                 </NavItem>
               </Nav>
-            </Collapse>
+            </Collapse> */}
           </Container>
         </Navbar>
       </>

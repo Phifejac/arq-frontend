@@ -34,7 +34,7 @@ class Admin extends React.Component {
     this.state = {
       backgroundColor: "green",
       activeColor: "info",
-      sidebarMini: false,
+      sidebarMini: true,
     };
   }
   componentDidMount() {
@@ -92,32 +92,35 @@ class Admin extends React.Component {
   };
   render() {
     return (
-      <div className="wrapper" style={{backgroundColor:'#f7faff'}}>
+      <div className="wrapper">
         <Sidebar
           {...this.props}
           routes={routes}
-          bgColor={this.state.backgroundColor}
           activeColor={this.state.activeColor}
         />
         <div className="main-panel" ref="mainPanel" style={{backgroundColor:'#FFFFFF'}}>
+          <div>
           <AdminNavbar {...this.props} handleMiniClick={this.handleMiniClick} />
+          {/* <span>Hi
+          </span> */}
           <Switch>{this.getRoutes(routes)}</Switch>
-          {
+          {/* {
             // we don't want the Footer to be rendered on full screen maps page
             this.props.location.pathname.indexOf("full-screen-map") !==
             -1 ? null : (
               <Footer fluid />
             )
-          }
+          } */}
+          </div>
         </div>
-        {/* <FixedPlugin
+        <FixedPlugin
           bgColor={this.state.backgroundColor}
           activeColor={this.state.activeColor}
           sidebarMini={this.state.sidebarMini}
           handleActiveClick={this.handleActiveClick}
           handleBgClick={this.handleBgClick}
           handleMiniClick={this.handleMiniClick}
-        /> */}
+        />
       </div>
     );
   }

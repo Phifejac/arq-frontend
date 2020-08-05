@@ -222,7 +222,7 @@ function Table({ columns, data }) {
               </tr>
             ))}
           </thead>
-          <tbody {...getTableBodyProps()} className="rt-tbody"style={{ fontFamily:'Rubik'}}>
+          <tbody {...getTableBodyProps()} className="rt-tbody"style={{ fontFamily:'Poppins'}}>
             {page.map((row, i) => {
               prepareRow(row);
               return (
