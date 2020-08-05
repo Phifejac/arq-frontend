@@ -143,10 +143,10 @@ class TransactionSearch extends Component {
     return (
       <>
       {this.state.alert}
-          <div style={{backgroundColor:'white'}}>
-          <Col lg='12' style={{marginBottom:'0rem', padding:'1.5rem', marginTop:'-1rem'}}>
-              <h4 style={{marginTop:'0rem', fontFamily:'Poppins', fontWeight:'500'}}>Transaction Search</h4>
-          </Col>
+          <div style={{backgroundColor:'#202125', width:'100%'}}>
+          <Row lg='12' style={{marginLeft:'1.8rem'}}>
+              <h4 style={{marginTop:'3rem', fontFamily:'Poppins', fontWeight:'500', fontSize:'large', marginBottom:'2rem'}}> Transactions > Search</h4>
+          </Row>
           <Col lg='12'>
           <p className='info' style={{color:'lightgrey', fontSize:'1.1rem', marginTop:'-1rem', marginLeft:'33%'}}>Quick Analytics</p>
           <Row style={{display:'flex', flexDirection:'row'}}>

@@ -76,13 +76,13 @@ class Applications extends React.Component {
   render() {
     return (
       <>
-        <div className="content" style={{padding:0, paddingLeft:'1rem', borderWidth:0}}>
-          <Row style={{display:'flex', flexDirection:'row'}}>
+        <div className="content" style={{padding:0, borderWidth:0, backgroundColor:'#202125', height:'100vh'}}>
+          {/* <Row style={{display:'flex', flexDirection:'row'}}> */}
           {/* <div style={this.state.collapse ? {backgroundColor:'red', width:'20%'} : {backgroundColor:'red', width:'10%'}}   onClick={ () => {this.toggle(); this.rotate()}}> */}
             
-            <div style={{paddingTop:'.4rem', marginLeft:'.6rem'}} className='grow-big'>
+            {/* <div style={{paddingTop:'.4rem', marginLeft:'.6rem'}} className='grow-big'>
               <img src={require("../../assets/img/caret.svg")} style={{height:'1rem',transform: `rotate(${this.state.rotation}deg)`, transformOrigin:'center center', transition: 'transform .1s linear'}}></img>
-            </div>
+            </div> */}
 
                 {/* {this.state.collapse ? 
                 <div className={this.state.selected === 'transaction-search' ? "" : ""} onClick={() => this.openTransactionSearch()}>
@@ -263,13 +263,13 @@ class Applications extends React.Component {
           {/* </div> */}
           {/* } */}
           <div 
-          style={{paddingLeft:'6rem'}}
+          style={{paddingLeft:'8rem', display:'flex', width:'100%', height:'100%'}}
           // style={this.state.collapse ? {backgroundColor:'red', width:'80%'} : {backgroundColor:'red', width:'90%'}}
           >
           {this.state.selected === 'transaction-search' ? <TransactionSearch/> : <span/>}
           {this.state.selected === 'trade-linking' ? <TradeLinking/> : <span/>}
           </div>
-          </Row>
+          {/* </Row> */}
         </div>
       </>
     );
