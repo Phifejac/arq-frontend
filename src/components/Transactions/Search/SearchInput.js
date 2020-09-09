@@ -13,8 +13,7 @@ import {
 // import TransactionData from './TransactionData'
 import Helmet from 'react-helmet'
 import DayPicker, { DateUtils } from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
-import InputRange from 'react-input-range';
+import Select from "react-select";
 
 
 
@@ -39,14 +38,6 @@ class SearchInput extends Component {
       from: null,
       to: null,
       enteredTo: null, // Keep track of the last day for mouseEnter.
-      value4: {
-        min: 5,
-        max: 10,
-      },
-      value5: {
-        min: 5,
-        max: 15,
-      },
     };
   }
 
@@ -104,7 +95,7 @@ class SearchInput extends Component {
     return (
       <>
       {this.state.alert}            
-            <div style={{display:'flex', flexDirection:'column', backgroundColor:'#27282d', borderRadius:'2rem', position:'relative', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)'}}>
+            <div style={{display:'flex', flexDirection:'column', backgroundColor:'#27282d', borderRadius:'1rem', position:'relative', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)'}}>
             <div style={{display:'flex', flexDirection:'row'}}>
               <Row style={{margin:'1rem'}}>
                   <div style={{marginRight:'1rem'}}>
@@ -199,28 +190,48 @@ class SearchInput extends Component {
                         </div>
                     </div>
                     <div style={{width:'80%'}} className='align-self-center'>
-                    <label className="labeltext">Price (M)</label>
-                    <form className="form">
-                    <InputRange
-                      maxValue={20}
-                      minValue={0}
-                      formatLabel={value => `$${value}`}
-                      value={this.state.value4}
-                      onChange={value => this.setState({ value4: value })}
-                      onChangeComplete={value => console.log(value)} />
-                      </form>
+                    <label className="labeltext">Customer</label>
+                    <Select
+                            className="react-select primary"
+                            classNamePrefix="react-select"
+                            name="singleSelect"
+                            value={this.state.client}
+                            onChange={(value) =>
+                              this.setState({ client: value })
+                            }
+                            options={[
+                              {
+                                value: "",
+                                label: "Select One",
+                                isDisabled: true,
+                              },
+                              { value: "2", label: "Foobar" },
+                              { value: "3", label: "Is great" },
+                            ]}
+                            placeholder="Select customer..."
+                          />
                    </div>
                    <div style={{width:'80%'}} className='align-self-center'>
-                    <label className="labeltext">Qty (M)</label>
-                    <form className="form">
-                      <InputRange
-                        maxValue={20}
-                        minValue={0}
-                        formatLabel={value => `${value}`}
-                        value={this.state.value5}
-                        onChange={value => this.setState({ value5: value })}
-                        onChangeComplete={value => console.log(value)} />
-                        </form>
+                    <label className="labeltext">Security</label>
+                    <Select
+                            className="react-select primary"
+                            classNamePrefix="react-select"
+                            name="singleSelect"
+                            value={this.state.client}
+                            onChange={(value) =>
+                              this.setState({ client: value })
+                            }
+                            options={[
+                              {
+                                value: "",
+                                label: "Select One",
+                                isDisabled: true,
+                              },
+                              { value: "2", label: "Foobar" },
+                              { value: "3", label: "Is great" },
+                            ]}
+                            placeholder="Select security..."
+                          />
                    </div>
                 </div>
                 <div style={{display:'flex', alignItems:'center'}}>

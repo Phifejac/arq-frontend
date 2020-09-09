@@ -1,8 +1,4 @@
 import React from "react";
-// react plugin used to create charts
-import { Line, Bar, Doughnut } from "react-chartjs-2";
-// react plugin for creating vector maps
-import { VectorMap } from "react-jvectormap";
 // react plugin used to create switch buttons
 import Switch from "react-bootstrap-switch";
 
@@ -21,7 +17,7 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 import InputRange from 'react-input-range';
-// import 'react-input-range/lib/css/index.css';
+import 'react-input-range/lib/css/index.css';
 
 const animatedComponents = makeAnimated();
 
@@ -200,7 +196,7 @@ class AdvancedSearchInputs extends React.Component {
       <>
       {this.state.alert}
           <Col lg='10' style={{}}>
-            <div style={{backgroundColor:'#27282d', borderRadius:'2rem', position:'relative', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', padding:'2rem', marginTop:'1rem'}}>
+            <div style={{backgroundColor:'#27282d', borderRadius:'1rem', position:'relative', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', padding:'2rem', marginTop:'1rem'}}>
             <h5 tag="h4" style={{color:'white', margin:'0rem'}}>Bond Search</h5>
             <Row>
             <Col lg='6'>
@@ -208,7 +204,7 @@ class AdvancedSearchInputs extends React.Component {
                   <Col md="4">
                           <label className="labeltext">Side</label>
                           <div style={{padding:'.5rem', paddingLeft:'2.3rem'}}>
-                          <span style={{paddingRight:'.5rem', fontSize:'small'}}>Sell</span>
+                          <span style={{paddingRight:'.5rem', fontSize:'small', color:'#FFFFFF50'}}>Sell</span>
                           <Switch
                             offColor=""
                             onColor=""
@@ -387,21 +383,8 @@ class AdvancedSearchInputs extends React.Component {
                 </Row>
               </Col>               
             <Col lg='5' style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
-                    {/* <div class="form__group field">
-                      <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
-                      <label for="name" class="form__label">Name</label>
-                    </div>    */}
 
                     <div style={{display:'flex', flexDirection:'column', marginBottom:'-1rem'}}>
-                    
-                    <div className='d-flex flex-row justify-content-around align-items-center' style={{marginTop:'-1.5rem'}}>
-                      <div className='datefilter'>30 Days</div>
-                      <div className='datefilter'>All Time</div>
-                    </div>
-                    <div className='d-flex flex-row justify-content-around'>
-                      <div className='datefilter'>This Month</div>
-                      <div className='datefilter'>Last Month</div>
-                    </div>
 
                     <div style={{backgroundColor:'#202225', borderRadius:'1rem', marginTop:'1rem'}}>
                     <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginRight:'1rem', marginTop:'.2rem'}}>
@@ -465,7 +448,15 @@ class AdvancedSearchInputs extends React.Component {
                       </div>
                     </div>
                
-               <div style={{display:'flex', alignItems:'center'}}>
+               <Col md ='2' style={{display:'flex', flexDirection:'column', alignItems:'center', paddingLeft:'8rem'}}>
+                    <div className='d-flex flex-row' style={{marginTop:'-1.5rem'}}>
+                      <div className='datefilter'>30 Days</div>
+                      <div className='datefilter'>All Time</div>
+                    </div>
+                    <div className='d-flex flex-row'>
+                      <div className='datefilter'>This Month</div>
+                      <div className='datefilter'>Last Month</div>
+                    </div>
                     <div style={{width:'14rem'}}>
                       <div className='button-solid'>
                         {this.state.collapse ? <span>Custom Export</span> : <span>Search</span> }
@@ -474,7 +465,7 @@ class AdvancedSearchInputs extends React.Component {
                         Clear
                       </div>
                     </div>
-                </div>
+                </Col>
                     
             </Col>
             </Row>

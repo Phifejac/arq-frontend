@@ -516,12 +516,13 @@ head {
     font-size: smaller;
     background-image: linear-gradient(to right, #3E479D60, #3E479D60, #3E479D60);
     padding: .5rem .5rem .5rem .5rem;
-    width: 30%;
+    /* width: 30%; */
     border-radius: .5rem;
     display: flex;
     justify-content: center;
     margin:.2rem;
     cursor: pointer;
+    width: 6rem;
 }
 .datefilter:hover {
     color:#1c8cff;
