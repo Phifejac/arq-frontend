@@ -2,6 +2,11 @@
 //
 //## For each of Bootstrap's buttons, define text, background and border color.
 
+$primary: #11998e;
+$secondary: #38ef7d;
+$white: #fff;
+$gray: #9b9b9b;
+
 $font-color:                 #66615b !default;
 $fill-font-color:            rgba(255, 255, 255, 0.8);
 $font-family-sans-serif:     'Montserrat', "Helvetica", Arial, sans-serif;
@@ -68,7 +73,7 @@ $pale-bg:                    #FFFCF5 !default;
 $medium-pale-bg:             #F1EAE0 !default;
 $default-body-bg:                 #FAFBFE !default;
 
-$primary-color:              #3E526D !default;
+$primary-color:              #4a90e2 !default;
 $primary-states-color:       darken($primary-color, 10%) !default;
 
 $success-color:              #6bd098 !default;

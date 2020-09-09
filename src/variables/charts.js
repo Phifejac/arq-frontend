@@ -1,19 +1,3 @@
-/*!
-
-=========================================================
-* Paper Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 const Chart = require("chart.js");
 
 Chart.pluginService.register({
@@ -99,7 +83,7 @@ const chartExample1 = {
     datasets: [
       {
         label: "Active Users",
-        borderColor: "#6bd098",
+        borderColor: "#4A8FE2",
         pointRadius: 0,
         pointHoverRadius: 0,
         fill: false,
@@ -168,7 +152,7 @@ const chartExample2 = {
     gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
     gradientFill.addColorStop(1, hexToRGB("#18ce0f", 0.4));
     return {
-      labels: ["12pm", "3pm", "6pm", "9pm", "12am", "3am", "6am", "9am"],
+      labels: ["08/01", "08/02", "08/03", "08/04", "08/05", "08/06", "08/07", "08/08"],
       datasets: [
         {
           label: "Email Stats",
@@ -479,8 +463,8 @@ const chartExample5 = {
   options: {
     elements: {
       center: {
-        text: "60%",
-        color: "#66615c", // Default is #000000
+        text: "6d",
+        color: "#4ACCCD", // Default is #000000
         fontStyle: "Arial", // Default is Arial
         sidePadding: 60, // Defualt is 20 (as a percentage)
       },
@@ -501,7 +485,7 @@ const chartExample5 = {
           gridLines: {
             drawBorder: false,
             zeroLineColor: "transparent",
-            color: "rgba(255,255,255,0.05)",
+            color: "rgba(255,255,255,0)",
           },
         },
       ],
@@ -509,7 +493,7 @@ const chartExample5 = {
         {
           gridLines: {
             drawBorder: false,
-            color: "rgba(255,255,255,0.1)",
+            color: "rgba(255,255,255,0)",
             zeroLineColor: "transparent",
           },
           ticks: {

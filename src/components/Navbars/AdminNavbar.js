@@ -1,19 +1,3 @@
-/*!
-
-=========================================================
-* Paper Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import classnames from "classnames";
 import {
@@ -102,7 +86,7 @@ class AdminNavbar extends React.Component {
                   color="default"
                   id="minimizeSidebar"
                   onClick={this.props.handleMiniClick}
-                  style={{marginLeft:'1rem'}}
+                  style={{marginLeft:'1rem', position:"sticky -webkit-sticky", top:'1.5rem'}}
                 >
                   <i className="nc-icon nc-minimal-right text-center visible-on-sidebar-mini" />
                   <i className="nc-icon nc-minimal-left text-center visible-on-sidebar-regular" />

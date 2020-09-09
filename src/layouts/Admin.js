@@ -1,19 +1,3 @@
-/*!
-
-=========================================================
-* Paper Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -93,13 +77,13 @@ class Admin extends React.Component {
   render() {
     return (
 
-      <div className="wrapper">
+      <div className="wrapper" style={{backgroundColor:'#202225'}}>
         <Sidebar
           {...this.props}
           routes={routes}
           activeColor={this.state.activeColor}
         />
-        <div className="main-panel" ref="mainPanel" style={{backgroundColor:'#FFFFFF'}}>
+        <div className="main-panel" ref="mainPanel">
           <div>
           <AdminNavbar {...this.props} handleMiniClick={this.handleMiniClick} />
           {/* <span>Hi
@@ -114,14 +98,14 @@ class Admin extends React.Component {
           } */}
           </div>
         </div>
-        <FixedPlugin
+        {/* <FixedPlugin
           bgColor={this.state.backgroundColor}
           activeColor={this.state.activeColor}
           sidebarMini={this.state.sidebarMini}
           handleActiveClick={this.handleActiveClick}
           handleBgClick={this.handleBgClick}
           handleMiniClick={this.handleMiniClick}
-        />
+        /> */}
       </div>
     );
   }

@@ -1,26 +1,10 @@
-/*!
-
-=========================================================
-* Paper Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, Collapse } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
-import avatar from "assets/img/faces/ayo-ogunseinde-2.jpg";
+import avatar from "assets/img/usericon.png";
 import logo from "assets/img/react-logo.png";
 
 var ps;
@@ -152,8 +136,13 @@ class Sidebar extends React.Component {
         // data-color={this.props.bgColor}
         data-active-color='white'
       >
-        <div className="logo" style={{paddingTop:'3rem', paddingBottom:'2.5rem', paddingLeft:'2.5rem', paddingRight:'2.5rem'}}>
-          <img src={require("../../assets/img/portislogo.svg")}></img>
+        <div className="logo" style={{paddingTop:'4rem', paddingBottom:'2rem'}}>
+            <a className="simple-text logo-normal" style={{width:'80%', paddingLeft:'2rem'}}>
+              <div>
+                <img src={require("../../assets/img/portislogo.svg")}/>
+              </div>
+            </a>
+          {/* <img src={require("../../assets/img/portislogo.svg")}></img> */}
         </div>
 
         <div className="sidebar-wrapper" ref="sidebar">
@@ -171,7 +160,7 @@ class Sidebar extends React.Component {
                 }
               >
                 <span>
-                  Chet Faker
+                  Account Name
                   <b className="caret" />
                 </span>
               </a>
@@ -179,14 +168,8 @@ class Sidebar extends React.Component {
                 <ul className="nav">
                   <li>
                     <NavLink to="/admin/user-profile" activeClassName="">
-                      <span className="sidebar-mini-icon">MP</span>
-                      <span className="sidebar-normal">My Profile</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/admin/user-profile" activeClassName="">
-                      <span className="sidebar-mini-icon">EP</span>
-                      <span className="sidebar-normal">Edit Profile</span>
+                      <span className="sidebar-mini-icon">EA</span>
+                      <span className="sidebar-normal">Edit Account</span>
                     </NavLink>
                   </li>
                   <li>
