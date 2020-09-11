@@ -18,7 +18,7 @@ class PnLRow extends React.Component {
     return (
       <Row style={{paddingTop:'5rem', paddingBottom:'1rem', justifyContent:'space-around'}}>
 
-      <Col md="3">
+      <Col md="4">
         <Card className='homecard'>
         <h4>Today</h4>
         <hr/>
@@ -35,7 +35,7 @@ class PnLRow extends React.Component {
         </Card>
       </Col>
 
-      <Col md="3">
+      <Col md="4">
         <Card className='homecard'>
         <h4>This Week</h4>
         <hr/>
@@ -52,7 +52,7 @@ class PnLRow extends React.Component {
         </Card>
       </Col>
 
-      <Col md="3">
+      <Col md="4">
         <Card className='homecard'>
         <h4>This Month</h4>
         <hr/>
@@ -69,7 +69,7 @@ class PnLRow extends React.Component {
         </Card>
       </Col>
 
-      <Col md="3">
+      {/* <Col md="3">
         <Card className='homecard'>
         <h4>All Time</h4>
         <hr/>
@@ -84,7 +84,7 @@ class PnLRow extends React.Component {
           </div>
         </div>
         </Card>
-      </Col>
+      </Col> */}
 
       </Row>
     );
