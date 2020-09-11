@@ -549,7 +549,7 @@ head {
 
 .head1 {
     color: white;
-    font-size:1.75rem
+    font-size:1.5rem
 }
 
 .linking {
@@ -608,6 +608,47 @@ head {
     margin-left: -1rem;
     padding-left: 1rem;
     margin-bottom:1rem;
+}
+
+.homecard {
+    background-color:#27292D;
+    border-radius: .75rem;
+    color:white;
+    padding:1rem;  
+}
+.homecard h4 {
+    font-size: 1rem;
+    margin-top:0; 
+    margin-bottom:0
+}
+.homecard hr {
+    margin-top:.5rem; 
+    margin-bottom:.5rem
+}
+.homecard-data {
+    display: flex;
+    justify-content: space-between;
+    text-align: end; 
+
+}
+.homecard-data h3 {
+    margin-top:.45rem;
+    margin-bottom:-.25rem
+    
+}
+.homecard-data h3 span {
+    font-size: medium;
+    font-weight: 600;
+}
+.homecard-data label {
+    font-size: smaller;
+    font-weight: 600;
+    color:#FFFFFF50
+    
+}
+.green {
+    color:#56ef81;
+    background-color: transparent;
 }
 
 

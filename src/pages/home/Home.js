@@ -1,32 +1,19 @@
 import React from "react";
-import { Line, Doughnut } from "react-chartjs-2";
 
 // reactstrap components
 import {
-  Badge,
-  Button,
-  Card,
-  CardTitle,
-  CardBody,
-  CardFooter,
   Row,
-  Col,
-  Table,
-  CardHeader,
-  UncontrolledTooltip
 } from "reactstrap";
 // react plugin that creates an input with badges
 import TagsInput from "react-tagsinput";
 
-import {
-  chartExample2,
-  chartExample3,
-  chartExample5,
-} from "variables/charts.js";
 import NextReport from "components/Home/NextReport";
 import Counterparties from "components/Home/Counterparties";
-import TotalTransactions from "components/Home/TotalTransactions";
 import MonthlyVolume from "components/Home/MonthlyVolume";
+import PnLRow from "components/Home/PnLRow";
+import PnLGraph from "components/Home/PnLGraph";
+import MonthlyTransactions from "components/Home/MonthlyTransactions";
+import TodaysTransactions from "components/Home/TodaysTransactions";
 
 class Home extends React.Component {
   constructor(props) {
@@ -41,19 +28,43 @@ class Home extends React.Component {
   render() {
     return (
       <>
-        <div className="content" style={{paddingLeft:'2.5rem', backgroundColor:'#202125', paddingTop:'1rem', paddingBottom:'2rem'}}>
+        <div className="content" style={{paddingLeft:'2.5rem', backgroundColor:'#202125', paddingTop:'1rem', paddingBottom:'2rem', paddingRight:'2rem'}}>
+          
+          <PnLRow/>
+          
+          <Row>
+            <PnLGraph/>
+            <MonthlyVolume/>
+            <MonthlyTransactions/>
+          </Row>
+
+          <div style={{paddingTop:'3rem'}}>
+            <h1 className='head1'>Today's Transactions</h1>
+            <TodaysTransactions/>
+          </div>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          {/* OLD */}
           
           {/* Activity Overview */}
 
-          <h4 style={{marginTop:0, color:'#FFFFFF80', marginBottom:0, paddingBottom:'1rem', paddingTop:'5rem'}}>Activity Overview</h4>
+          {/* <h4 style={{marginTop:0, color:'#FFFFFF80', marginBottom:0, paddingBottom:'1rem'}}>Activity Overview</h4>
           <Row className='d-flex align-items-center'> 
             <NextReport/>
             <Counterparties/>
-          </Row>
+          </Row> */}
 
           {/* Quick Look */}
 
-          <h4 style={{marginTop:0, color:'#FFFFFF80'}}>Quick Look</h4>
+          {/* <h4 style={{marginTop:0, color:'#FFFFFF80'}}>Quick Look</h4>
           <div style={{marginTop:'-.5rem',}}>
             <TagsInput
               value={this.state.tagsinput}
@@ -68,7 +79,7 @@ class Home extends React.Component {
           <Row>
             <TotalTransactions/>
             <MonthlyVolume/>
-          </Row>
+          </Row> */}
         </div>
       </>
     );

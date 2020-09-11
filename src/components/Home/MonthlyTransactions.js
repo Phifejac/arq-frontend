@@ -1,5 +1,5 @@
 import React from "react";
-import { Line} from "react-chartjs-2";
+import { Line, Bar} from "react-chartjs-2";
 
 // reactstrap components
 import {
@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 
 
-class MonthlyVolume extends React.Component {
+class MonthlyTransactions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,78 +41,86 @@ class MonthlyVolume extends React.Component {
         return "rgb(" + r + ", " + g + ", " + b + ")";
       }
     };
-    const chartExample3 = {
-      data: (canvas) => {
-        let ctx = canvas.getContext("2d");
-    
-        let gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-        gradientStroke.addColorStop(0, "#2CA8FF");
-        gradientStroke.addColorStop(1, chartColor);
-    
-        let gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
-        gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-        gradientFill.addColorStop(1, hexToRGB("#2CA8FF", 0.4));
-        return {
-          labels: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-          ],
-          datasets: [
-            {
-              label: "Active Countries",
-              backgroundColor: gradientFill,
-              borderColor: "#fbc658",
-              pointHoverRadius: 0,
-              pointRadius: 0,
-              fill: false,
-              borderWidth: 3,
-              barPercentage: 1.6,
-              data: [80, 78, 86, 96, 83, 85, 76, 75, 88, 90],
-            },
-          ],
-        };
+    const chartExample4 = {
+      data: {
+        labels: [
+          'Jan',
+          'Feb',
+          'March',
+          'April',
+          'May',
+        ],
+        datasets: [
+          {
+            label: "Data",
+            borderColor: "#4cbdd7",
+            fill: true,
+            backgroundColor: "#4cbdd7",
+            hoverBorderColor: "#4cbdd7",
+            borderWidth: 8,
+            barPercentage: 0.4,
+            data: [
+              80,
+              90,
+              100,
+              120,
+              125,
+            ],
+          },
+        ],
       },
       options: {
+        tooltips: {
+          tooltipFillColor: "rgba(0,0,0,0.5)",
+          tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          tooltipFontSize: 14,
+          tooltipFontStyle: "normal",
+          tooltipFontColor: "#fff",
+          tooltipTitleFontFamily:
+            "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          tooltipTitleFontSize: 14,
+          tooltipTitleFontStyle: "bold",
+          tooltipTitleFontColor: "#fff",
+          tooltipYPadding: 6,
+          tooltipXPadding: 6,
+          tooltipCaretSize: 8,
+          tooltipCornerRadius: 6,
+          tooltipXOffset: 10,
+        },
         legend: {
           display: false,
-        },
-        tooltips: {
-          enabled: false,
         },
         scales: {
           yAxes: [
             {
               ticks: {
                 fontColor: "#9f9f9f",
-                beginAtZero: false,
+                fontStyle: "bold",
+                beginAtZero: true,
                 maxTicksLimit: 5,
+                padding: 20,
               },
               gridLines: {
-                drawBorder: false,
                 zeroLineColor: "transparent",
-                color: "rgba(255,255,255,0.05)",
+                display: true,
+                drawBorder: false,
+                color: "#9f9f9f",
               },
             },
           ],
           xAxes: [
             {
               gridLines: {
-                drawBorder: false,
-                color: "rgba(255,255,255,0.1)",
-                zeroLineColor: "transparent",
+                zeroLineColor: "white",
                 display: false,
+    
+                drawBorder: false,
+                color: "transparent",
               },
               ticks: {
                 padding: 20,
                 fontColor: "#9f9f9f",
+                fontStyle: "bold",
               },
             },
           ],
@@ -126,11 +134,11 @@ class MonthlyVolume extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col sm="7">
-                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Monthly Volume</div>
+                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Total Volume</div>
                     </Col>
                     <Col sm="5">
                       <div className="pull-right">
-                        <Badge color="warning" pill>
+                        <Badge color="primary" pill>
                           +2% this month
                         </Badge>
                       </div>
@@ -139,11 +147,11 @@ class MonthlyVolume extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <h6 className="big-title" style={{color:'#FFFFFF80'}}>
-                    Transactions Handled / Month
+                    Database Size
                   </h6>
-                  <Line
-                    data={chartExample3.data}
-                    options={chartExample3.options}
+                  <Bar
+                    data={chartExample4.data}
+                    options={chartExample4.options}
                     height={380}
                     width={826}
                   />
@@ -158,7 +166,7 @@ class MonthlyVolume extends React.Component {
                       <div className="pull-right">
                         <Button
                           className="btn-round btn-icon"
-                          color="warning"
+                          color="primary"
                           size="sm"
                         >
                           <i className="nc-icon nc-simple-add" />
@@ -174,4 +182,4 @@ class MonthlyVolume extends React.Component {
   }
 }
 
-export default MonthlyVolume;
+export default MonthlyTransactions;
