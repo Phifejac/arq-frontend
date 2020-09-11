@@ -3,12 +3,13 @@ import React from "react";
 
 import TransactionSearch from "./TransactionSearch/TransactionSearch";
 import AdvancedSearch from "./AdvancedSearch/AdvancedSearch"
+import ReconcileTransactions from "./ReconcileTransactions/ReconcileTransactions";
 
 class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected:'advanced-search',
+      selected:'trade-linking',
       collapse: false,
     };
   }
@@ -57,15 +58,15 @@ class Menu extends React.Component {
                 {/* Linked Transactions */}
 
                 <li className='navside-item' onClick={() => this.openTradeLinking()}>
-                  <a href="#" className='navside-link'>
-                    <span className={this.state.selected === 'linked-transactions' ? 'sidelink-text-active' : 'sidelink-text' }>Linked </span><span className={this.state.selected === 'linked-transactions' ? 'sidelink-text-active' : 'sidelink-text' }>Transactions</span>
+                  <div className={this.state.selected === 'trade-linking' ? 'navside-link-active' : 'navside-link' } >
+                    <span className={this.state.selected === 'trade-linking' ? 'sidelink-text-active' : 'sidelink-text' }>Linked </span><span className={this.state.selected === 'trade-linking' ? 'sidelink-text-active' : 'sidelink-text' }>Transactions</span>
                     <span className='sidelink-subtext'>View and manage your linked transactions.</span>
-                  </a>
+                  </div>
                 </li>
 
                 {/* Reconcile Transactions */}
 
-                <li className='navside-item'>
+                <li className='navside-item' onClick={() => this.openTradeLinking()}>
                   <a href="#" className='navside-link'>
                     <span className={this.state.selected === 'reconcile-transactions' ? 'sidelink-text-active' : 'sidelink-text' }>Reconcile </span><span className={this.state.selected === 'reconcile-transactions' ? 'sidelink-text-active' : 'sidelink-text' }>Transactions</span>
                     <span className='sidelink-subtext'>Confirm details for pending transactions.</span>
@@ -87,7 +88,7 @@ class Menu extends React.Component {
           <div style={{paddingLeft:'8rem', display:'flex', width:'100%', height:'100%'}}>
             {this.state.selected === 'transaction-search' ? <TransactionSearch/> : <span/>}
             {this.state.selected === 'advanced-search' ? <AdvancedSearch/> : <span/>}
-            {this.state.selected === 'trade-linking' ? <AdvancedSearch/> : <span/>}
+            {this.state.selected === 'trade-linking' ? <ReconcileTransactions/> : <span/>}
           </div>
           {/* </Row> */}
         </div>

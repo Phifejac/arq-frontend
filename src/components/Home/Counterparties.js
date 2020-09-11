@@ -36,7 +36,7 @@ class Counterparties extends React.Component {
                       <tr>
                         <th className="text-center">#</th>
                         <th>Firm</th>
-                        <th>Reports Sent</th>
+                        <th>Trades</th>
                         <th className="text-center">Since</th>
                         <th className="text-right">Other</th>
                       </tr>

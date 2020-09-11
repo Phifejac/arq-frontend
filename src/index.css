@@ -170,6 +170,15 @@ head {
     -ms-transform: scale(1.03);
     transform: scale(1.03);
 }
+.grow-small {
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.grow-small:hover {
+    -webkit-transform: scale(1.07);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01);
+}
 .grow-big {
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
@@ -218,8 +227,9 @@ head {
 .smalltab {
     color:#5a5b5d;
     margin-right: 1rem;
-    font-weight: 700;
+    font-weight: 600;
     transition: 200ms ease;
+    font-size: medium;
     /* border-bottom:solid;
     border-bottom-width: 1;
     border-bottom-color: transparent; */
@@ -248,8 +258,9 @@ head {
 .smalltab-active {
     color:#1c8cff;
     margin-right: 1rem;
-    font-weight: 700;
-    border-bottom:solid;
+    font-weight: 600;
+    border-bottom:solid 2px;
+    font-size: medium;
     /* border-bottom-width: 1;
     border-bottom-color:#1c8cff;
     border-bottom-right-radius: 5; */
@@ -400,25 +411,6 @@ head {
     padding:0;
     padding-right: 2%;
 }
-.reports-table {
-    list-style: none;
-    margin:0;
-    padding:0;
-    padding-right: 2%;
-    overflow-y: scroll;
-    height: 65vh;
-}
-.report {
-    margin:0;
-    padding:0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-top: solid;
-    border-color:#FFFFFF50;
-    border-top-width: 1px;
-    color:#FFFFFF80
-}
 .report-header {
     margin:0;
     padding-top:2rem;
@@ -447,6 +439,30 @@ head {
     justify-content: flex-end;
     align-items: center;
     color: white;
+}
+.header-status {
+    flex:.3;
+    color:white;
+    padding-right: 1rem;
+}
+.reports-table {
+    list-style: none;
+    margin:0;
+    padding:0;
+    padding-right: 2%;
+    overflow-y: scroll;
+    height: 65vh;
+}
+.report {
+    margin:0;
+    padding:0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: solid;
+    border-color:#FFFFFF50;
+    border-top-width: 1px;
+    color:#FFFFFF80
 }
 .report-id {
     flex:1;
@@ -506,11 +522,6 @@ head {
     background: #27292D;
     transition: 400ms ease;
 }
-.header-status {
-    flex:.3;
-    color:white;
-    padding-right: 1rem;
-}
 .datefilter {
     color:#00000070;
     font-size: smaller;
@@ -530,4 +541,73 @@ head {
     font-weight: 600;
     transition: 400ms ease;
 }
+
+
+
+
+
+
+.head1 {
+    color: white;
+    font-size:1.75rem
+}
+
+.linking {
+    list-style: none;
+    margin:0;
+    padding:0;
+    padding-right: 2%;
+}
+.linking-1 {
+    margin:0;
+    padding-top:2rem;
+    padding-bottom:1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.linking-2 {
+    flex: .5;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+.linking-3 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+.linking-4 {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: white;
+}
+.linking-5 {
+    flex:.3;
+    display: flex;
+    justify-content: flex-end;
+    color:white;
+    padding-right: 1rem;
+}
+.linking-1a {
+    margin:0;
+    padding-top:2rem;
+    padding-bottom:2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: -1rem;
+    padding-left: 1rem;
+}
+.group {
+    border-radius: 1rem;
+    background-color: #27282d;
+    margin-left: -1rem;
+    padding-left: 1rem;
+    margin-bottom:1rem;
+}
+
 
