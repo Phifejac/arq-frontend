@@ -650,5 +650,45 @@ head {
     color:#56ef81;
     background-color: transparent;
 }
+.todaystable-header {
+    border-radius: .5rem;
+    background-color: #27282d;
+    border-bottom-width: 0;
+    padding:.5rem
+}
+.white {
+    color:white
+}
+
+.button-table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #202125 ;
+    border:solid;
+    border-radius: 2rem;
+    border-color:#4a90e2 ;
+    color:#4a90e2 ;
+    padding:1rem ;
+    margin-left: .5rem;
+    padding-top:.5rem ;
+    padding-bottom:.5rem ;
+    font-weight: 600;
+    margin-top:-.2rem;
+    transition: 400ms ease;
+    cursor: pointer;
+}
+.button-table:hover {
+    background-color: #4a90e2 ;
+    border-color:#4a90e2 ;
+    color:white ;
+}
+
+.select-table {
+    padding-left: .5rem;
+    width: 10rem;
+    color:white !important
+}
+
 
 

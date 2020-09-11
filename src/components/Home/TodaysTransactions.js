@@ -25,7 +25,7 @@ import {
 } from "variables/charts.js";
 
 // core components
-import ReactTable from "../Transactions/Search/SearchResults/ReactTable";
+import ReactTable from "./TodaysTable";
 import EditTransaction from "../Transactions/Search/SearchResults/EditTransaction";
 import Transaction from "../Transactions/Search/SearchResults/Transaction";
 
@@ -80,13 +80,12 @@ class TodaysTransactions extends React.Component {
           yield:prop[10],
           actions: (
             // we've added some custom button actions
-            <div className="actions-right">
+            <div className="actions-right grow">
               <Button
                 onClick={() => {this.viewButton()}}
-                style={{color:'grey'}}
                 size="md"
                 className="btn-icon btn-link edit"
-                style={{marginTop:'-.4rem', marginRight:'-.6rem'}}
+                style={{marginTop:'-.4rem', marginRight:'-.6rem', color:'white'}}
               >
                 <i className="fa fa-eye" />
               </Button>{" "}
@@ -94,12 +93,12 @@ class TodaysTransactions extends React.Component {
                 onClick={() => {this.editButton()}}
                 style={{color:'grey'}}
                 size="md"
-                className="btn-icon btn-link edit"
-                style={{marginTop:'-.3rem', marginRight:'2rem'}}
+                className="btn-icon btn-link edit white"
+                style={{marginTop:'-.3rem',color:'white'}}
               >
-                <i className="fa fa-edit" />
+                <i className="fa fa-edit white" />
               </Button>{" "}
-              <Input style={{marginTop:'.5rem'}} type="checkbox" />
+              {/* <Input style={{marginTop:'.5rem'}} type="checkbox" /> */}
 
               {/* use this button to add a edit kind of action */}
 

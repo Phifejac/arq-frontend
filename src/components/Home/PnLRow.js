@@ -29,7 +29,9 @@ class PnLRow extends React.Component {
           </div>
           <div style={{flex:1}}>
             <h3 style={{marginBottom:'-.5rem'}}>$193<span>.94</span></h3>
-            <label><span className='green'>(+3.37%)</span></label>
+            <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
+              <i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+3.37%)</span></label>
+            </div>
           </div>
         </div>
         </Card>
@@ -46,7 +48,9 @@ class PnLRow extends React.Component {
           </div>
           <div style={{flex:1}}>
             <h3 style={{marginBottom:'-.5rem'}}>$2,124<span>.22</span></h3>
-            <label><span className='green'>(+13.37%)</span></label>
+            <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
+              <i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+13.37%)</span></label>
+            </div>
           </div>
         </div>
         </Card>
@@ -63,7 +67,9 @@ class PnLRow extends React.Component {
           </div>
           <div style={{flex:1}}>
             <h3 style={{marginBottom:'-.5rem'}}>$4,293<span>.11</span></h3>
-            <label><span className='green'>(+23.37%)</span></label>
+            <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
+              <i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+23.37%)</span></label>
+            </div>
           </div>
         </div>
         </Card>
