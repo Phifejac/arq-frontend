@@ -18,22 +18,27 @@ import {
 // react plugin that creates an input with badges
 import TagsInput from "react-tagsinput";
 
-import {
-  chartExample2,
-  chartExample3,
-  chartExample5,
-} from "variables/charts.js";
 import NextReport from "components/Home/NextReport";
 import Counterparties from "components/Home/Counterparties";
 import TotalTransactions from "components/Home/TotalTransactions";
 import MonthlyVolume from "components/Home/MonthlyVolume";
+
+// api
+
+import { getTransactions }  from "../../api/http"
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tagsinput: ["All", "Firm A", "Firm B", "Firm C"],
+      
     };
+  }
+
+  componentDidMount = async () => {
+    const transactions = await getTransactions({"trade_date":"7/24/20"});
+    console.log("transactions", transactions)
   }
   handleTagsinput = (tagsinput) => {
     this.setState({ tagsinput });

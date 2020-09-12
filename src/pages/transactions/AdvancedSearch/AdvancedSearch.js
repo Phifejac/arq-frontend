@@ -31,10 +31,14 @@ class AdvancedSearch extends Component {
       multipleSelect: null,
       tagsinput: ["Amsterdam", "Washington", "Sydney", "Beijing"],
       collapse: false,
-      typeOpen:true
+      typeOpen:true,
+      queryParameters : {}
     };
   }
 
+  setQueryParameters(parameters) {
+    this.setState({ queryParameters : parameters })
+  }
 
   handleSmallTab = () => {
     this.setState({ range: !this.state.range })
@@ -45,7 +49,7 @@ class AdvancedSearch extends Component {
       <>
       {this.state.alert}
           <div style={{width:'100%', marginLeft:'2.5rem'}}>
-            <h4 style={{marginTop:'3rem', fontFamily:'Poppins', fontWeight:'500', fontSize:'large', marginBottom:'2rem', color:'#5a5b5d'}}> Transactions > <span style={{color:'white'}}>Advanced Search</span></h4>
+            <h4 style={{marginTop:'3rem', fontFamily:'Poppins', fontWeight:'500', fontSize:'large', marginBottom:'2rem', color:'#5a5b5d'}}> Transactions >  <span style={{color:'white'}}>Advanced Search</span></h4>
             
             <div className="typeselector">
               Type
@@ -60,7 +64,7 @@ class AdvancedSearch extends Component {
             
             </div>
             <Row>
-              <AdvancedSearchInputs/>
+              <AdvancedSearchInputs setQueryParameters = {this.setQueryParameters} />
             </Row>
             <Col lg='12'>
               <div style={{zIndex:-1, paddingTop:'2rem', marginLeft:'-2rem'}}>
