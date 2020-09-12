@@ -523,9 +523,9 @@ head {
     transition: 400ms ease;
 }
 .datefilter {
-    color:#00000070;
+    color:#FFFFFF50;
     font-size: smaller;
-    background-image: linear-gradient(to right, #3E479D60, #3E479D60, #3E479D60);
+    background-color: #202125;
     padding: .5rem .5rem .5rem .5rem;
     /* width: 30%; */
     border-radius: .5rem;
@@ -549,7 +549,7 @@ head {
 
 .head1 {
     color: white;
-    font-size:1.75rem
+    font-size:1.5rem
 }
 
 .linking {
@@ -609,5 +609,191 @@ head {
     padding-left: 1rem;
     margin-bottom:1rem;
 }
+
+.homecard {
+    background-color:#27292D;
+    border-radius: .75rem;
+    color:white;
+    padding:1rem;  
+}
+.homecard h4 {
+    font-size: 1rem;
+    margin-top:0; 
+    margin-bottom:0
+}
+.homecard hr {
+    margin-top:.5rem; 
+    margin-bottom:.5rem
+}
+.homecard-data {
+    display: flex;
+    justify-content: space-between;
+    text-align: end; 
+
+}
+.homecard-data h3 {
+    margin-top:.45rem;
+    margin-bottom:-.25rem
+    
+}
+.homecard-data h3 span {
+    font-size: medium;
+    font-weight: 600;
+}
+.homecard-data label {
+    font-size: smaller;
+    font-weight: 600;
+    color:#FFFFFF50
+    
+}
+.green {
+    color:#56ef81;
+    background-color: transparent;
+}
+.todaystable-header {
+    border-radius: .5rem;
+    background-color: #27282d;
+    border-bottom-width: 0;
+    padding:.5rem
+}
+.white {
+    color:white
+}
+
+.button-table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #202125 ;
+    border:solid;
+    border-radius: 2rem;
+    border-color:#4a90e2 ;
+    color:#4a90e2 ;
+    padding:1rem ;
+    margin-left: .5rem;
+    padding-top:.5rem ;
+    padding-bottom:.5rem ;
+    font-weight: 600;
+    margin-top:-.2rem;
+    transition: 400ms ease;
+    cursor: pointer;
+}
+.button-table:hover {
+    background-color: #4a90e2 ;
+    border-color:#4a90e2 ;
+    color:white ;
+}
+
+.select-table {
+    padding-left: .5rem;
+    width: 10rem;
+    color:white !important
+}
+
+.buy {
+    padding:1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-weight: 600;
+    color:#5A5B5D;
+    border: solid 1px;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    font-size: small;
+    margin-right: -1px;
+    cursor:'pointer';
+    transition: 200ms ease;
+
+
+}
+.buy:hover{
+    color:#1c8cff;
+    border-color: #1c8cff;
+    z-index: +1;
+}
+.both {
+    padding:1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-weight: 600;
+    color:#5A5B5D;
+    border: solid 1px;
+    font-size: small;
+    margin-left: -1px;
+    margin-right: -1px;
+    cursor:'pointer';
+    transition: 200ms ease;
+
+
+}
+.both:hover{
+    color:#1c8cff;
+    border-color: #1c8cff;
+    z-index: +1;
+}
+.sell {
+    padding:1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-weight: 600;
+    color:#5A5B5D;
+    border: solid 1px;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    font-size: small;
+    cursor:'pointer';
+    transition: 200ms ease;
+
+
+}
+.sell:hover{
+    color:#1c8cff;
+    border-color: #1c8cff;
+    z-index: +1;
+}
+
+.tributton-selected {
+    background-color:#1c8cff;
+    color:white;
+    border-color: #1c8cff;
+    z-index: +1;
+    transition: 200ms ease;
+}
+.tributton-selected:hover{
+    color: white;
+}
+
+.search-textinput {
+    background-color: #27292D;
+    color:#FFFFFF99;
+    padding:.5rem;
+    font-size: small;
+    padding-top: .55rem; 
+    padding-bottom: .55rem;
+    font-family: 'Poppins';
+}
+.search-textinput:focus {
+    background-color: #202125;
+    color:#1c8cff;
+}
+
+.rangeinput {
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+.search-numberinput {
+    background-color: #27292D;
+    color:#FFFFFF99;
+    padding:.5rem;
+    font-size: small;
+    padding-top: .55rem; 
+    padding-bottom: .55rem;
+    font-family: 'Poppins';
+}
+.search-numberinput:focus {
+    background-color: #202125;
+    color:#1c8cff;
+}
+
 
 

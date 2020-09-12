@@ -25,7 +25,6 @@ function DefaultColumnFilter({
   return (
     <FormGroup>
       <Input
-        style={{backgroundColor:'#202225', borderWidth:0, marginLeft:'-.25rem'}}
         placeholder={`Search ${count} records...`}
         type="text"
         onChange={(e) => {
@@ -34,10 +33,6 @@ function DefaultColumnFilter({
       />
     </FormGroup>
   );
-}
-
-function styleFn(provided, state) {
-  return { ...provided, color: state.isFocused ? 'blue' : 'red' };
 }
 
 function fuzzyTextFilterFn(rows, id, filterValue) {
@@ -122,53 +117,27 @@ function Table({ columns, data }) {
     Array(pageOptions.length)
   ).map(function () {});
   let numberOfRowsData = [5, 10, 20, 25, 50, 100];
-  const customStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      borderBottom: '1px dotted grey',
-      color: state.isSelected ? 'red' : 'blue',
-      padding: 20,
-    }),
-    isSelected: () => ({
-      // none of react-select's styles are passed to <Control />
-    color:'white'
-    }),
-    control: () => ({
-      // none of react-select's styles are passed to <Control />
-      width: 200,
-    }),
-    singleValue: (provided, state) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 300ms';
-  
-      return { ...provided, opacity, transition };
-    }
-  }
   return (
-
     <>
       <div className="ReactTable -striped -highlight primary-pagination">
         <div className="pagination-top">
-          <div className='ml-auto d-flex justify-content-end'>
+          {/* <div className="-pagination">
+            <div className="-previous">
+              <button
+                type="button"
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+                className="-btn"
+              >
+                Previous
+              </button>
+            </div>
+            <div className="-center">
+              <Container>
+                <Row className="justify-content-center">
+                  <Col md="4" sm="6" xs="12">
                     <Select
-                      className="react-select select-table"
-                      classNamePrefix="react-select"
-                      name="numberOfRows"
-                      value={numberOfRows}
-                      styles={customStyles}
-                      onChange={(value) => {
-                        setPageSize(value.value);
-                        setNumberOfRows(value);
-                      }}
-                      options={numberOfRowsData.map((prop) => {
-                        return {
-                          value: prop,
-                          label: prop + " rows",
-                        };
-                      })}
-                    />
-                    <Select
-                      className="react-select select-table"
+                      className="react-select primary"
                       classNamePrefix="react-select"
                       name="pageSelect"
                       value={pageSelect}
@@ -184,57 +153,70 @@ function Table({ columns, data }) {
                       })}
                       placeholder="Choose Page"
                     />
-
-               <button
-                type="button"
-                onClick={() => previousPage()}
-                disabled={!canPreviousPage}
-                className="button-table"
-              >
-                Previous
-              </button>
+                  </Col>
+                  <Col md="4" sm="6" xs="12">
+                    <Select
+                      className="react-select primary"
+                      classNamePrefix="react-select"
+                      name="numberOfRows"
+                      value={numberOfRows}
+                      onChange={(value) => {
+                        setPageSize(value.value);
+                        setNumberOfRows(value);
+                      }}
+                      options={numberOfRowsData.map((prop) => {
+                        return {
+                          value: prop,
+                          label: prop + " rows",
+                        };
+                      })}
+                      placeholder="Choose Rows"
+                    />
+                  </Col>
+                </Row>
+              </Container>
+            </div>
+            <div className="-next">
               <button
                 type="button"
                 onClick={() => nextPage()}
                 disabled={!canNextPage}
-                className="button-table"
+                className="-btn"
               >
                 Next
               </button>
-              
-          </div>
+            </div>
+          </div> */}
         </div>
-        <table {...getTableProps()} className="rt-table" style={{borderWidth:0, paddingTop:'1rem'}}>
-          <div className='todaystable-header card-shadow'>
-            <thead className="rt-thead -header">
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()} className="rt-tr text-white" style={{borderBottomColor:'white', borderBottom:'transparent .5px'}}>
-                  {headerGroup.headers.map((column, key) => (
-                    <th style={{borderWidth:0}}
-                      {...column.getHeaderProps(column.getSortByToggleProps())}
-                      className={classnames("rt-th rt-resizable-header", {
-                        "-cursor-pointer": headerGroup.headers.length - 1 !== key,
-                        "-sort-asc": column.isSorted && !column.isSortedDesc,
-                        "-sort-desc": column.isSorted && column.isSortedDesc,
-                      })}
-                    >
-                      <div className="rt-resizable-header-content">
-                        {column.render("Header")}
-                      </div>
-                      {/* Render the columns filter UI */}
-                      {/* <div>
-                        {headerGroup.headers.length - 1 === key
-                          ? null
-                          : column.canFilter
-                          ? column.render("Filter")
-                          : null}
-                      </div> */}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-          </div>
+        <table {...getTableProps()} className="rt-table" style={{borderWidth:0}}>
+          <thead className="rt-thead -header">
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()} className="rt-tr text-white" style={{borderBottomColor:'white', borderBottom:'solid .5px'}}>
+                {headerGroup.headers.map((column, key) => (
+                  <th style={{borderWidth:0}}
+                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                    className={classnames("rt-th rt-resizable-header", {
+                      "-cursor-pointer": headerGroup.headers.length - 1 !== key,
+                      "-sort-asc": column.isSorted && !column.isSortedDesc,
+                      "-sort-desc": column.isSorted && column.isSortedDesc,
+                    })}
+                  >
+                    <div className="rt-resizable-header-content">
+                      {column.render("Header")}
+                    </div>
+                    {/* Render the columns filter UI */}
+                    {/* <div>
+                      {headerGroup.headers.length - 1 === key
+                        ? null
+                        : column.canFilter
+                        ? column.render("Filter")
+                        : null}
+                    </div> */}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
           <tbody {...getTableBodyProps()} className="rt-tbody text-white">
             {page.map((row, i) => {
               prepareRow(row);
@@ -242,7 +224,7 @@ function Table({ columns, data }) {
                 <tr
                   {...row.getRowProps()}
                   className={classnames(
-                    "rt-tr grow-small",
+                    "rt-tr",
                     { " -odd": i % 2 === 0 },
                     { " -even": i % 2 === 1 }
                   )}

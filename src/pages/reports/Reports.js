@@ -1,13 +1,27 @@
 import React from "react";
 import ReactBSAlert from "react-bootstrap-sweetalert";
 import ViewReport from "./ViewReport";
+import NextReport from "components/Home/NextReport";
+import Counterparties from "components/Home/Counterparties";
+
+import {
+  Row,
+} from "reactstrap";
 
 class Reports extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      alert:null
+      alert:null,
+      range:'1day'
     };
+  }
+
+  setrange() {
+    this.setState({ range: 'range' })
+  }
+  set1day() {
+    this.setState({ range: '1day' })
   }
 
   editButton = () => {
@@ -43,19 +57,20 @@ class Reports extends React.Component {
     return (
       <>
       {this.state.alert}
-        <div className="content" style={{paddingLeft:'2.5rem', backgroundColor:'#202125', paddingTop:'1rem'}}>
-        <h3 style={{paddingTop:'5rem', fontFamily:'Poppins', fontWeight:'500', paddingBottom:'2rem', color:'white', margin:0}}>Reports</h3>
-          
-          {/* Tabs */}
-          
-          <ul className='report-list'>
-            <li  className='report-listitemactive'>
-              <h4>History</h4>
-            </li>
-            <li  className='report-listitem'>
-              <h4>Schedule</h4>
-            </li>
-          </ul>
+        <div className="content" style={{paddingLeft:'2.5rem', backgroundColor:'#202125', paddingTop:'6rem', paddingRight:'2rem'}}>
+          <h1 className='head1'>Reports</h1>
+
+
+          <Row className='d-flex align-items-center'> 
+            <NextReport/>
+            <Counterparties/>
+          </Row>
+
+          <div style={{marginBottom:'1rem', paddingTop:'1rem'}}>
+              <span className={this.state.range === '1day' ? 'smalltab-active' : 'smalltab'} onClick={() => this.set1day()}>History</span>
+              <span className={this.state.range === 'range' ? 'smalltab-active' : 'smalltab'} onClick={() => this.setrange()} style={{marginRight:'5rem'}}>Schedule</span>
+              
+          </div>
 
         {/* Table Headers */}
 
@@ -149,30 +164,13 @@ class Reports extends React.Component {
             </li>
             <li className='report'>
               <div className='report-id'>
-                May Monthly Report
-              </div>
-              <div className='report-date'>
-                Example Firm B
-              </div>
-              <div className='report-recipient ml-auto' style={{paddingRight:'4rem'}}>
-                05/02/2020
-              </div>
-              <div className='report-status'>
-                <i className="nc-icon nc-check-2" />
-              </div>
-              <div className='report-download'>
-                <i className="nc-icon nc-cloud-download-93" />
-              </div>
-            </li>
-            <li className='report'>
-              <div className='report-id'>
-                May Monthly Report
+                  July Monthly Report
               </div>
               <div className='report-date'>
                 Example Firm A
               </div>
               <div className='report-recipient ml-auto' style={{paddingRight:'4rem'}}>
-                05/01/2020
+                07/01/2020
               </div>
               <div className='report-status'>
                 <i className="nc-icon nc-check-2" />
@@ -183,64 +181,13 @@ class Reports extends React.Component {
             </li>
             <li className='report'>
               <div className='report-id'>
-                April Monthly Report
+                June Monthly Report
               </div>
               <div className='report-date'>
                 Example Firm B
               </div>
               <div className='report-recipient ml-auto' style={{paddingRight:'4rem'}}>
-                04/02/2020
-              </div>
-              <div className='report-status'>
-                <i className="nc-icon nc-check-2" />
-              </div>
-              <div className='report-download'>
-                <i className="nc-icon nc-cloud-download-93" />
-              </div>
-            </li>
-            <li className='report'>
-              <div className='report-id'>
-                April Monthly Report
-              </div>
-              <div className='report-date'>
-                Example Firm A
-              </div>
-              <div className='report-recipient ml-auto' style={{paddingRight:'4rem'}}>
-                04/01/2020
-              </div>
-              <div className='report-status'>
-                <i className="nc-icon nc-check-2" />
-              </div>
-              <div className='report-download'>
-                <i className="nc-icon nc-cloud-download-93" />
-              </div>
-            </li>
-            <li className='report'>
-              <div className='report-id'>
-                March Monthly Report
-              </div>
-              <div className='report-date'>
-                Example Firm B
-              </div>
-              <div className='report-recipient ml-auto' style={{paddingRight:'4rem'}}>
-                03/02/2020
-              </div>
-              <div className='report-status'>
-                <i className="nc-icon nc-check-2" />
-              </div>
-              <div className='report-download'>
-                <i className="nc-icon nc-cloud-download-93" />
-              </div>
-            </li>
-            <li className='report'>
-              <div className='report-id'>
-                March Monthly Report
-              </div>
-              <div className='report-date'>
-                Example Firm A
-              </div>
-              <div className='report-recipient ml-auto' style={{paddingRight:'4rem'}}>
-                03/01/2020
+                06/02/2020
               </div>
               <div className='report-status'>
                 <i className="nc-icon nc-check-2" />

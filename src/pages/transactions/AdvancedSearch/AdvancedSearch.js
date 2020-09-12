@@ -7,6 +7,7 @@ import {
 } from "reactstrap";
 import AdvancedSearchInputs from "../../../components/Transactions/AdvancedSearch/AdvancedSearchInputs";
 import SearchResults from "components/Transactions/Search/SearchResults/SearchResults";
+import AdvancedSearchResults from "components/Transactions/AdvancedSearch/AdvancedSearchResults";
 
 const Transactions = [
   // {id: uuid(), content:'First Task'},
@@ -22,7 +23,7 @@ class AdvancedSearch extends Component {
     super(props);
     this.state = {
       alert: null,
-      fund: null,
+      type: 'bond',
       client: null,
       book: null,
       counterparty: null,
@@ -40,35 +41,50 @@ class AdvancedSearch extends Component {
     this.setState({ queryParameters : parameters })
   }
 
-  handleSmallTab = () => {
-    this.setState({ range: !this.state.range })
+  setBond = () => {
+    this.setState({ type: 'bond'})
+  }
+  setRepo = () => {
+    this.setState({ type: 'repo'})
+  }
+  setFuture = () => {
+    this.setState({ type: 'future'})
+  }
+  setSwap = () => {
+    this.setState({ type: 'swap'})
+  }
+  setUnwind = () => {
+    this.setState({ type: 'unwind'})
+  }
+  setOption = () => {
+    this.setState({ type: 'option'})
   }
   
   render() {
     return (
       <>
       {this.state.alert}
-          <div style={{width:'100%', marginLeft:'2.5rem'}}>
-            <h4 style={{marginTop:'3rem', fontFamily:'Poppins', fontWeight:'500', fontSize:'large', marginBottom:'2rem', color:'#5a5b5d'}}> Transactions >  <span style={{color:'white'}}>Advanced Search</span></h4>
+          <div style={{width:'100%', marginLeft:'1.5rem'}}>
+            <h4 style={{marginTop:'3rem', fontFamily:'Poppins', fontWeight:'500', fontSize:'large', marginBottom:'2rem', color:'#5a5b5d'}}> Transactions {">"} <span style={{color:'white'}}>Advanced Search</span></h4>
             
-            <div className="typeselector">
+            {/* <div className="typeselector">
               Type
-            </div>
+            </div> */}
             <div style={{marginTop:'0rem', marginBottom:'0rem', marginLeft:'0rem'}}>
-                <span className={this.state.range ? 'smalltab2' : 'smalltab2-active'} onClick={this.handleSmallTab}>Bond</span>
-                <span className={!this.state.range ? 'smalltab2' : 'smalltab2-active'} onClick={this.handleSmallTab}>Repo</span>
-                <span className={!this.state.range ? 'smalltab2' : 'smalltab2-active'} onClick={this.handleSmallTab}>Future</span>
-                <span className={!this.state.range ? 'smalltab2' : 'smalltab2-active'} onClick={this.handleSmallTab}>Swap</span>
-                <span className={!this.state.range ? 'smalltab2' : 'smalltab2-active'} onClick={this.handleSmallTab}>Option</span>
-                <span className={!this.state.range ? 'smalltab2' : 'smalltab2-active'} onClick={this.handleSmallTab}>Unwind</span>
+                <span className={this.state.type === 'bond' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setBond}>Bond</span>
+                <span className={this.state.type === 'repo' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setRepo}>Repo</span>
+                <span className={this.state.type === 'future' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setFuture}>Future</span>
+                <span className={this.state.type === 'swap' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setSwap}>Swap</span>
+                <span className={this.state.type === 'option' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setOption}>Option</span>
+                <span className={this.state.type === 'unwind' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setUnwind}>Unwind</span>
             
             </div>
-            <Row>
-              <AdvancedSearchInputs setQueryParameters = {this.setQueryParameters} />
+            <Row style={{marginRight:'4rem'}}>
+              <AdvancedSearchInputs/>
             </Row>
             <Col lg='12'>
               <div style={{zIndex:-1, paddingTop:'2rem', marginLeft:'-2rem'}}>
-                <SearchResults/>
+                <AdvancedSearchResults/>
               </div>  
             </Col> 
           </div>

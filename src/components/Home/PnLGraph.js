@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 
 
-class TotalTransactions extends React.Component {
+class PnLGraph extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -115,7 +115,7 @@ class TotalTransactions extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col sm="7">
-                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Total Transactions</div>
+                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Daily P&L</div>
                     </Col>
                     <Col sm="5">
                       <div className="pull-right">
@@ -128,7 +128,7 @@ class TotalTransactions extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <h6 className="big-title" style={{color:'#FFFFFF80'}}>
-                    Database Size
+                    P&L
                   </h6>
                   <Line
                     data={chartExample2.data}
@@ -137,7 +137,7 @@ class TotalTransactions extends React.Component {
                     width={828}
                   />
                 </CardBody>
-                <CardFooter>
+                {/* <CardFooter>
                   <hr />
                   <Row>
                     <Col sm="7">
@@ -155,7 +155,7 @@ class TotalTransactions extends React.Component {
                       </div>
                     </Col>
                   </Row>
-                </CardFooter>
+                </CardFooter> */}
               </Card>
           </Col>
       </>
@@ -163,4 +163,4 @@ class TotalTransactions extends React.Component {
   }
 }
 
-export default TotalTransactions;
+export default PnLGraph;

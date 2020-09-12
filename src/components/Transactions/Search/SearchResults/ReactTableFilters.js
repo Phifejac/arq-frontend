@@ -222,13 +222,13 @@ function Table({ columns, data }) {
                         {column.render("Header")}
                       </div>
                       {/* Render the columns filter UI */}
-                      {/* <div>
+                      <div>
                         {headerGroup.headers.length - 1 === key
                           ? null
                           : column.canFilter
                           ? column.render("Filter")
                           : null}
-                      </div> */}
+                      </div>
                     </th>
                   ))}
                 </tr>

@@ -25,9 +25,9 @@ import {
 } from "variables/charts.js";
 
 // core components
-import ReactTable from "./ReactTable.js";
-import EditTransaction from "./EditTransaction";
-import Transaction from "./Transaction";
+import ReactTable from "./TodaysTable";
+import EditTransaction from "../Transactions/Search/SearchResults/EditTransaction";
+import Transaction from "../Transactions/Search/SearchResults/Transaction";
 
 const dataTable = [
   ["912810SN9", "7/13/20", "4:50:27 PM", "T 1 1/4 05/15/50", "S", "2000", "98.578125", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3077"],
@@ -52,7 +52,7 @@ const dataTable = [
   ["912810SN9", "7/12/20", "10:44:43 AM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "ARQ ADVISORS LLC", "BGC PARTNERS", "Accepted", "1.3083"],
 ];
 
-class SearchResults extends React.Component {
+class TodaysTransactions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -83,23 +83,22 @@ class SearchResults extends React.Component {
             <div className="actions-right grow">
               <Button
                 onClick={() => {this.viewButton()}}
-                style={{color:'grey'}}
                 size="md"
                 className="btn-icon btn-link edit"
-                style={{marginTop:'-.4rem', marginRight:'-.6rem'}}
+                style={{marginTop:'-.4rem', marginRight:'-.6rem', color:'white'}}
               >
-                <i className="fa fa-eye white" />
+                <i className="fa fa-eye" />
               </Button>{" "}
               <Button
                 onClick={() => {this.editButton()}}
                 style={{color:'grey'}}
                 size="md"
-                className="btn-icon btn-link edit"
-                style={{marginTop:'-.3rem', marginRight:'2rem'}}
+                className="btn-icon btn-link edit white"
+                style={{marginTop:'-.3rem',color:'white'}}
               >
                 <i className="fa fa-edit white" />
               </Button>{" "}
-              <Input style={{marginTop:'.5rem'}} type="checkbox" />
+              {/* <Input style={{marginTop:'.5rem'}} type="checkbox" /> */}
 
               {/* use this button to add a edit kind of action */}
 
@@ -373,4 +372,4 @@ class SearchResults extends React.Component {
   }
 }
 
-export default SearchResults;
+export default TodaysTransactions;

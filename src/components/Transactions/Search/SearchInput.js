@@ -19,67 +19,23 @@ import Select from "react-select";
 
 class SearchInput extends Component {
   static defaultProps = {
-    numberOfMonths: 2,
+    numberOfMonths: 1,
   };
   constructor(props) {
     super(props);
     this.state = {
       collapse: false,
+      selectedDay: null,
     };
     this.toggle = this.toggle.bind(this);
     this.handleDayClick = this.handleDayClick.bind(this);
-    this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
-    this.handleResetClick = this.handleResetClick.bind(this);
-    this.state = this.getInitialState();
   }
 
-  getInitialState() {
-    return {
-      from: null,
-      to: null,
-      enteredTo: null, // Keep track of the last day for mouseEnter.
-    };
+  handleDayClick(day, { selected }) {
+    this.setState({
+      selectedDay: selected ? undefined : day,
+    });
   }
-
-  isSelectingFirstDay(from, to, day) {
-    const isBeforeFirstDay = from && DateUtils.isDayBefore(day, from);
-    const isRangeSelected = from && to;
-    return !from || isBeforeFirstDay || isRangeSelected;
-  }
-
-  handleDayClick(day) {
-    const { from, to } = this.state;
-    if (from && to && day >= from && day <= to) {
-      this.handleResetClick();
-      return;
-    }
-    if (this.isSelectingFirstDay(from, to, day)) {
-      this.setState({
-        from: day,
-        to: null,
-        enteredTo: null,
-      });
-    } else {
-      this.setState({
-        to: day,
-        enteredTo: day,
-      });
-    }
-  }
-
-  handleDayMouseEnter(day) {
-    const { from, to } = this.state;
-    if (!this.isSelectingFirstDay(from, to, day)) {
-      this.setState({
-        enteredTo: day,
-      });
-    }
-  }
-
-  handleResetClick() {
-    this.setState(this.getInitialState());
-  }
-
 
   toggle() {
     this.setState({ collapse: !this.state.collapse });
@@ -88,10 +44,6 @@ class SearchInput extends Component {
 
   
   render() {
-    const { from, to, enteredTo } = this.state;
-    const modifiers = { start: from, end: enteredTo, Month: {color:'white'}};
-    const disabledDays = { before: this.state.from };
-    const selectedDays = [from, { from, to: enteredTo }];
     return (
       <>
       {this.state.alert}            
@@ -101,13 +53,10 @@ class SearchInput extends Component {
                   <div style={{marginRight:'1rem'}}>
                       <DayPicker
                         className="Range"
-                        numberOfMonths={this.state.range === '1day' ? 1 : 2}
-                        fromMonth={from}
-                        selectedDays={selectedDays}
-                        disabledDays={disabledDays}
-                        modifiers={modifiers}
+                        numberOfMonths={1}
+                        selectedDays={this.state.selectedDay}
+                        onTodayButtonClick={(day, modifiers) => console.log(day, modifiers)}
                         onDayClick={this.handleDayClick}
-                        onDayMouseEnter={this.handleDayMouseEnter}
                         // showOutsideDays
 
                       />
@@ -133,64 +82,18 @@ class SearchInput extends Component {
                       </Helmet>
                     </div>
                   
-                <div style={{ display:'flex', flexDirection:'column', justifyContent:'center'}}>
-                  <div style={{height:'4rem', backgroundColor:'#202225', borderRadius:'1rem', display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'center', padding:'2rem', marginBottom:'1rem'}}>
-                        {this.state.range === '1day' ? 
-                        
-                        <div style={{display:'flex', flexDirection:'column', paddingRight:'2rem'}}>
+                <div style={{ display:'flex', flexDirection:'column', justifyContent:'center', width:'15rem'}}>
+                        <div style={{display:'flex', flexDirection:'column', paddingRight:'2rem', backgroundColor:'#202225', borderRadius:'.5rem', padding:'1rem', paddingTop:'.5rem', paddingBottom:'.5rem'}} className='align-self-center d-flex'>
                            <span className='inputlabel'>Set Date</span>
-                             {!from && 
-                             <span style={{color:'white'}}>Select...</span>
+                             {!this.state.selectedDay && 
+                             <span style={{color:'white', width:'10rem'}}>Select...</span>
                              }
-                             {from && 
-                             <span style={{color:'white'}}>{from.toLocaleDateString()}</span>
+                             {this.state.selectedDay && 
+                             <span style={{color:'white', width:'10rem'}}>{this.state.selectedDay.toLocaleDateString()}</span>
                              }
-                         </div>                     
-                        
-                        :
-                        <div style={{display:'flex', flexDirection:'row'}}>
-                        <div style={{display:'flex', flexDirection:'column', paddingRight:'2rem'}}>
-                          <span className='inputlabel'>Start Date</span>
-                            {!from && 
-                            <span style={{color:'white'}}>Select...</span>
-                            }
-                            {from && 
-                            <span style={{color:'white'}}>{from.toLocaleDateString()}</span>
-                            }
-                        </div>
-                        <div style={{display:'flex', flexDirection:'column'}}>
-                          <span className='inputlabel'>Start Date</span>
-                            {!to && 
-                            <span style={{color:'white'}}>Select...</span>
-                            }
-                            {to && 
-                            <span style={{color:'white'}}>{to.toLocaleDateString()}</span>
-                            }
-                        </div>
-                        </div>
-                         }
-                      
-                        <div className="link" onClick={this.handleResetClick} style={{paddingLeft:'1rem'}}>
-                          {!from && 
-                            !to && (
-                              <span style={{color:'grey', fontWeight:600, transition:'200ms ease'}}>Clear</span>
-                          )}
-                          {!from && 
-                            to && (
-                              <span style={{color:'#4a90e2', fontWeight:600, transition:'200ms ease'}}>Clear</span>
-                          )}
-                          {from && 
-                            !to && (
-                              <span style={{color:'#4a90e2', fontWeight:600, transition:'500ms ease'}}>Clear</span>
-                          )}
-                          {from && 
-                            to && (
-                              <span style={{color:'#4a90e2', fontWeight:600, transition:'500ms ease'}}>Clear</span>
-                          )}
-                        </div>
-                    </div>
+                         </div>  
                     <div style={{width:'80%'}} className='align-self-center'>
-                    <label className="labeltext">Customer</label>
+                    <label className="labeltext">Client</label>
                     <Select
                             className="react-select primary"
                             classNamePrefix="react-select"
@@ -212,26 +115,8 @@ class SearchInput extends Component {
                           />
                    </div>
                    <div style={{width:'80%'}} className='align-self-center'>
-                    <label className="labeltext">Security</label>
-                    <Select
-                            className="react-select primary"
-                            classNamePrefix="react-select"
-                            name="singleSelect"
-                            value={this.state.client}
-                            onChange={(value) =>
-                              this.setState({ client: value })
-                            }
-                            options={[
-                              {
-                                value: "",
-                                label: "Select One",
-                                isDisabled: true,
-                              },
-                              { value: "2", label: "Foobar" },
-                              { value: "3", label: "Is great" },
-                            ]}
-                            placeholder="Select security..."
-                          />
+                    <label className="labeltext">Cusip</label>
+                    <Input placeholder="" type="text" defaultValue="Enter cusip..." style={{backgroundColor:'#27292D', color:'#FFFFFF80', padding:'.5rem', fontSize:'small', paddingTop:'.8rem', paddingBottom:'.8rem'}} />
                    </div>
                 </div>
                 <div style={{display:'flex', alignItems:'center'}}>
@@ -247,7 +132,8 @@ class SearchInput extends Component {
                         {this.state.collapse ? <span>Custom Export</span> : <span>Quick Export</span> }
                       </div>
                       <div className='button' onClick={this.toggle}>
-                        {this.state.collapse ? 'Custom  -' : 'Custom  +'}
+                        {this.state.collapse ? 'Custom ' : 'Custom'}
+                        <i className={this.state.collapse ? "fa fa-caret-up" :"fa fa-caret-down"} style={{paddingLeft:'.25rem', marginTop:'0rem', transition:'200ms ease'}}/>
                       </div>
                     </div>
                 </div>

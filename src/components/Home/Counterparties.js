@@ -25,7 +25,7 @@ class Counterparties extends React.Component {
   render() {
     return (
       <>
-            <Col md="8">
+            <Col md="10">
               <Card style={{backgroundColor:'#27292D', paddingBottom:'.8rem'}}>
               <CardHeader>
                   <CardTitle tag="h4" style={{color:'#FFFFFF'}}>Counterparties</CardTitle>
@@ -36,18 +36,18 @@ class Counterparties extends React.Component {
                       <tr>
                         <th className="text-center">#</th>
                         <th>Firm</th>
-                        <th>Trades</th>
+                        <th>Reports Sent</th>
                         <th className="text-center">Since</th>
-                        <th className="text-right">Other</th>
+                        <th className="text-right">Next Report</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr style={{color:'#FFFFFF'}}>
                         <td className="text-center">1</td>
-                        <td>Example Firm A</td>
+                        <td>Hilltop</td>
                         <td>25</td>
                         <td className="text-center">2013</td>
-                        <td className="text-right">-</td>
+                        <td className="text-right">08/01/2020</td>
                         <td className="text-right">
                           <Button
                             className="btn-icon"
@@ -86,7 +86,7 @@ class Counterparties extends React.Component {
                         <td>Example Firm B</td>
                         <td>23</td>
                         <td className="text-center">2012</td>
-                        <td className="text-right">-</td>
+                        <td className="text-right">08/10/2020</td>
                         <td className="text-right">
                           <Button
                             className="btn-icon"
@@ -125,7 +125,7 @@ class Counterparties extends React.Component {
                         <td>Example Firm C</td>
                         <td>20</td>
                         <td className="text-center">2010</td>
-                        <td className="text-right">-</td>
+                        <td className="text-right">08/10/2020</td>
                         <td className="text-right">
                           <Button
                             className="btn-icon"

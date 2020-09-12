@@ -25,9 +25,9 @@ import {
 } from "variables/charts.js";
 
 // core components
-import ReactTable from "./ReactTable.js";
-import EditTransaction from "./EditTransaction";
-import Transaction from "./Transaction";
+import ReactTable from "../Search/SearchResults/ReactTableFilters.js";
+import EditTransaction from "../Search/SearchResults/EditTransaction";
+import Transaction from "../Search/SearchResults/Transaction";
 
 const dataTable = [
   ["912810SN9", "7/13/20", "4:50:27 PM", "T 1 1/4 05/15/50", "S", "2000", "98.578125", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3077"],
@@ -52,7 +52,7 @@ const dataTable = [
   ["912810SN9", "7/12/20", "10:44:43 AM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "ARQ ADVISORS LLC", "BGC PARTNERS", "Accepted", "1.3083"],
 ];
 
-class SearchResults extends React.Component {
+class AdvancedSearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -373,4 +373,4 @@ class SearchResults extends React.Component {
   }
 }
 
-export default SearchResults;
+export default AdvancedSearchResults;
