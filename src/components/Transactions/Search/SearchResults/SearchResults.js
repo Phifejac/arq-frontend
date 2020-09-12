@@ -80,7 +80,7 @@ class SearchResults extends React.Component {
           yield:prop[10],
           actions: (
             // we've added some custom button actions
-            <div className="actions-right">
+            <div className="actions-right grow">
               <Button
                 onClick={() => {this.viewButton()}}
                 style={{color:'grey'}}
@@ -88,7 +88,7 @@ class SearchResults extends React.Component {
                 className="btn-icon btn-link edit"
                 style={{marginTop:'-.4rem', marginRight:'-.6rem'}}
               >
-                <i className="fa fa-eye" />
+                <i className="fa fa-eye white" />
               </Button>{" "}
               <Button
                 onClick={() => {this.editButton()}}
@@ -97,7 +97,7 @@ class SearchResults extends React.Component {
                 className="btn-icon btn-link edit"
                 style={{marginTop:'-.3rem', marginRight:'2rem'}}
               >
-                <i className="fa fa-edit" />
+                <i className="fa fa-edit white" />
               </Button>{" "}
               <Input style={{marginTop:'.5rem'}} type="checkbox" />
 

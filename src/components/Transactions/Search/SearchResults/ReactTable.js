@@ -25,6 +25,7 @@ function DefaultColumnFilter({
   return (
     <FormGroup>
       <Input
+        style={{backgroundColor:'#202225', borderWidth:0, marginLeft:'-.25rem'}}
         placeholder={`Search ${count} records...`}
         type="text"
         onChange={(e) => {
@@ -203,35 +204,37 @@ function Table({ columns, data }) {
               
           </div>
         </div>
-        <table {...getTableProps()} className="rt-table" style={{borderWidth:0}}>
-          <thead className="rt-thead -header">
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()} className="rt-tr text-white" style={{borderBottomColor:'white', borderBottom:'solid .5px'}}>
-                {headerGroup.headers.map((column, key) => (
-                  <th style={{borderWidth:0}}
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                    className={classnames("rt-th rt-resizable-header", {
-                      "-cursor-pointer": headerGroup.headers.length - 1 !== key,
-                      "-sort-asc": column.isSorted && !column.isSortedDesc,
-                      "-sort-desc": column.isSorted && column.isSortedDesc,
-                    })}
-                  >
-                    <div className="rt-resizable-header-content">
-                      {column.render("Header")}
-                    </div>
-                    {/* Render the columns filter UI */}
-                    {/* <div>
-                      {headerGroup.headers.length - 1 === key
-                        ? null
-                        : column.canFilter
-                        ? column.render("Filter")
-                        : null}
-                    </div> */}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
+        <table {...getTableProps()} className="rt-table" style={{borderWidth:0, paddingTop:'1rem'}}>
+          <div className='todaystable-header card-shadow'>
+            <thead className="rt-thead -header">
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()} className="rt-tr text-white" style={{borderBottomColor:'white', borderBottom:'transparent .5px'}}>
+                  {headerGroup.headers.map((column, key) => (
+                    <th style={{borderWidth:0}}
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                      className={classnames("rt-th rt-resizable-header", {
+                        "-cursor-pointer": headerGroup.headers.length - 1 !== key,
+                        "-sort-asc": column.isSorted && !column.isSortedDesc,
+                        "-sort-desc": column.isSorted && column.isSortedDesc,
+                      })}
+                    >
+                      <div className="rt-resizable-header-content">
+                        {column.render("Header")}
+                      </div>
+                      {/* Render the columns filter UI */}
+                      {/* <div>
+                        {headerGroup.headers.length - 1 === key
+                          ? null
+                          : column.canFilter
+                          ? column.render("Filter")
+                          : null}
+                      </div> */}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+          </div>
           <tbody {...getTableBodyProps()} className="rt-tbody text-white">
             {page.map((row, i) => {
               prepareRow(row);
@@ -239,7 +242,7 @@ function Table({ columns, data }) {
                 <tr
                   {...row.getRowProps()}
                   className={classnames(
-                    "rt-tr",
+                    "rt-tr grow-small",
                     { " -odd": i % 2 === 0 },
                     { " -even": i % 2 === 1 }
                   )}

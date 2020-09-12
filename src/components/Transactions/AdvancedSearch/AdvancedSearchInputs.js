@@ -195,9 +195,18 @@ class AdvancedSearchInputs extends React.Component {
     return (
       <>
       {this.state.alert}
-          <Col lg='10' style={{}}>
-            <div style={{backgroundColor:'#27282d', borderRadius:'1rem', position:'relative', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', padding:'2rem', marginTop:'1rem'}}>
-            <h5 tag="h4" style={{color:'white', margin:'0rem'}}>Bond Search</h5>
+          <Row>
+            <Col>
+              <Row>
+                
+              </Row>
+            </Col>
+            <Col>
+            </Col>
+          </Row>
+
+          <Row style={{}}>
+            <div style={{backgroundColor:'#27282d', borderRadius:'1rem', position:'relative', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', padding:'1rem', marginTop:'1rem', paddingTop:'0rem'}}>
             <Row>
             <Col lg='6'>
                 <Row>
@@ -382,71 +391,67 @@ class AdvancedSearchInputs extends React.Component {
                   </Col>          
                 </Row>
               </Col>               
-            <Col lg='5' style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
-
-                    <div style={{display:'flex', flexDirection:'column', marginBottom:'-1rem'}}>
-
-                    <div style={{backgroundColor:'#202225', borderRadius:'1rem', marginTop:'1rem'}}>
-                    <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginRight:'1rem', marginTop:'.2rem'}}>
-                      <div className="labeltext" style={{marginLeft:'1rem'}}>Trade Date</div>
-                      <div>
-                        <div className="labeltext" style={{paddingLeft:'1rem', fontWeight:'500'}}>
-                        {!from && 
-                              <span style={{color:'white', marginRight:'.5rem'}}>Select...</span>
-                              }
-                              {from && 
-                              <span style={{color:'white', marginRight:'.5rem'}}>{from.toLocaleDateString()}</span>
-                              }
-                        {!from && 
-                              <span style={{color:'grey', fontWeight:600, transition:'200ms ease', cursor:'pointer'}} className='mr-auto' onClick={this.handleResetClick}>Clear</span>
-                              }
-                              {from && 
-                              <span style={{color:'#4a90e2', fontWeight:600, transition:'200ms ease', cursor:'pointer'}} className='mr-auto' onClick={this.handleResetClick}>Clear</span>
-                              }
-                        </div>
-                      </div>
+            <Col md='6' style={{}}>
+                <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginRight:'1rem', marginTop:'.5rem'}}>
+                  <div className="labeltext" style={{marginLeft:'1rem'}}>Trade Date</div>
+                  <div>
+                    <div className="labeltext" style={{paddingLeft:'1rem', fontWeight:'500'}}>
+                    {!from && 
+                          <span style={{color:'white', marginRight:'.5rem'}}>Select...</span>
+                          }
+                          {from && 
+                          <span style={{color:'white', marginRight:'.5rem'}}>{from.toLocaleDateString()}</span>
+                          }
+                    {!from && 
+                          <span style={{color:'grey', fontWeight:600, transition:'200ms ease', cursor:'pointer'}} className='mr-auto' onClick={this.handleResetClick}>Clear</span>
+                          }
+                          {from && 
+                          <span style={{color:'#4a90e2', fontWeight:600, transition:'200ms ease', cursor:'pointer'}} className='mr-auto' onClick={this.handleResetClick}>Clear</span>
+                          }
                     </div>
-                      
-                     
-                      <DayPicker
-                        numberOfMonths={1}
-                        fromMonth={from}
-                        selectedDays={this.state.selectedDay}
-                        onDayClick={this.handleDayClick}
-                        disabledDays={disabledDays}
-                        modifiers={modifiers}
-                        onDayClick={this.handleDayClick}
-                        onDayMouseEnter={this.handleDayMouseEnter}
-                        // showOutsideDays
+                  </div>
+                </div>
+                <DayPicker
+                  numberOfMonths={2}
+                  fromMonth={from}
+                  selectedDays={this.state.selectedDay}
+                  onDayClick={this.handleDayClick}
+                  disabledDays={disabledDays}
+                  modifiers={modifiers}
+                  onDayClick={this.handleDayClick}
+                  onDayMouseEnter={this.handleDayMouseEnter}
+                  // showOutsideDays
 
-                      />
-                      <Helmet>
-                        <style>{`
+                />
+                <Helmet>
+                  <style>{`
                 .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-                  background-color: #202125 !important;
-                  color: #4a90e2;
+                background-color: #202125 !important;
+                color: #4a90e2;
                 }
                 .DayPicker-Day {
-                  border-radius: .5rem !important;
-                  color: white;
+                border-radius: .5rem !important;
+                color: white;
                 }
                 .DayPicker-Day:hover {
-                  border-radius: .5rem !important;
-                  color: #4a90e2;
-                  font-weight:bold
+                border-radius: .5rem !important;
+                color: #4a90e2;
+                font-weight:bold
                 }
-                 .DayPicker-OuDay {
-                  border-radius: 0 !important;
-                  color: white;
+                .DayPicker-OuDay {
+                border-radius: 0 !important;
+                color: white;
                 }
                 .DayPicker-Caption {
-                  border-radius: 0 !important;
-                  color: white;
+                border-radius: 0 !important;
+                color: white;
                 }
-              `}</style>
-                      </Helmet>
-                      </div>
-                    </div>
+                `}</style>
+                </Helmet>
+              </Col>
+            </Row>
+            </div>
+            <Col lg='5' style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
                
                <Col md ='2' style={{display:'flex', flexDirection:'column', alignItems:'center', paddingLeft:'8rem'}}>
                     <div className='d-flex flex-row' style={{marginTop:'-1.5rem'}}>
@@ -468,9 +473,7 @@ class AdvancedSearchInputs extends React.Component {
                 </Col>
                     
             </Col>
-            </Row>
-            </div>
-          </Col>
+          </Row>
           <Col>
           </Col>
       </>

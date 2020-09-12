@@ -116,7 +116,7 @@ class SearchInput extends Component {
                    </div>
                    <div style={{width:'80%'}} className='align-self-center'>
                     <label className="labeltext">Cusip</label>
-                    <Input placeholder="" type="text" defaultValue="Enter cusip..." style={{backgroundColor:'#27292D', color:'#4a90e2', padding:'.5rem'}} />
+                    <Input placeholder="" type="text" defaultValue="Enter cusip..." style={{backgroundColor:'#27292D', color:'#FFFFFF80', padding:'.5rem', fontSize:'small', paddingTop:'.8rem', paddingBottom:'.8rem'}} />
                    </div>
                 </div>
                 <div style={{display:'flex', alignItems:'center'}}>

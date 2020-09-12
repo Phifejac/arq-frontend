@@ -9,7 +9,7 @@ class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected:'transaction-search',
+      selected:'advanced-search',
       collapse: false,
     };
   }
