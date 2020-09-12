@@ -523,9 +523,9 @@ head {
     transition: 400ms ease;
 }
 .datefilter {
-    color:#00000070;
+    color:#FFFFFF50;
     font-size: smaller;
-    background-image: linear-gradient(to right, #3E479D60, #3E479D60, #3E479D60);
+    background-color: #202125;
     padding: .5rem .5rem .5rem .5rem;
     /* width: 30%; */
     border-radius: .5rem;
@@ -688,6 +688,111 @@ head {
     padding-left: .5rem;
     width: 10rem;
     color:white !important
+}
+
+.buy {
+    padding:1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-weight: 600;
+    color:#5A5B5D;
+    border: solid #5A5B5D 2px;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    font-size: small;
+    margin-right: -1px;
+    cursor:'pointer';
+    transition: 200ms ease;
+
+
+}
+.buy:hover{
+    color:#1c8cff;
+    border-color: #1c8cff;
+    z-index: +1;
+}
+.both {
+    padding:1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-weight: 600;
+    color:#5A5B5D;
+    border: solid #5A5B5D 2px;
+    font-size: small;
+    margin-left: -1px;
+    margin-right: -1px;
+    cursor:'pointer';
+    transition: 200ms ease;
+
+
+}
+.both:hover{
+    color:#1c8cff;
+    border-color: #1c8cff;
+    z-index: +1;
+}
+.sell {
+    padding:1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-weight: 600;
+    color:#5A5B5D;
+    border: solid #5A5B5D 2px;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    font-size: small;
+    cursor:'pointer';
+    transition: 200ms ease;
+
+
+}
+.sell:hover{
+    color:#1c8cff;
+    border-color: #1c8cff;
+    z-index: +1;
+}
+
+.tributton-selected {
+    background-color:#1c8cff;
+    color:white;
+    border-color: #1c8cff;
+    z-index: +1;
+    transition: 200ms ease;
+}
+.tributton-selected:hover{
+    color: white;
+}
+
+.search-textinput {
+    background-color: #27292D;
+    color:#FFFFFF99;
+    padding:.5rem;
+    font-size: small;
+    padding-top: .55rem; 
+    padding-bottom: .55rem;
+    font-family: 'Poppins';
+}
+.search-textinput:focus {
+    background-color: #202125;
+    color:#1c8cff;
+}
+
+.rangeinput {
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+.search-numberinput {
+    background-color: #27292D;
+    color:#FFFFFF99;
+    padding:.5rem;
+    font-size: small;
+    padding-top: .55rem; 
+    padding-bottom: .55rem;
+    font-family: 'Poppins';
+}
+.search-numberinput:focus {
+    background-color: #202125;
+    color:#1c8cff;
 }
 
 

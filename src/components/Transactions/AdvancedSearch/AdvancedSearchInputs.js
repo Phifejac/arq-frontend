@@ -6,6 +6,9 @@ import Switch from "react-bootstrap-switch";
 import {
   Row,
   Col,
+  Button,
+  ButtonGroup,
+  Input,
 } from "reactstrap";
 import ReactBSAlert from "react-bootstrap-sweetalert";
 
@@ -14,6 +17,7 @@ import Select from "react-select";
 import makeAnimated from 'react-select/animated';
 import Helmet from 'react-helmet'
 import DayPicker, { DateUtils } from 'react-day-picker';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
 import InputRange from 'react-input-range';
@@ -52,6 +56,7 @@ class AdvancedSearchInputs extends React.Component {
         max: 15,
       },
       alert: null,
+      side:null,
       fund: null,
       client: null,
       book: null,
@@ -62,51 +67,20 @@ class AdvancedSearchInputs extends React.Component {
       tagsinput: ["Amsterdam", "Washington", "Sydney", "Beijing"],
     };
     this.handleDayClick = this.handleDayClick.bind(this);
-    this.handleDayMouseEnter = this.handleDayMouseEnter.bind(this);
     this.handleResetClick = this.handleResetClick.bind(this);
+    this.state = this.getInitialState();
   }
 
   getInitialState() {
     return {
-      from: null,
-      to: null,
-      enteredTo: null, // Keep track of the last day for mouseEnter.
+      from: undefined,
+      to: undefined,
     };
   }
 
-  isSelectingFirstDay(from, to, day) {
-    const isBeforeFirstDay = from && DateUtils.isDayBefore(day, from);
-    const isRangeSelected = from && to;
-    return !from || isBeforeFirstDay || isRangeSelected;
-  }
-
   handleDayClick(day) {
-    const { from, to } = this.state;
-    if (from && to && day >= from && day <= to) {
-      this.handleResetClick();
-      return;
-    }
-    if (this.isSelectingFirstDay(from, to, day)) {
-      this.setState({
-        from: day,
-        to: null,
-        enteredTo: null,
-      });
-    } else {
-      this.setState({
-        to: day,
-        enteredTo: day,
-      });
-    }
-  }
-
-  handleDayMouseEnter(day) {
-    const { from, to } = this.state;
-    if (!this.isSelectingFirstDay(from, to, day)) {
-      this.setState({
-        enteredTo: day,
-      });
-    }
+    const range = DateUtils.addDayToRange(day, this.state);
+    this.setState(range);
   }
 
   handleResetClick() {
@@ -186,68 +160,60 @@ class AdvancedSearchInputs extends React.Component {
       alert: null,
     });
   };
+
+  setBuy = () => {
+    this.setState({ side: 'buy' })
+  }
+  setSell = () => {
+    this.setState({ side: 'sell' })
+  }
+  setBoth = () => {
+    this.setState({ side: 'both' })
+  }
   
   render() {
-    const { from, to, enteredTo } = this.state;
-    const modifiers = { start: from, end: enteredTo, Month: {color:'white'}};
-    const disabledDays = { before: this.state.from };
-    const selectedDays = [from, { from, to: enteredTo }];
+    const { from, to } = this.state;
+    const modifiers = { start: from, end: to };
     return (
       <>
       {this.state.alert}
-          <Row>
-            <Col>
+        <div className='d-flex flex-row'>
+            <div style={{flex:4, backgroundColor:'#27282d', borderRadius:'1rem', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', marginTop:'.5rem', padding:'2rem', paddingTop:'.5rem', marginLeft:'1rem'}} className='d-flex flex-row'>
+              <div className='d-flex flex-column align-items-center justify-content-center' style={{flex:.5}}>
               <Row>
-                
-              </Row>
-            </Col>
-            <Col>
-            </Col>
-          </Row>
-
-          <Row style={{}}>
-            <div style={{backgroundColor:'#27282d', borderRadius:'1rem', position:'relative', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', padding:'1rem', marginTop:'1rem', paddingTop:'0rem'}}>
-            <Row>
-            <Col lg='6'>
-                <Row>
                   <Col md="4">
-                          <label className="labeltext">Side</label>
-                          <div style={{padding:'.5rem', paddingLeft:'2.3rem'}}>
-                          <span style={{paddingRight:'.5rem', fontSize:'small', color:'#FFFFFF50'}}>Sell</span>
-                          <Switch
-                            offColor=""
-                            onColor=""
-                            onText=""
-                            offText=""
-                          />
-                          <span style={{color:'#4a90e2', paddingLeft:'.5rem', fontSize:'small'}}>Buy</span>
-                          </div>
-                        </Col>
+                    <label className="labeltext">Side</label>
+                    <div className='d-flex flex-row' style={{marginTop:'.1rem'}}>
+                      <div className={this.state.side === 'buy' ? 'buy tributton-selected' : 'buy'} onClick={this.setBuy}>
+                        Buy
+                      </div>
+                      <div className={this.state.side === 'both' ? 'both tributton-selected' : 'both'} onClick={this.setBoth}>
+                        Both
+                      </div>
+                      <div className={this.state.side === 'sell' ? 'sell tributton-selected' : 'sell'} onClick={this.setSell}>
+                        Sell
+                      </div>
+
+                    </div>
+                  </Col>
                   <Col md="8">
-                          <label className="labeltext">Security</label>
-                          <Select
-                            className="react-select primary"
-                            classNamePrefix="react-select"
-                            name="singleSelect"
-                            value={this.state.client}
-                            onChange={(value) =>
-                              this.setState({ client: value })
-                            }
-                            options={[
-                              {
-                                value: "",
-                                label: "Select One",
-                                isDisabled: true,
-                              },
-                              { value: "2", label: "Foobar" },
-                              { value: "3", label: "Is great" },
-                            ]}
-                            placeholder="Select client..."
-                          />
-                        </Col>
+                    <label className="labeltext">Cusip</label>
+                    <Input placeholder="Search cusip..." type="text" className='search-textinput'/>
+                  </Col>
                   <Col md="4">
                     <label className="labeltext">Price (M)</label>
-                    <form className="form">
+                    <div className='d-flex'>
+                      <div className='rangeinput'>
+                        <Input placeholder="0" type="number" className='search-numberinput'/> 
+                      </div>
+                      <div className='d-flex align-items-center justify-content-center white'>
+                        <i className="fa fa-caret-right" />
+                      </div>
+                      <div className='rangeinput'>
+                        <Input placeholder="200" type="number" className='search-numberinput'/> 
+                      </div>
+                    </div>
+                    {/* <form className="form">
                     <InputRange
                       maxValue={20}
                       minValue={0}
@@ -255,11 +221,22 @@ class AdvancedSearchInputs extends React.Component {
                       value={this.state.value4}
                       onChange={value => this.setState({ value4: value })}
                       onChangeComplete={value => console.log(value)} />
-                      </form>
+                      </form> */}
                    </Col>
                    <Col md="4">
                     <label className="labeltext">Qty (M)</label>
-                    <form className="form">
+                    <div className='d-flex'>
+                      <div className='rangeinput'>
+                        <Input placeholder="0" type="number" className='search-numberinput'/> 
+                      </div>
+                      <div className='d-flex align-items-center justify-content-center white'>
+                        <i className="fa fa-caret-right" />
+                      </div>
+                      <div className='rangeinput'>
+                        <Input placeholder="200" type="number" className='search-numberinput'/> 
+                      </div>
+                    </div>
+                    {/* <form className="form">
                       <InputRange
                         maxValue={20}
                         minValue={0}
@@ -267,34 +244,18 @@ class AdvancedSearchInputs extends React.Component {
                         value={this.state.value5}
                         onChange={value => this.setState({ value5: value })}
                         onChangeComplete={value => console.log(value)} />
-                        </form>
+                        </form> */}
                    </Col>
                    <Col md="4">
-                    <label className="labeltext">Cusip</label>
-                      <Select
-                            className="react-select primary"
-                            classNamePrefix="react-select"
-                            components={animatedComponents}
-                            name="singleSelect"
-                            value={this.state.fund}
-                            onChange={(value) =>
-                              this.setState({ fund: value })
-                            }
-                            options={[
-                              {
-                                value: "",
-                                label: "Select One",
-                                isDisabled: true,
-                              },
-                              { value: "2", label: "Fund" },
-                              { value: "3", label: "Option2" },
-                            ]}
-                            placeholder="Select side..."
-                            styles={customStyles}
-                          />
+                    <label className="labeltext">Security</label>
+                    <Input placeholder="Search name..." type="text" className='search-textinput'/>
                    </Col>
                    <Col lg='6'>
-                    <label className="labeltext">Fund</label>
+                    <label className="labeltext">Broker Name</label>
+                    <Input placeholder="Search broker..." type="text" className='search-textinput'/>  
+                  </Col>
+                  <Col lg='6'>
+                    <label className="labeltext">Counterparty</label>
                     <Select
                       className="react-select primary"
                       classNamePrefix="react-select"
@@ -318,164 +279,69 @@ class AdvancedSearchInputs extends React.Component {
                       />   
                   </Col>
                   <Col lg='6'>
-                    <label className="labeltext">Book</label>
-                    <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
-                      components={animatedComponents}
-                      name="singleSelect"
-                      value={this.state.fund}
-                      onChange={(value) =>
-                        this.setState({ fund: value })
-                              }
-                              options={[
-                                {
-                                  value: "",
-                                  label: "Select One",
-                                  isDisabled: true,
-                                },
-                                { value: "2", label: "Fund" },
-                                { value: "3", label: "Option2" },
-                              ]}
-                      placeholder="Select fund..."
-                      styles={customStyles}
-                      />   
+                    <label className="labeltext">Client</label>
+                    <Input placeholder="Search client..." type="text" className='search-textinput'/>    
                   </Col>
                   <Col lg='6'>
-                    <label className="labeltext">Customer</label>
-                    <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
-                      components={animatedComponents}
-                      name="singleSelect"
-                      value={this.state.fund}
-                      onChange={(value) =>
-                        this.setState({ fund: value })
-                              }
-                              options={[
-                                {
-                                  value: "",
-                                  label: "Select One",
-                                  isDisabled: true,
-                                },
-                                { value: "2", label: "Fund" },
-                                { value: "3", label: "Option2" },
-                              ]}
-                      placeholder="Select customer..."
-                      styles={customStyles}
-                      />   
-                  </Col>
-                  <Col lg='6'>
-                    <label className="labeltext">Executing Counterparty</label>
-                    <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
-                      components={animatedComponents}
-                      name="singleSelect"
-                      value={this.state.fund}
-                      onChange={(value) =>
-                        this.setState({ fund: value })
-                              }
-                              options={[
-                                {
-                                  value: "",
-                                  label: "Select One",
-                                  isDisabled: true,
-                                },
-                                { value: "2", label: "Fund" },
-                                { value: "3", label: "Option2" },
-                              ]}
-                      placeholder="Select counterparty..."
-                      styles={customStyles}
-                      />   
+                    <label className="labeltext">Yield</label>
+                    <Input placeholder="Search yeild..." type="number" className='search-textinput'/>  
                   </Col>          
                 </Row>
-              </Col>               
-            <Col md='6' style={{}}>
-                <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginRight:'1rem', marginTop:'.5rem'}}>
-                  <div className="labeltext" style={{marginLeft:'1rem'}}>Trade Date</div>
-                  <div>
-                    <div className="labeltext" style={{paddingLeft:'1rem', fontWeight:'500'}}>
-                    {!from && 
-                          <span style={{color:'white', marginRight:'.5rem'}}>Select...</span>
-                          }
-                          {from && 
-                          <span style={{color:'white', marginRight:'.5rem'}}>{from.toLocaleDateString()}</span>
-                          }
-                    {!from && 
-                          <span style={{color:'grey', fontWeight:600, transition:'200ms ease', cursor:'pointer'}} className='mr-auto' onClick={this.handleResetClick}>Clear</span>
-                          }
-                          {from && 
-                          <span style={{color:'#4a90e2', fontWeight:600, transition:'200ms ease', cursor:'pointer'}} className='mr-auto' onClick={this.handleResetClick}>Clear</span>
-                          }
-                    </div>
-                  </div>
-                </div>
-                <DayPicker
+            </div>
+              <div className='d-flex flex-column align-items-center justify-content-center' style={{flex:.5}}>
+              <div className='d-flex flex-row' style={{marginTop:'1rem'}}>
+                  <div className='datefilter'>30 Days</div>
+                  <div className='datefilter'>All Time</div>
+                  <div className='datefilter'>This Month</div>
+                  <div className='datefilter'>Last Month</div>
+              </div>
+              <DayPicker
                   numberOfMonths={2}
                   fromMonth={from}
-                  selectedDays={this.state.selectedDay}
+                  selectedDays={[from, { from, to }]}
                   onDayClick={this.handleDayClick}
-                  disabledDays={disabledDays}
                   modifiers={modifiers}
                   onDayClick={this.handleDayClick}
-                  onDayMouseEnter={this.handleDayMouseEnter}
-                  // showOutsideDays
 
                 />
-                <Helmet>
-                  <style>{`
-                .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-                background-color: #202125 !important;
-                color: #4a90e2;
-                }
-                .DayPicker-Day {
-                border-radius: .5rem !important;
-                color: white;
-                }
-                .DayPicker-Day:hover {
-                border-radius: .5rem !important;
-                color: #4a90e2;
-                font-weight:bold
-                }
-                .DayPicker-OuDay {
-                border-radius: 0 !important;
-                color: white;
-                }
-                .DayPicker-Caption {
-                border-radius: 0 !important;
-                color: white;
-                }
-                `}</style>
-                </Helmet>
-              </Col>
-            </Row>
+                  <Helmet>
+                    <style>{`
+                  .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+                  background-color: #202125 !important;
+                  color: #4a90e2;
+                  }
+                  .DayPicker-Day {
+                  border-radius: 0rem !important;
+                  color: white;
+                  }
+                  .DayPicker-Day:hover {
+                  border-radius: .5rem !important;
+                  color: #4a90e2;
+                  font-weight:bold
+                  }
+                  .DayPicker-OuDay {
+                  border-radius: 0 !important;
+                  color: white;
+                  }
+                  .DayPicker-Caption {
+                  border-radius: 0 !important;
+                  color: white;
+                  }
+                  `}</style>
+                  </Helmet>
             </div>
-            <Col lg='5' style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
-               
-               <Col md ='2' style={{display:'flex', flexDirection:'column', alignItems:'center', paddingLeft:'8rem'}}>
-                    <div className='d-flex flex-row' style={{marginTop:'-1.5rem'}}>
-                      <div className='datefilter'>30 Days</div>
-                      <div className='datefilter'>All Time</div>
+            </div>
+            <div className='ml-auto d-flex flex-column justify-content-center' style={{flex:1}}>
+                  <div style={{width:'14rem'}}>
+                    <div className='button-solid'>
+                      {this.state.collapse ? <span>Custom Export</span> : <span>Search</span> }
                     </div>
-                    <div className='d-flex flex-row'>
-                      <div className='datefilter'>This Month</div>
-                      <div className='datefilter'>Last Month</div>
+                    <div className='button-red' onClick={this.handleResetClick}>
+                      Clear
                     </div>
-                    <div style={{width:'14rem'}}>
-                      <div className='button-solid'>
-                        {this.state.collapse ? <span>Custom Export</span> : <span>Search</span> }
-                      </div>
-                      <div className='button-red' onClick={this.toggle}>
-                        Clear
-                      </div>
-                    </div>
-                </Col>
-                    
-            </Col>
-          </Row>
-          <Col>
-          </Col>
+                  </div>
+              </div>
+          </div>
       </>
     );
   }
