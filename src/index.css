@@ -696,7 +696,7 @@ head {
     padding-bottom: .5rem;
     font-weight: 600;
     color:#5A5B5D;
-    border: solid #5A5B5D 2px;
+    border: solid 1px;
     border-top-left-radius: 2rem;
     border-bottom-left-radius: 2rem;
     font-size: small;
@@ -717,7 +717,7 @@ head {
     padding-bottom: .5rem;
     font-weight: 600;
     color:#5A5B5D;
-    border: solid #5A5B5D 2px;
+    border: solid 1px;
     font-size: small;
     margin-left: -1px;
     margin-right: -1px;
@@ -737,7 +737,7 @@ head {
     padding-bottom: .5rem;
     font-weight: 600;
     color:#5A5B5D;
-    border: solid #5A5B5D 2px;
+    border: solid 1px;
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
     font-size: small;

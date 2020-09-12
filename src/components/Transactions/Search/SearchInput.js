@@ -132,7 +132,8 @@ class SearchInput extends Component {
                         {this.state.collapse ? <span>Custom Export</span> : <span>Quick Export</span> }
                       </div>
                       <div className='button' onClick={this.toggle}>
-                        {this.state.collapse ? 'Custom  -' : 'Custom  +'}
+                        {this.state.collapse ? 'Custom ' : 'Custom'}
+                        <i className={this.state.collapse ? "fa fa-caret-up" :"fa fa-caret-down"} style={{paddingLeft:'.25rem', marginTop:'0rem', transition:'200ms ease'}}/>
                       </div>
                     </div>
                 </div>
