@@ -178,7 +178,7 @@ class AdvancedSearchInputs extends React.Component {
       <>
       {this.state.alert}
         <div className='d-flex flex-row'>
-            <div style={{flex:4, backgroundColor:'#27282d', borderRadius:'1rem', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', marginTop:'.5rem', padding:'2rem', paddingTop:'.5rem', marginLeft:'1rem', flexWrap:'wrap-reverse'}} className='d-flex flex-row'>
+            <div style={{flex:4, backgroundColor:'#27282d', borderRadius:'1rem', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', marginTop:'.5rem', padding:'2rem', paddingTop:'.5rem', marginLeft:'1rem', flexWrap:'wrap-reverse', paddingRight:'.5rem'}} className='d-flex flex-row'>
               <div className='d-flex flex-column align-items-center justify-content-center' style={{flex:.5, minWidth:'32rem', maxWidth:'35rem'}}>
               <Row>
                   <Col md="4">
@@ -307,7 +307,8 @@ class AdvancedSearchInputs extends React.Component {
                   <Helmet>
                     <style>{`
                   .DayPicker {
-                    width:36rem
+                    width:35.75rem
+                    
                   }
                   .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
                   background-color: #202125 !important;
@@ -335,7 +336,7 @@ class AdvancedSearchInputs extends React.Component {
             </div>
             </div>
             <div className=' d-flex flex-column justify-content-center'>
-                  <div style={{width:'10rem'}}>
+                  <div style={{width:'9rem'}}>
                     <div className='button-solid'>
                       {this.state.collapse ? <span>Custom Export</span> : <span>Search</span> }
                     </div>
