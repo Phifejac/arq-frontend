@@ -15,12 +15,22 @@ import PnLGraph from "components/Home/PnLGraph";
 import MonthlyTransactions from "components/Home/MonthlyTransactions";
 import TodaysTransactions from "components/Home/TodaysTransactions";
 
+// api
+
+import { getTransactions }  from "../../api/http"
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tagsinput: ["All", "Firm A", "Firm B", "Firm C"],
+      
     };
+  }
+
+  componentDidMount = async () => {
+    const transactions = await getTransactions({"trade_date":"7/24/20"});
+    console.log("transactions", transactions)
   }
   handleTagsinput = (tagsinput) => {
     this.setState({ tagsinput });

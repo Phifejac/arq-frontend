@@ -32,10 +32,14 @@ class AdvancedSearch extends Component {
       multipleSelect: null,
       tagsinput: ["Amsterdam", "Washington", "Sydney", "Beijing"],
       collapse: false,
-      typeOpen:true
+      typeOpen:true,
+      queryParameters : {}
     };
   }
 
+  setQueryParameters(parameters) {
+    this.setState({ queryParameters : parameters })
+  }
 
   setBond = () => {
     this.setState({ type: 'bond'})
@@ -61,7 +65,7 @@ class AdvancedSearch extends Component {
       <>
       {this.state.alert}
           <div style={{width:'100%', marginLeft:'1.5rem'}}>
-            <h4 style={{marginTop:'3rem', fontFamily:'Poppins', fontWeight:'500', fontSize:'large', marginBottom:'2rem', color:'#5a5b5d'}}> Transactions > <span style={{color:'white'}}>Advanced Search</span></h4>
+            <h4 style={{marginTop:'3rem', fontFamily:'Poppins', fontWeight:'500', fontSize:'large', marginBottom:'2rem', color:'#5a5b5d'}}> Transactions {">"} <span style={{color:'white'}}>Advanced Search</span></h4>
             
             {/* <div className="typeselector">
               Type
