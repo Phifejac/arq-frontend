@@ -178,8 +178,8 @@ class AdvancedSearchInputs extends React.Component {
       <>
       {this.state.alert}
         <div className='d-flex flex-row'>
-            <div style={{flex:4, backgroundColor:'#27282d', borderRadius:'1rem', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', marginTop:'.5rem', padding:'2rem', paddingTop:'.5rem', marginLeft:'1rem'}} className='d-flex flex-row'>
-              <div className='d-flex flex-column align-items-center justify-content-center' style={{flex:.5}}>
+            <div style={{flex:4, backgroundColor:'#27282d', borderRadius:'1rem', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', marginTop:'.5rem', padding:'2rem', paddingTop:'.5rem', marginLeft:'1rem', flexWrap:'wrap-reverse'}} className='d-flex flex-row'>
+              <div className='d-flex flex-column align-items-center justify-content-center' style={{flex:.5, minWidth:'32rem', maxWidth:'35rem'}}>
               <Row>
                   <Col md="4">
                     <label className="labeltext">Side</label>
@@ -288,7 +288,7 @@ class AdvancedSearchInputs extends React.Component {
                   </Col>          
                 </Row>
             </div>
-              <div className='d-flex flex-column align-items-center justify-content-center' style={{flex:.5}}>
+              <div className='d-flex flex-column align-items-center' style={{flex:.5}}>
               <div className='d-flex flex-row' style={{marginTop:'1rem'}}>
                   <div className='datefilter'>30 Days</div>
                   <div className='datefilter'>All Time</div>
@@ -306,6 +306,9 @@ class AdvancedSearchInputs extends React.Component {
                 />
                   <Helmet>
                     <style>{`
+                  .DayPicker {
+                    width:36rem
+                  }
                   .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
                   background-color: #202125 !important;
                   color: #4a90e2;
@@ -331,8 +334,8 @@ class AdvancedSearchInputs extends React.Component {
                   </Helmet>
             </div>
             </div>
-            <div className='ml-auto d-flex flex-column justify-content-center' style={{flex:1}}>
-                  <div style={{width:'14rem'}}>
+            <div className=' d-flex flex-column justify-content-center'>
+                  <div style={{width:'10rem'}}>
                     <div className='button-solid'>
                       {this.state.collapse ? <span>Custom Export</span> : <span>Search</span> }
                     </div>

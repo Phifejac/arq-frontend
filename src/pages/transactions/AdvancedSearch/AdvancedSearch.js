@@ -75,7 +75,7 @@ class AdvancedSearch extends Component {
                 <span className={this.state.type === 'unwind' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setUnwind}>Unwind</span>
             
             </div>
-            <Row style={{marginRight:'4rem'}}>
+            <Row>
               <AdvancedSearchInputs/>
             </Row>
             <Col lg='12'>

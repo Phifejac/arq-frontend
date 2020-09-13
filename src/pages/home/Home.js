@@ -42,16 +42,7 @@ class Home extends React.Component {
             <h1 className='head1'>Today's Transactions</h1>
             <TodaysTransactions/>
           </div>
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+ 
           {/* OLD */}
           
           {/* Activity Overview */}
