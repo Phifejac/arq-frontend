@@ -13,24 +13,24 @@ import MonthlyVolume from "components/Home/MonthlyVolume";
 import PnLRow from "components/Home/PnLRow";
 import PnLGraph from "components/Home/PnLGraph";
 import MonthlyTransactions from "components/Home/MonthlyTransactions";
-import TodaysTransactions from "components/Home/TodaysTransactions";
 
 // api
 
 import { getTransactions }  from "../../api/http"
+import AdvancedSearchResults from "components/Transactions/AdvancedSearch/AdvancedSearchResults";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tagsinput: ["All", "Firm A", "Firm B", "Firm C"],
-      
+      transactions : []
     };
   }
 
   componentDidMount = async () => {
-    const transactions = await getTransactions({"trade_date":"7/24/20"});
-    console.log("transactions", transactions)
+    const transactions = await getTransactions({"start_date":"09/08/2020", "end_date" : "09/08/2020" });
+    this.setState({ transactions })
   }
   handleTagsinput = (tagsinput) => {
     this.setState({ tagsinput });
@@ -50,18 +50,9 @@ class Home extends React.Component {
 
           <div style={{paddingTop:'3rem'}}>
             <h1 className='head1'>Today's Transactions</h1>
-            <TodaysTransactions/>
+            <AdvancedSearchResults transactions={this.state.transactions} />
           </div>
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+ 
           {/* OLD */}
           
           {/* Activity Overview */}

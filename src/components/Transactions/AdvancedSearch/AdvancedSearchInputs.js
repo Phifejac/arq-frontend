@@ -22,7 +22,7 @@ import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 
 //date formatter
-import { formatDate} from "../../../api/utils"
+import { formatDate } from "../../../api/utils"
 
 const animatedComponents = makeAnimated();
 
@@ -57,18 +57,18 @@ class AdvancedSearchInputs extends React.Component {
         max: 15,
       },
       alert: null,
-      side:null,
-      start_date : null,
-      end_date : null,
-      min_price : null,
-      max_price : null,
-      min_qty : null,
-      max_qty : null,
+      side: null,
+      start_date: null,
+      end_date: null,
+      min_price: null,
+      max_price: null,
+      min_qty: null,
+      max_qty: null,
       fund: null,
       client: null,
-      cusip : null,
+      cusip: null,
       book: null,
-      brkr_name : null,
+      brkr_name: null,
       counterparty: null,
       singleSelect: null,
       multipleSelect: null,
@@ -90,11 +90,11 @@ class AdvancedSearchInputs extends React.Component {
 
     const parameters = {}
 
-    if (this.state.start_date ) { 
+    if (this.state.start_date) {
       parameters["start_date"] = formatDate(new Date(this.state.start_date));
       parameters["end_date"] = formatDate(new Date(this.state.end_date));
     }
-    if (this.state.client ) parameters["client"] = this.state.client.label;
+    if (this.state.client) parameters["client"] = this.state.client.label;
     if (this.state.cusip) parameters["cusip"] = this.state.cusip;
     if (this.state.counterparty) parameters["counterparty"] = this.state.counterparty;
     if (this.state.brkr_name) parameters["brkr_name"] = this.state.brkr_name;
@@ -109,7 +109,7 @@ class AdvancedSearchInputs extends React.Component {
       parameters["max_price"] = this.state.max_price;
     }
 
-    if (!this.state.side && this.state.side !== "both") {
+    if (this.state.side && this.state.side !== "both") {
       if (this.state.side === "buy") parameters["side"] = "B";
       if (this.state.side === "sell") parameters["side"] = "S";
     }
@@ -122,7 +122,7 @@ class AdvancedSearchInputs extends React.Component {
     const range = DateUtils.addDayToRange(day, this.state);
     console.log("range", range)
     this.setState(range);
-    this.setState({ start_date : range.from, end_date : range.to });
+    this.setState({ start_date: range.from, end_date: range.to });
   }
 
   handleResetClick() {
@@ -195,7 +195,7 @@ class AdvancedSearchInputs extends React.Component {
       ),
     });
   };
-  
+
 
   hideAlert = () => {
     this.setState({
@@ -212,50 +212,50 @@ class AdvancedSearchInputs extends React.Component {
   setBoth = () => {
     this.setState({ side: 'both' })
   }
-  
+
   render() {
     const { from, to } = this.state;
     const modifiers = { start: from, end: to };
     return (
-      <>
-      {this.state.alert}
+      <div>
+        {this.state.alert}
         <div className='d-flex flex-row'>
-            <div style={{flex:4, backgroundColor:'#27282d', borderRadius:'1rem', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', marginTop:'.5rem', padding:'2rem', paddingTop:'.5rem', marginLeft:'1rem'}} className='d-flex flex-row'>
-              <div className='d-flex flex-column align-items-center justify-content-center' style={{flex:.5}}>
+          <div style={{ flex: 4, backgroundColor: '#27282d', borderRadius: '1rem', boxShadow: '0 6px 10px -4px rgba(0,0,0,0.15)', marginTop: '.5rem', padding: '2rem', paddingTop: '.5rem', marginLeft: '1rem', flexWrap: 'wrap-reverse', paddingRight: '.5rem' }} className='d-flex flex-row'>
+            <div className='d-flex flex-column align-items-center justify-content-center' style={{ flex: .5, minWidth: '32rem', maxWidth: '35rem' }}>
               <Row>
-                  <Col md="4">
-                    <label className="labeltext">Side</label>
-                    <div className='d-flex flex-row' style={{marginTop:'.1rem'}}>
-                      <div className={this.state.side === 'buy' ? 'buy tributton-selected' : 'buy'} onClick={this.setBuy}>
-                        Buy
+                <Col md="4">
+                  <label className="labeltext">Side</label>
+                  <div className='d-flex flex-row' style={{ marginTop: '.1rem' }}>
+                    <div className={this.state.side === 'buy' ? 'buy tributton-selected' : 'buy'} onClick={this.setBuy}>
+                      Buy
                       </div>
-                      <div className={this.state.side === 'both' ? 'both tributton-selected' : 'both'} onClick={this.setBoth}>
-                        Both
+                    <div className={this.state.side === 'both' ? 'both tributton-selected' : 'both'} onClick={this.setBoth}>
+                      Both
                       </div>
-                      <div className={this.state.side === 'sell' ? 'sell tributton-selected' : 'sell'} onClick={this.setSell}>
-                        Sell
+                    <div className={this.state.side === 'sell' ? 'sell tributton-selected' : 'sell'} onClick={this.setSell}>
+                      Sell
                       </div>
 
+                  </div>
+                </Col>
+                <Col md="8">
+                  <label className="labeltext">Cusip</label>
+                  <Input placeholder="Search cusip..." type="text" className='search-textinput' onChange={(e) => this.setState({ cusip: e.target.value })} />
+                </Col>
+                <Col md="4">
+                  <label className="labeltext">Price (M)</label>
+                  <div className='d-flex'>
+                    <div className='rangeinput'>
+                      <Input placeholder="0" type="number" className='search-numberinput' onChange={(e) => this.setState({ min_price: e.target.value })} />
                     </div>
-                  </Col>
-                  <Col md="8">
-                    <label className="labeltext">Cusip</label>
-                    <Input placeholder="Search cusip..." type="text" className='search-textinput' onChange={(e) => this.setState({ cusip : e.target.value})}/>
-                  </Col>
-                  <Col md="4">
-                    <label className="labeltext">Price (M)</label>
-                    <div className='d-flex'>
-                      <div className='rangeinput'>
-                        <Input placeholder="0" type="number" className='search-numberinput' onChange={(e) => this.setState({ min_price : e.target.value})}/> 
-                      </div>
-                      <div className='d-flex align-items-center justify-content-center white'>
-                        <i className="fa fa-caret-right" />
-                      </div>
-                      <div className='rangeinput'>
-                        <Input placeholder="200" type="number" className='search-numberinput' onChange={(e) => this.setState({ max_price : e.target.value})}/> 
-                      </div>
+                    <div className='d-flex align-items-center justify-content-center white'>
+                      <i className="fa fa-caret-right" />
                     </div>
-                    {/* <form className="form">
+                    <div className='rangeinput'>
+                      <Input placeholder="200" type="number" className='search-numberinput' onChange={(e) => this.setState({ max_price: e.target.value })} />
+                    </div>
+                  </div>
+                  {/* <form className="form">
                     <InputRange
                       maxValue={20}
                       minValue={0}
@@ -264,21 +264,21 @@ class AdvancedSearchInputs extends React.Component {
                       onChange={value => this.setState({ value4: value })}
                       onChangeComplete={value => console.log(value)} />
                       </form> */}
-                   </Col>
-                   <Col md="4">
-                    <label className="labeltext">Qty (M)</label>
-                    <div className='d-flex'>
-                      <div className='rangeinput'>
-                        <Input placeholder="0" type="number" className='search-numberinput' onChange={(e) => this.setState({ min_qty : e.target.value})}/> 
-                      </div>
-                      <div className='d-flex align-items-center justify-content-center white'>
-                        <i className="fa fa-caret-right" />
-                      </div>
-                      <div className='rangeinput'>
-                        <Input placeholder="200" type="number" className='search-numberinput' onChange={(e) => this.setState({ max_qty : e.target.value})}/> 
-                      </div>
+                </Col>
+                <Col md="4">
+                  <label className="labeltext">Qty (M)</label>
+                  <div className='d-flex'>
+                    <div className='rangeinput'>
+                      <Input placeholder="0" type="number" className='search-numberinput' onChange={(e) => this.setState({ min_qty: e.target.value })} />
                     </div>
-                    {/* <form className="form">
+                    <div className='d-flex align-items-center justify-content-center white'>
+                      <i className="fa fa-caret-right" />
+                    </div>
+                    <div className='rangeinput'>
+                      <Input placeholder="200" type="number" className='search-numberinput' onChange={(e) => this.setState({ max_qty: e.target.value })} />
+                    </div>
+                  </div>
+                  {/* <form className="form">
                       <InputRange
                         maxValue={20}
                         minValue={0}
@@ -287,67 +287,71 @@ class AdvancedSearchInputs extends React.Component {
                         onChange={value => this.setState({ value5: value })}
                         onChangeComplete={value => console.log(value)} />
                         </form> */}
-                   </Col>
-                   <Col md="4">
-                    <label className="labeltext">Security</label>
-                    <Input placeholder="Search name..." type="text" className='search-textinput' onChange={(e) => this.setState({ security : e.target.value})}/>
-                   </Col>
-                   <Col lg='6'>
-                    <label className="labeltext">Broker Name</label>
-                    <Input placeholder="Search broker..." type="text" className='search-textinput' onChange={(e) => this.setState({ brkr_name : e.target.value})}/>  
-                  </Col>
-                  <Col lg='6'>
-                    <label className="labeltext">Client</label>
-                    <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
-                      components={animatedComponents}
-                      name="singleSelect"
-                      value={this.state.client}
-                      onChange={(value) =>
-                        this.setState({ client: value })
-                              }
-                              options={[
-                                {
-                                  value: "",
-                                  label: "Select One",
-                                  isDisabled: true,
-                                },
-                                { value: "2", label: "Fund" },
-                                { value: "3", label: "Option2" },
-                              ]}
-                      placeholder="Select fund..."
-                      styles={customStyles}
-                      />   
-                  </Col>
-                  <Col lg='6'>
-                    <label className="labeltext">Counterparty</label>
-                    <Input placeholder="Search counterparty..." type="text" className='search-textinput'onClick={(e) => this.setState({ counterparty : e.target.value })}/>    
-                  </Col>
-                  <Col lg='6'>
-                    <label className="labeltext">Yield</label>
-                    <Input placeholder="Search yield..." type="number" className='search-textinput' onClick={(e) => this.setState({ yield : e.target.value })}/>  
-                  </Col>          
-                </Row>
+                </Col>
+                <Col md="4">
+                  <label className="labeltext">Security</label>
+                  <Input placeholder="Search name..." type="text" className='search-textinput' onChange={(e) => this.setState({ security: e.target.value })} />
+                </Col>
+                <Col lg='6'>
+                  <label className="labeltext">Broker Name</label>
+                  <Input placeholder="Search broker..." type="text" className='search-textinput' onChange={(e) => this.setState({ brkr_name: e.target.value })} />
+                </Col>
+                <Col lg='6'>
+                  <label className="labeltext">Client</label>
+                  <Select
+                    className="react-select primary"
+                    classNamePrefix="react-select"
+                    components={animatedComponents}
+                    name="singleSelect"
+                    value={this.state.client}
+                    onChange={(value) =>
+                      this.setState({ client: value })
+                    }
+                    options={[
+                      {
+                        value: "",
+                        label: "Select One",
+                        isDisabled: true,
+                      },
+                      { value: "2", label: "Fund" },
+                      { value: "3", label: "Option2" },
+                    ]}
+                    placeholder="Select fund..."
+                    styles={customStyles}
+                  />
+                </Col>
+                <Col lg='6'>
+                  <label className="labeltext">Counterparty</label>
+                  <Input placeholder="Search counterparty..." type="text" className='search-textinput' onClick={(e) => this.setState({ counterparty: e.target.value })} />
+                </Col>
+                <Col lg='6'>
+                  <label className="labeltext">Yield</label>
+                  <Input placeholder="Search yield..." type="number" className='search-textinput' onClick={(e) => this.setState({ yield: e.target.value })} />
+                </Col>
+              </Row>
             </div>
-              <div className='d-flex flex-column align-items-center justify-content-center' style={{flex:.5}}>
-              <div className='d-flex flex-row' style={{marginTop:'1rem'}}>
-                  <div className='datefilter'>30 Days</div>
-                  <div className='datefilter'>All Time</div>
-                  <div className='datefilter'>This Month</div>
-                  <div className='datefilter'>Last Month</div>
+            <div className='d-flex flex-column align-items-center' style={{ flex: .5 }}>
+              <div className='d-flex flex-row' style={{ marginTop: '1rem' }}>
+                <div className='datefilter'>30 Days</div>
+                <div className='datefilter'>All Time</div>
+                <div className='datefilter'>This Month</div>
+                <div className='datefilter'>Last Month</div>
               </div>
               <DayPicker
-                  numberOfMonths={2}
-                  fromMonth={from}
-                  selectedDays={[from, { from, to }]}
-                  onDayClick={this.handleDayClick}
-                  modifiers={modifiers}
-                  onDayClick={this.handleDayClick}
+                numberOfMonths={2}
+                fromMonth={from}
+                selectedDays={[from, { from, to }]}
+                onDayClick={this.handleDayClick}
+                modifiers={modifiers}
+                onDayClick={this.handleDayClick}
 
-                />
-                  <Helmet>
-                    <style>{`
+              />
+              <Helmet>
+                <style>{`
+                  .DayPicker {
+                    width:35.75rem
+                    
+                  }
                   .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
                   background-color: #202125 !important;
                   color: #4a90e2;
@@ -370,21 +374,22 @@ class AdvancedSearchInputs extends React.Component {
                   color: white;
                   }
                   `}</style>
-                  </Helmet>
+              </Helmet>
             </div>
-            </div>
-            <div className='ml-auto d-flex flex-column justify-content-center' style={{flex:1}}>
-                  <div style={{width:'14rem'}}>
-                    <div className='button-solid' onClick={()=> this.startSearch()}>
-                      {this.state.collapse ? <span>Custom Export</span> : <span>Search</span> }
-                    </div>
-                    <div className='button-red' onClick={this.handleResetClick}>
-                      Clear
-                    </div>
-                  </div>
-              </div>
           </div>
-      </>
+          <div className='ml-auto d-flex flex-column justify-content-center' style={{ flex: 1 }}>
+            <div style={{ width: '14rem' }}>
+              <div className='button-solid' onClick={() => this.startSearch()}>
+                {this.state.collapse ? <span>Custom Export</span> : <span>Search</span>}
+              </div>
+              <div className='button-red' onClick={this.handleResetClick}>
+                Clear
+                    </div>
+            </div>
+          </div>
+        </div>
+        <div />
+      </div>
     );
   }
 }

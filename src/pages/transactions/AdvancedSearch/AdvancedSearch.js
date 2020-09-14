@@ -35,7 +35,8 @@ class AdvancedSearch extends Component {
       tagsinput: ["Amsterdam", "Washington", "Sydney", "Beijing"],
       collapse: false,
       typeOpen:true,
-      queryParameters : {}
+      queryParameters : {},
+      transactions : []
     };
     this.executeSearch= this.executeSearch.bind(this)
   }
@@ -67,6 +68,7 @@ class AdvancedSearch extends Component {
   executeSearch = async (parameters) => {
     this.setState({ loading : true });
     const newTransactions = await getTransactions(parameters);
+    this.setState({ loading : false, transactions : newTransactions})
     console.log("new transactions", newTransactions);
   }
   
@@ -94,7 +96,7 @@ class AdvancedSearch extends Component {
             </Row>
             <Col lg='12'>
               <div style={{zIndex:-1, paddingTop:'2rem', marginLeft:'-2rem'}}>
-                <AdvancedSearchResults/>
+                <AdvancedSearchResults transactions={this.state.transactions} />
               </div>  
             </Col> 
           </div>

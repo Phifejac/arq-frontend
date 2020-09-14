@@ -30,26 +30,6 @@ import EditTransaction from "./EditTransaction";
 import Transaction from "./Transaction";
 
 const dataTable = [
-  ["912810SN9", "7/13/20", "4:50:27 PM", "T 1 1/4 05/15/50", "S", "2000", "98.578125", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3077"],
-  ["912810SN9", "7/13/20", "4:48:43 PM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "HEXAGON AM LLC", "BGC PARTNERS", "Accepted", "1.3083"],
-  ["912810SN9", "7/13/20", "4:33:06 PM", "T 1 1/4 05/15/50", "S", "1000", "98.515625", "BGC PARTNERS", "ARQ ADVISORS LLC", "Accepted", "1.3102"],
-  ["912810SN9", "7/13/20", "4:22:52 PM", "T 1 1/4 05/15/50", "B", "1000", "98.515625", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3186"],
-  ["912810SN9", "7/13/20", "4:19:47 PM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "ARQ ADVISORS LLC", "BGC PARTNERS", "Accepted", "1.3083"],
-  ["912810SN9", "7/13/20", "1:14:09 PM", "T 1 1/4 05/15/50", "S", "2000", "98.578125", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3077"],
-  ["912810SN9", "7/13/20", "1:03:54 PM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "HEXAGON AM LLC", "BGC PARTNERS", "Accepted", "1.3083"],
-  ["912810SN9", "7/13/20", "12:20:44 PM", "T 1 1/4 05/15/50", "S", "1000", "98.515625", "BGC PARTNERS", "ARQ ADVISORS LLC", "Accepted", "1.3102"],
-  ["912810SN9", "7/13/20", "12:12:25 PM", "T 1 1/4 05/15/50", "B", "1000", "98.515625", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3186"],
-  ["912810SN9", "7/13/20", "10:44:43 AM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "ARQ ADVISORS LLC", "BGC PARTNERS", "Accepted", "1.3083"],
-  ["912810SN9", "7/12/20", "4:50:27 PM", "T 1 1/4 05/15/50", "S", "2000", "98.578125", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3077"],
-  ["912810SN9", "7/12/20", "4:48:43 PM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "HEXAGON AM LLC", "BGC PARTNERS", "Accepted", "1.3083"],
-  ["912810SN9", "7/12/20", "4:33:06 PM", "T 1 1/4 05/15/50", "S", "1000", "98.515625", "BGC PARTNERS", "ARQ ADVISORS LLC", "Accepted", "1.3102"],
-  ["912810SN9", "7/12/20", "4:22:52 PM", "T 1 1/4 05/15/50", "B", "1000", "98.515625", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3186"],
-  ["912810SN9", "7/12/20", "4:19:47 PM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "ARQ ADVISORS LLC", "BGC PARTNERS", "Accepted", "1.3083"],
-  ["912810SN9", "7/12/20", "1:14:09 PM", "T 1 1/4 05/15/50", "S", "2000", "98.578125", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3077"],
-  ["912810SN9", "7/12/20", "1:03:54 PM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "HEXAGON AM LLC", "BGC PARTNERS", "Accepted", "1.3083"],
-  ["912810SN9", "7/12/20", "12:20:44 PM", "T 1 1/4 05/15/50", "S", "1000", "98.515625", "BGC PARTNERS", "ARQ ADVISORS LLC", "Accepted", "1.3102"],
-  ["912810SN9", "7/12/20", "12:12:25 PM", "T 1 1/4 05/15/50", "B", "1000", "98.515625", "HEXAGON AM LLC", "ARQ ADVISORS LLC", "Accepted", "1.3186"],
-  ["912810SN9", "7/12/20", "10:44:43 AM", "T 1 1/4 05/15/50", "B", "2000", "98.5627", "ARQ ADVISORS LLC", "BGC PARTNERS", "Accepted", "1.3083"],
 ];
 
 class SearchResults extends React.Component {
@@ -67,17 +47,17 @@ class SearchResults extends React.Component {
       data: dataTable.map((prop, key) => {
         return {
           id: key,
-          cusip: prop[0],
-          tradedate: prop[1],
-          time:prop[2] ,
-          security:prop[3] ,
-          side:prop[4] ,
-          qty:prop[5],
-          price:prop[6],
-          customer:prop[7],
-          broker:prop[8],
-          status:prop[9],
-          yield:prop[10],
+          cusip: prop.cusip,
+          tradedate: prop.trade_date,
+          time: "4:22:52 PM",
+          security: prop.security,
+          side: prop.side,
+          qty: prop.qty,
+          price: prop.price,
+          customer: prop.customer,
+          broker: prop.brkr_name,
+          status: prop.status,
+          yield: prop.yield,
           actions: (
             // we've added some custom button actions
             <div className="actions-right grow">
@@ -130,6 +110,78 @@ class SearchResults extends React.Component {
         };
       }),
     };
+  }
+
+  componentWillReceiveProps = (newProps) => {
+    if (newProps.transactions) {
+      this.setState({
+        data: newProps.transactions.map((prop, key) => {
+          return {
+            id: key,
+            cusip: prop.cusip,
+            tradedate: prop.trade_date,
+            time: "4:22:52 PM",
+            security: prop.security,
+            side: prop.side,
+            qty: prop.qty,
+            price: prop.price,
+            customer: prop.customer,
+            broker: prop.brkr_name,
+            status: prop.status,
+            yield: prop.yield,
+            actions: (
+              // we've added some custom button actions
+              <div className="actions-right grow">
+                <Button
+                  onClick={() => { this.viewButton() }}
+                  style={{ color: 'grey' }}
+                  size="md"
+                  className="btn-icon btn-link edit"
+                  style={{ marginTop: '-.4rem', marginRight: '-.6rem' }}
+                >
+                  <i className="fa fa-eye white" />
+                </Button>{" "}
+                <Button
+                  onClick={() => { this.editButton() }}
+                  style={{ color: 'grey' }}
+                  size="md"
+                  className="btn-icon btn-link edit"
+                  style={{ marginTop: '-.3rem', marginRight: '2rem' }}
+                >
+                  <i className="fa fa-edit white" />
+                </Button>{" "}
+                <Input style={{ marginTop: '.5rem' }} type="checkbox" />
+
+                {/* use this button to add a edit kind of action */}
+
+                {/* use this button to remove the data row */}
+                {/* <Button
+                onClick={() => {
+                  var data = this.state.data;
+                  data.find((o, i) => {
+                    if (o.id === key) {
+                      // here you should add some custom code so you can delete the data
+                      // from this component and from your server as well
+                      data.splice(i, 1);
+                      console.log(data);
+                      return true;
+                    }
+                    return false;
+                  });
+                  this.setState({ data: data });
+                }}
+                color="danger"
+                size="sm"
+                className="btn-icon btn-link remove"
+              >
+                <i className="fa fa-times" />
+              </Button>{" "} */}
+              </div>
+            )
+          }
+        })
+      })
+    }
   }
   editButton = () => {
     this.setState({
