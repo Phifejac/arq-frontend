@@ -15,6 +15,9 @@ import Helmet from 'react-helmet'
 import DayPicker, { DateUtils } from 'react-day-picker';
 import Select from "react-select";
 
+//date formatter
+import { formatDate} from "../../../api/utils"
+
 
 
 class SearchInput extends Component {
@@ -26,9 +29,26 @@ class SearchInput extends Component {
     this.state = {
       collapse: false,
       selectedDay: null,
+      client : null,
+      cusip : null
     };
     this.toggle = this.toggle.bind(this);
     this.handleDayClick = this.handleDayClick.bind(this);
+  }
+
+  startSearch = () => {
+
+    const parameters = {}
+
+    if (this.state.selectedDay ) { 
+      parameters["start_date"] = formatDate(new Date(this.state.selectedDay));
+      parameters["end_date"] = formatDate(new Date(this.state.selectedDay));
+    }
+    if (this.state.client ) parameters["client"] = this.state.client.label;
+    if (this.state.cusip) parameters["cusip"] = this.state.cusip;
+
+    console.log("new transactions parameters", parameters)
+    this.props.executeSearch(parameters)
   }
 
   handleDayClick(day, { selected }) {
@@ -108,20 +128,20 @@ class SearchInput extends Component {
                                 label: "Select One",
                                 isDisabled: true,
                               },
-                              { value: "2", label: "Foobar" },
-                              { value: "3", label: "Is great" },
+                              { value: 1, label: "Hexagon AM LLC" },
+                              { value: 2, label: "BGC Partners" },
                             ]}
-                            placeholder="Select customer..."
+                            placeholder="Select client..."
                           />
                    </div>
                    <div style={{width:'80%'}} className='align-self-center'>
                     <label className="labeltext">Cusip</label>
-                    <Input placeholder="" type="text" defaultValue="Enter cusip..." style={{backgroundColor:'#27292D', color:'#FFFFFF80', padding:'.5rem', fontSize:'small', paddingTop:'.8rem', paddingBottom:'.8rem'}} />
+                    <Input placeholder="Enter cusip..." type="text" defaultValue="" style={{backgroundColor:'#27292D', color:'#FFFFFF80', padding:'.5rem', fontSize:'small', paddingTop:'.8rem', paddingBottom:'.8rem'}} onChange ={(e) => this.setState({ cusip : e.target.value})} />
                    </div>
                 </div>
                 <div style={{display:'flex', alignItems:'center'}}>
                     <div style={{width:'14rem'}}>
-                      <div className='button-solid grow'>
+                      <div className='button-solid grow' onClick={this.startSearch}>
                         <span>Search</span>
                       </div>
                       <div className='button-red' onClick={this.handleResetClick}>

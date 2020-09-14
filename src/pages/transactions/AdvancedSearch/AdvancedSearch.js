@@ -6,8 +6,10 @@ import {
   Col,
 } from "reactstrap";
 import AdvancedSearchInputs from "../../../components/Transactions/AdvancedSearch/AdvancedSearchInputs";
-import SearchResults from "components/Transactions/Search/SearchResults/SearchResults";
 import AdvancedSearchResults from "components/Transactions/AdvancedSearch/AdvancedSearchResults";
+
+// api imports
+import { getTransactions } from "../../../api/http"
 
 const Transactions = [
   // {id: uuid(), content:'First Task'},
@@ -35,6 +37,7 @@ class AdvancedSearch extends Component {
       typeOpen:true,
       queryParameters : {}
     };
+    this.executeSearch= this.executeSearch.bind(this)
   }
 
   setQueryParameters(parameters) {
@@ -59,6 +62,13 @@ class AdvancedSearch extends Component {
   setOption = () => {
     this.setState({ type: 'option'})
   }
+
+
+  executeSearch = async (parameters) => {
+    this.setState({ loading : true });
+    const newTransactions = await getTransactions(parameters);
+    console.log("new transactions", newTransactions);
+  }
   
   render() {
     return (
@@ -80,7 +90,7 @@ class AdvancedSearch extends Component {
             
             </div>
             <Row style={{marginRight:'4rem'}}>
-              <AdvancedSearchInputs/>
+              <AdvancedSearchInputs executeSearch={this.executeSearch} />
             </Row>
             <Col lg='12'>
               <div style={{zIndex:-1, paddingTop:'2rem', marginLeft:'-2rem'}}>
