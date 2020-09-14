@@ -235,7 +235,7 @@ function Table({ columns, data }) {
               ))}
             </thead>
           </div>
-          <tbody {...getTableBodyProps()} className="rt-tbody text-white">
+          <tbody {...getTableBodyProps()} className="rt-tbody text-white" style={{overflowX:'hidden'}}>
             {page.map((row, i) => {
               prepareRow(row);
               return (

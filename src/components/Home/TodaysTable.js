@@ -188,7 +188,7 @@ function Table({ columns, data }) {
             </div>
           </div> */}
         </div>
-        <table {...getTableProps()} className="rt-table" style={{borderWidth:0}}>
+        <table {...getTableProps()} className="rt-table" style={{borderWidth:0}} style={{overflowX:'hidden'}}>
           <div className='todaystable-header card-shadow'>
             <thead className="rt-thead -header">
               {headerGroups.map((headerGroup) => (
@@ -225,6 +225,7 @@ function Table({ columns, data }) {
               return (
                 <tr
                   {...row.getRowProps()}
+                  style={{overflowX:'hidden'}}
                   className={classnames(
                     "rt-tr grow-small",
                     { " -odd": i % 2 === 0 },
