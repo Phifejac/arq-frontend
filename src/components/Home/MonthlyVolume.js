@@ -126,7 +126,7 @@ class MonthlyVolume extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col sm="7">
-                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Monthly Volume</div>
+                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Monthly Transasctions</div>
                     </Col>
                     <Col sm="5">
                       <div className="pull-right">

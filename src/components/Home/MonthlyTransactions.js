@@ -129,12 +129,12 @@ class MonthlyTransactions extends React.Component {
     };
     return (
       <>
-            <Col lg="4" sm="6">
+            <Col lg="4" sm="6">-
               <Card style={{margin:0, backgroundColor:'#27292D'}}>
                 <CardHeader>
                   <Row>
                     <Col sm="7">
-                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Total Volume</div>
+                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Monthly Volume</div>
                     </Col>
                     <Col sm="5">
                       <div className="pull-right">
@@ -147,7 +147,7 @@ class MonthlyTransactions extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <h6 className="big-title" style={{color:'#FFFFFF80'}}>
-                    Database Size
+                    Volume Handled / Month
                   </h6>
                   <Bar
                     data={chartExample4.data}

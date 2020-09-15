@@ -7,7 +7,7 @@ const devPort = parseInt(5000, 10) || 8000;
 // const ngrok = "https://1f004319.ngrok.io"
 
 const devProxy = `http://localhost:${devPort}/`
-const prodURL ="https://8d0e8b33ed16.ngrok.io"
+const prodURL ="https://arq-analytics-backend.herokuapp.com/"
 
 const baseURL = prodURL; 
 
