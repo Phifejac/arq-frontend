@@ -542,6 +542,56 @@ head {
     transition: 400ms ease;
 }
 
+.positions {
+    list-style: none;
+}
+.positions-list {
+    display: flex;
+    flex:1;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+    width: 100%;
+}
+.positions-listitem {
+    display: flex;
+    flex:1;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+    width: 100%;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+}
+.positions-header {
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+}
+.positions-head {
+    color:#FFFFFF50;
+    flex:1;
+    display:flex;
+
+}
+.positions-row {
+    color:white;
+    flex:1;
+    display:flex;
+}
+.positions-head-sm {
+    color:#FFFFFF50;
+    flex:.5;
+    display:flex;
+
+}
+.positions-row-sm {
+    color:white;
+    flex:.5;
+    display:flex;
+}
 
 
 
