@@ -16,12 +16,15 @@ import {
 } from "reactstrap";
 import PnLBar from "components/PNL/PnLBar";
 import OpenClosed from "components/PNL/OpenClosed";
+import SearchInput from "components/PNL/SearchInput";
+import PnLSearchBar from "components/PNL/PnLSearchBar";
+import SearchResults from "components/PNL/SearchResults";
 
 class PnL extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab:'today'
+      tab:'search'
     };
   }
   setToday() {
@@ -39,8 +42,24 @@ class PnL extends React.Component {
               <span className={this.state.tab === 'today' ? 'smalltab-active' : 'smalltab'} onClick={() => this.setToday()}>Today</span>
               <span className={this.state.tab === 'search' ? 'smalltab-active' : 'smalltab'} onClick={() => this.setSearch()} style={{marginRight:'5rem'}}>Search</span>
           </div>
-          <PnLBar/>
-          <OpenClosed/>
+          {this.state.tab === 'today' ?
+          <div>
+            <PnLBar/>
+            <OpenClosed/> 
+          </div>
+          : 
+          <span/>
+          }
+          {this.state.tab === 'search' ?
+          <div>
+            <SearchInput/> 
+            <PnLSearchBar/>
+            <SearchResults/>
+          </div>
+          : 
+          <span/>
+          }
+          
         
         </div>
       </>
