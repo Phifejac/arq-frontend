@@ -550,10 +550,10 @@ head {
     flex:1;
     flex-direction: row;
     justify-content: space-between;
-    padding-left: .5rem;
-    padding-right: .5rem;
-    padding: 0;
+    padding: .5rem;
     width: 100%;
+    border-radius: .25rem;
+    background-color: #27282d;
 }
 .positions-listitem {
     display: flex;
@@ -568,7 +568,43 @@ head {
     padding-right: .5rem;
     border-radius: .25rem;
 }
+.positions-listitem i {
+    color: #27292D;
+    transition: 400ms ease;
+}
+.positions-listitem:hover i {
+    color: white;
+}
 .positions-listitem:hover {
+    background-color: #FFFFFF10;
+}
+.positions-listitem-pair {
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    width: 100%;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    border-radius: .25rem;
+}
+.positions-listitem-pair i {
+    color: #27292D;
+    transition: 400ms ease;
+}
+.positions-listitem-pair:hover i {
+    color: white;
+}
+.pair {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+.positions-listitem-pair:hover {
     background-color: #FFFFFF10;
 }
 .positions-header {
@@ -669,7 +705,9 @@ head {
 }
 
 .card-openclosed {
-    background-color:#27292D;
+    /* background-color:#27292D; */
+    background-color: #202125;
+    border: #FFFFFF20 solid 1px;
     border-radius: .75rem;
     color:white;
     padding:1rem; 
@@ -677,7 +715,7 @@ head {
 .card-openclosed h4 {
     font-size: 1rem;
     margin-top:0; 
-    margin-bottom:0
+    margin-bottom:.5rem
 }
 .card-openclosed hr {
     margin-top:.5rem; 

@@ -21,9 +21,9 @@ class OpenClosed extends React.Component {
       <Col md="6">
         <Card className='card-openclosed' style={{minHeight:'35rem', maxHeight:'40rem'}}>
         <h4>Open</h4>
-        <hr/>
+        {/* <hr/> */}
         <div className='positions'>
-          <ul className='positions-list'>
+          <ul className='positions-list card-shadow'>
             <div className='positions-head' style={{flex:1.2}}>
               <div>
               Security ID
@@ -54,8 +54,86 @@ class OpenClosed extends React.Component {
               Time
               </div>
             </div>
+            <div className='positions-head-sm'>
+            </div>
           </ul>
           <ul className='positions-header' style={{width:'100%'}}>
+            <li className='positions-listitem-pair grow-small'>
+              <div className='pair'>
+              <div className='positions-row' style={{flex:1.2}}>
+                <div>
+                T 1 3/8 08/15/50
+                </div>
+              </div>
+              <div className='positions-row-sm'>
+                <div>
+                B
+                </div>
+              </div>
+              <div className='positions-row-sm'>
+                <div>
+                99.66
+                </div>
+              </div>
+              <div className='positions-row-sm'>
+                <div>
+                1000
+                </div>
+              </div>
+              <div className='positions-row'>
+                <div>
+                ARQ ADVISORS LLC
+                </div>
+              </div>
+              <div className='positions-row justify-content-end'>
+                <div>
+                4:22:52 PM
+                </div>
+              </div>
+              <div className='positions-row-sm justify-content-end'>
+                <div>
+                <i className="fa fa-eye white" />
+                </div>
+              </div>
+              </div>
+              <div className='pair'>
+              <div className='positions-row' style={{flex:1.2}}>
+                <div>
+                T 1 3/8 08/15/50
+                </div>
+              </div>
+              <div className='positions-row-sm'>
+                <div>
+                B
+                </div>
+              </div>
+              <div className='positions-row-sm'>
+                <div>
+                99.66
+                </div>
+              </div>
+              <div className='positions-row-sm'>
+                <div>
+                1000
+                </div>
+              </div>
+              <div className='positions-row'>
+                <div>
+                ARQ ADVISORS LLC
+                </div>
+              </div>
+              <div className='positions-row justify-content-end'>
+                <div>
+                4:22:52 PM
+                </div>
+              </div>
+              <div className='positions-row-sm justify-content-end'>
+                <div>
+                <i className="fa fa-eye white" />
+                </div>
+              </div>
+              </div>
+            </li>
             <li className='positions-listitem grow-small'>
               <div className='positions-row' style={{flex:1.2}}>
                 <div>
@@ -85,6 +163,11 @@ class OpenClosed extends React.Component {
               <div className='positions-row justify-content-end'>
                 <div>
                 4:22:52 PM
+                </div>
+              </div>
+              <div className='positions-row-sm justify-content-end'>
+                <div>
+                <i className="fa fa-eye white" />
                 </div>
               </div>
             </li>
@@ -119,8 +202,14 @@ class OpenClosed extends React.Component {
                 4:22:52 PM
                 </div>
               </div>
+              <div className='positions-row-sm justify-content-end'>
+                <div>
+                <i className="fa fa-eye white" />
+                </div>
+              </div>
             </li>
-            <li className='positions-listitem grow-small'>
+            <li className='positions-listitem-pair grow-small'>
+              <div className='pair'>
               <div className='positions-row' style={{flex:1.2}}>
                 <div>
                 T 1 3/8 08/15/50
@@ -150,6 +239,49 @@ class OpenClosed extends React.Component {
                 <div>
                 4:22:52 PM
                 </div>
+              </div>
+              <div className='positions-row-sm justify-content-end'>
+                <div>
+                <i className="fa fa-eye white" />
+                </div>
+              </div>
+              </div>
+              <div className='pair'>
+              <div className='positions-row' style={{flex:1.2}}>
+                <div>
+                T 1 3/8 08/15/50
+                </div>
+              </div>
+              <div className='positions-row-sm'>
+                <div>
+                B
+                </div>
+              </div>
+              <div className='positions-row-sm'>
+                <div>
+                99.66
+                </div>
+              </div>
+              <div className='positions-row-sm'>
+                <div>
+                1000
+                </div>
+              </div>
+              <div className='positions-row'>
+                <div>
+                ARQ ADVISORS LLC
+                </div>
+              </div>
+              <div className='positions-row justify-content-end'>
+                <div>
+                4:22:52 PM
+                </div>
+              </div>
+              <div className='positions-row-sm justify-content-end'>
+                <div>
+                <i className="fa fa-eye white" />
+                </div>
+              </div>
               </div>
             </li>
           </ul>
@@ -161,9 +293,9 @@ class OpenClosed extends React.Component {
       <Col md="6">
         <Card className='card-openclosed' style={{minHeight:'35rem', maxHeight:'40rem'}}>
         <h4>Closed</h4>
-        <hr/>
+        {/* <hr/> */}
         <div className='positions'>
-          <ul className='positions-list'>
+          <ul className='positions-list card-shadow'>
             <div className='positions-head' style={{flex:1.2}}>
               <div>
               Security ID
@@ -193,6 +325,8 @@ class OpenClosed extends React.Component {
               <div>
               Time
               </div>
+            </div>
+            <div className='positions-head-sm'>
             </div>
           </ul>
           <ul className='positions-listitem grow-small'>
@@ -226,6 +360,11 @@ class OpenClosed extends React.Component {
               4:22:52 PM
               </div>
             </div>
+            <div className='positions-row-sm justify-content-end'>
+                <div>
+                <i className="fa fa-eye white" />
+                </div>
+              </div>
           </ul>
 
         </div>

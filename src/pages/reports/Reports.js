@@ -69,7 +69,6 @@ class Reports extends React.Component {
           <div style={{marginBottom:'1rem', paddingTop:'1rem'}}>
               <span className={this.state.range === '1day' ? 'smalltab-active' : 'smalltab'} onClick={() => this.set1day()}>History</span>
               <span className={this.state.range === 'range' ? 'smalltab-active' : 'smalltab'} onClick={() => this.setrange()} style={{marginRight:'5rem'}}>Schedule</span>
-              
           </div>
 
         {/* Table Headers */}

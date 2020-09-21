@@ -105,7 +105,8 @@ class PnLSearchBar extends React.Component {
             </div>
           </ul>
           <ul className='positions-header' style={{width:'100%', marginBottom:'-.5rem'}}>
-            <li className='positions-listitem'>
+            <li className='positions-listitem-pair grow-small'>
+              <div className='pair'>
               <div className='positions-row' style={{flex:1.2}}>
                 <div>
                 T 1 3/8 08/15/50
@@ -136,8 +137,8 @@ class PnLSearchBar extends React.Component {
                 4:22:52 PM
                 </div>
               </div>
-            </li>
-            <li className='positions-listitem'>
+              </div>
+              <div className='pair'>
               <div className='positions-row' style={{flex:1.2}}>
                 <div>
                 T 1 3/8 08/15/50
@@ -168,37 +169,6 @@ class PnLSearchBar extends React.Component {
                 4:22:52 PM
                 </div>
               </div>
-            </li>
-            <li className='positions-listitem'>
-              <div className='positions-row' style={{flex:1.2}}>
-                <div>
-                T 1 3/8 08/15/50
-                </div>
-              </div>
-              <div className='positions-row-sm'>
-                <div>
-                B
-                </div>
-              </div>
-              <div className='positions-row-sm'>
-                <div>
-                99.66
-                </div>
-              </div>
-              <div className='positions-row-sm'>
-                <div>
-                1000
-                </div>
-              </div>
-              <div className='positions-row'>
-                <div>
-                ARQ ADVISORS LLC
-                </div>
-              </div>
-              <div className='positions-row justify-content-end'>
-                <div>
-                4:22:52 PM
-                </div>
               </div>
             </li>
           </ul>
