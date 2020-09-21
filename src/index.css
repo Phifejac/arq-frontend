@@ -550,6 +550,8 @@ head {
     flex:1;
     flex-direction: row;
     justify-content: space-between;
+    padding-left: .5rem;
+    padding-right: .5rem;
     padding: 0;
     width: 100%;
 }
@@ -560,8 +562,14 @@ head {
     justify-content: space-between;
     padding: 0;
     width: 100%;
-    padding-top: .25rem;
-    padding-bottom: .25rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    border-radius: .25rem;
+}
+.positions-listitem:hover {
+    background-color: #FFFFFF10;
 }
 .positions-header {
     display: flex;
@@ -660,6 +668,21 @@ head {
     margin-bottom:1rem;
 }
 
+.card-openclosed {
+    background-color:#27292D;
+    border-radius: .75rem;
+    color:white;
+    padding:1rem; 
+}
+.card-openclosed h4 {
+    font-size: 1rem;
+    margin-top:0; 
+    margin-bottom:0
+}
+.card-openclosed hr {
+    margin-top:.5rem; 
+    margin-bottom:.5rem
+}
 .homecard {
     background-color:#27292D;
     border-radius: .75rem;

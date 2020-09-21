@@ -24,7 +24,7 @@ class PnL extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab:'search'
+      tab:'today'
     };
   }
   setToday() {

@@ -19,7 +19,7 @@ class OpenClosed extends React.Component {
       <Row style={{paddingTop:'0rem', paddingBottom:'1rem', justifyContent:'space-around'}}>
 
       <Col md="6">
-        <Card className='homecard'>
+        <Card className='card-openclosed' style={{minHeight:'35rem', maxHeight:'40rem'}}>
         <h4>Open</h4>
         <hr/>
         <div className='positions'>
@@ -56,7 +56,7 @@ class OpenClosed extends React.Component {
             </div>
           </ul>
           <ul className='positions-header' style={{width:'100%'}}>
-            <li className='positions-listitem'>
+            <li className='positions-listitem grow-small'>
               <div className='positions-row' style={{flex:1.2}}>
                 <div>
                 T 1 3/8 08/15/50
@@ -88,7 +88,7 @@ class OpenClosed extends React.Component {
                 </div>
               </div>
             </li>
-            <li className='positions-listitem'>
+            <li className='positions-listitem grow-small'>
               <div className='positions-row' style={{flex:1.2}}>
                 <div>
                 T 1 3/8 08/15/50
@@ -120,7 +120,7 @@ class OpenClosed extends React.Component {
                 </div>
               </div>
             </li>
-            <li className='positions-listitem'>
+            <li className='positions-listitem grow-small'>
               <div className='positions-row' style={{flex:1.2}}>
                 <div>
                 T 1 3/8 08/15/50
@@ -159,7 +159,7 @@ class OpenClosed extends React.Component {
       </Col>
 
       <Col md="6">
-        <Card className='homecard'>
+        <Card className='card-openclosed' style={{minHeight:'35rem', maxHeight:'40rem'}}>
         <h4>Closed</h4>
         <hr/>
         <div className='positions'>
@@ -195,7 +195,7 @@ class OpenClosed extends React.Component {
               </div>
             </div>
           </ul>
-          <ul className='positions-list'>
+          <ul className='positions-listitem grow-small'>
             <div className='positions-row' style={{flex:1.2}}>
               <div>
               T 1 3/8 08/15/50
