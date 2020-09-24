@@ -1,4 +1,4 @@
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: .3em !important;
   }
   /* ::-webkit-scrollbar-track {
@@ -7,7 +7,7 @@
   ::-webkit-scrollbar-thumb {
     background-color: #3e479d !important;
     outline: 3px solid slategrey !important;
-  }
+  } */
 
 body {
     /* font-family: 'Noto Sans', sans-serif; */
@@ -834,9 +834,8 @@ head {
     margin-right: -1px;
     cursor:'pointer';
     transition: 200ms ease;
-
-
 }
+
 .both:hover{
     color:#1c8cff;
     border-color: #1c8cff;
@@ -876,16 +875,64 @@ head {
 
 .search-textinput {
     background-color: #27292D;
-    color:#FFFFFF99;
+    color:white;
+    border:none;
+    border-bottom: solid 2px #FFFFFF20;
     padding:.5rem;
     font-size: small;
     padding-top: .55rem; 
     padding-bottom: .55rem;
     font-family: 'Poppins';
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 .search-textinput:focus {
     background-color: #202125;
     color:#1c8cff;
+    border: none;
+    border-bottom: solid 2px #1c8cff;
+}
+
+.search-selectinput {
+    background-color: #27292D;
+    color:#FFFFFF99;
+    border:none
+}
+
+.react-select__control {
+    border:none !important;
+    font-family: 'Poppins';
+
+}
+.react-select .react-select__control .react-select__value-container--has-value .react-select__single-value {
+    color:white;
+    font-size: .82rem;
+    margin-left: 0rem !important;
+    margin-top: .06rem;
+}
+
+.react-select .react-select__control {
+    border-radius: .5rem !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom: solid 2px #FFFFFF20 !important;
+
+}
+
+.react-select .react-select__control--menu-is-open {
+    background-color: #202125 !important;
+    border-radius: .5rem !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom: solid 2px #1c8cff !important;
+    transition: 300ms ease !important;
+
+}
+
+.react-select .react-select__control .react-select__placeholder {
+    color:#6C757D !important;
+    font-size: .82rem;
+    margin-top: .06rem;
 }
 
 .rangeinput {
@@ -894,16 +941,26 @@ head {
 }
 .search-numberinput {
     background-color: #27292D;
-    color:#FFFFFF99;
+    /* color:#FFFFFF99; */
     padding:.5rem;
     font-size: small;
     padding-top: .55rem; 
     padding-bottom: .55rem;
     font-family: 'Poppins';
+    border-radius: .25rem !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border:0;
+    border-bottom: solid 2px #FFFFFF20 !important;
 }
 .search-numberinput:focus {
     background-color: #202125;
     color:#1c8cff;
+    border-radius: .25rem !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border:0;
+    border-bottom: solid 2px #1c8cff !important;
 }
 
 

@@ -122,6 +122,7 @@ function Table({ columns, data }) {
     Array(pageOptions.length)
   ).map(function () {});
   let numberOfRowsData = [5, 10, 20, 25, 50, 100];
+
   const customStyles = {
     option: (provided, state) => ({
       ...provided,

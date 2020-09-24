@@ -35,7 +35,7 @@ class Menu extends React.Component {
       <>
         <div className="content" style={{padding:0, borderWidth:0, backgroundColor:'#202125'}}>
             <nav className='navbarside' style={{zIndex:+1}}>
-              <ul className='navbarside-nav'>
+              <ul className='navbarside-nav' style={{marginTop:'-10rem'}}>
 
                 {/* Search */}
                 
@@ -66,21 +66,21 @@ class Menu extends React.Component {
 
                 {/* Reconcile Transactions */}
 
-                <li className='navside-item' onClick={() => this.openTradeLinking()}>
+                {/* <li className='navside-item' onClick={() => this.openTradeLinking()}>
                   <a href="#" className='navside-link'>
                     <span className={this.state.selected === 'reconcile-transactions' ? 'sidelink-text-active' : 'sidelink-text' }>Reconcile </span><span className={this.state.selected === 'reconcile-transactions' ? 'sidelink-text-active' : 'sidelink-text' }>Transactions</span>
                     <span className='sidelink-subtext'>Confirm details for pending transactions.</span>
                   </a>
-                </li>
+                </li> */}
 
                 {/* Strategies */}
 
-                <li className='navside-item'>
+                {/* <li className='navside-item'>
                   <a href="#" className='navside-link' style={{borderBottom:0}}>
                     <span className={this.state.selected === 'strategies' ? 'sidelink-text-active' : 'sidelink-text' }>Strategies</span>
                     <span className='sidelink-subtext'>Manage and employ tailored trade strategies.</span>
                   </a>
-                </li>
+                </li> */}
 
 
               </ul>
