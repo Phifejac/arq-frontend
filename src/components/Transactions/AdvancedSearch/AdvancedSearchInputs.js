@@ -15,10 +15,8 @@ import Select from "react-select";
 import makeAnimated from 'react-select/animated';
 import Helmet from 'react-helmet'
 import DayPicker, { DateUtils } from 'react-day-picker';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
-import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 
 //date formatter
@@ -33,12 +31,17 @@ const customStyles = {
     color: state.isSelected ? 'red' : 'blue',
     padding: 20,
   }),
-  singleValue: (provided, state) => {
-    const opacity = state.isDisabled ? 0.5 : 1;
-    const transition = 'opacity 300ms';
-
-    return { ...provided, opacity, transition };
-  }
+  control: (provided, state) => ({
+    ...provided,
+    backgroundColor:'red',
+    borderColor:'transparent',
+    border:0,
+    color:'red'
+  }),
+  container: () => ({
+    // none of react-select's styles are passed to <Control />
+    color: '#FFFFFF99',
+  }),
 }
 
 class AdvancedSearchInputs extends React.Component {
@@ -220,7 +223,7 @@ class AdvancedSearchInputs extends React.Component {
       <div>
         {this.state.alert}
         <div className='d-flex flex-row'>
-          <div style={{ flex: 4, backgroundColor: '#27282d', borderRadius: '1rem', boxShadow: '0 6px 10px -4px rgba(0,0,0,0.15)', marginTop: '.5rem', padding: '2rem', paddingTop: '.5rem', marginLeft: '1rem', flexWrap: 'wrap-reverse', paddingRight: '.5rem' }} className='d-flex flex-row'>
+          <div style={{ flex: 4, backgroundColor: '#27282d', borderRadius: '1rem', boxShadow: '0 6px 10px -4px rgba(0,0,0,0.15)',padding: '2rem', paddingTop: '.5rem', marginLeft: '1rem', flexWrap: 'wrap-reverse', paddingRight: '.5rem' }} className='d-flex flex-row'>
             <div className='d-flex flex-column align-items-center justify-content-center' style={{ flex: .5, minWidth: '32rem', maxWidth: '35rem' }}>
               <Row>
                 <Col md="4">
@@ -238,7 +241,7 @@ class AdvancedSearchInputs extends React.Component {
 
                   </div>
                 </Col>
-                <Col md="8">
+                <Col md="8" style={{paddingLeft:'2rem'}}>
                   <label className="labeltext">Cusip</label>
                   <Input placeholder="Search cusip..." type="text" className='search-textinput' onChange={(e) => this.setState({ cusip: e.target.value })} />
                 </Col>
@@ -255,15 +258,6 @@ class AdvancedSearchInputs extends React.Component {
                       <Input placeholder="200" type="number" className='search-numberinput' onChange={(e) => this.setState({ max_price: e.target.value })} />
                     </div>
                   </div>
-                  {/* <form className="form">
-                    <InputRange
-                      maxValue={20}
-                      minValue={0}
-                      formatLabel={value => `$${value}`}
-                      value={this.state.value4}
-                      onChange={value => this.setState({ value4: value })}
-                      onChangeComplete={value => console.log(value)} />
-                      </form> */}
                 </Col>
                 <Col md="4">
                   <label className="labeltext">Qty (M)</label>
@@ -278,15 +272,6 @@ class AdvancedSearchInputs extends React.Component {
                       <Input placeholder="200" type="number" className='search-numberinput' onChange={(e) => this.setState({ max_qty: e.target.value })} />
                     </div>
                   </div>
-                  {/* <form className="form">
-                      <InputRange
-                        maxValue={20}
-                        minValue={0}
-                        formatLabel={value => `${value}`}
-                        value={this.state.value5}
-                        onChange={value => this.setState({ value5: value })}
-                        onChangeComplete={value => console.log(value)} />
-                        </form> */}
                 </Col>
                 <Col md="4">
                   <label className="labeltext">Security</label>
@@ -299,7 +284,7 @@ class AdvancedSearchInputs extends React.Component {
                 <Col lg='6'>
                   <label className="labeltext">Client</label>
                   <Select
-                    className="react-select primary"
+                    className="react-select search-selectinput"
                     classNamePrefix="react-select"
                     components={animatedComponents}
                     name="singleSelect"
@@ -330,13 +315,7 @@ class AdvancedSearchInputs extends React.Component {
                 </Col>
               </Row>
             </div>
-            <div className='d-flex flex-column align-items-center' style={{ flex: .5 }}>
-              <div className='d-flex flex-row' style={{ marginTop: '1rem' }}>
-                <div className='datefilter'>30 Days</div>
-                <div className='datefilter'>All Time</div>
-                <div className='datefilter'>This Month</div>
-                <div className='datefilter'>Last Month</div>
-              </div>
+            <div className='d-flex flex-column align-items-center justify-content-center' style={{ flex: .5 , marginTop:'1rem'}}>
               <DayPicker
                 numberOfMonths={2}
                 fromMonth={from}
@@ -350,7 +329,6 @@ class AdvancedSearchInputs extends React.Component {
                 <style>{`
                   .DayPicker {
                     width:35.75rem
-                    
                   }
                   .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
                   background-color: #202125 !important;
@@ -375,6 +353,22 @@ class AdvancedSearchInputs extends React.Component {
                   }
                   `}</style>
               </Helmet>
+              <div className='d-flex flex-row justify-content-around white' style={{width:'100%', fontSize:'.8rem'}}>
+                <div>
+                  {!from && <span style={{color:'#6C757D'}}>Start date...</span>}
+                  {from && <span>{from.toLocaleDateString()}</span>}
+                </div>
+                <div style={{marginLeft:'-7rem', marginRight:'-7rem'}}>
+                  {!from && !to && <span style={{color:'#6C757D'}}>to</span>}
+                  {!from && to && <span style={{color:'#6C757D'}}>to</span>}
+                  {from && !to && <span style={{color:'#6C757D'}}>to</span>}
+                  {from && to && <span >to</span>}
+                </div>
+                <div>
+                  {!to && <span style={{color:'#6C757D'}}>End date...</span>}
+                  {to && <span>{to.toLocaleDateString()}</span>}
+                </div>
+              </div>
             </div>
           </div>
           <div className='ml-auto d-flex flex-column justify-content-center' style={{ flex: 1 }}>

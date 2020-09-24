@@ -36,7 +36,7 @@ class TransactionSearch extends Component {
       <>
       {this.state.alert}
       
-          <div style={{width:'100%', marginLeft:'2.5rem'}}>
+          <div style={{width:'100%', marginLeft:'1.5rem'}}>
             <h4 style={{marginTop:'3rem', fontFamily:'Poppins', fontWeight:'500', fontSize:'large', marginBottom:'2rem', color:'#5a5b5d'}}> Transactions {">"} <span style={{color:'white'}}>Search</span></h4>
             
             <Row>
