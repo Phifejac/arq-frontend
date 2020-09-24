@@ -142,7 +142,11 @@ class SearchInput extends Component {
                 <div style={{display:'flex', alignItems:'center'}}>
                     <div style={{width:'14rem'}}>
                       <div className='button-solid grow' onClick={this.startSearch}>
-                        <span>Search</span>
+                        <span>                        
+                                {!this.props.loading ? "Search" : <i
+                                    className="fa fa-spinner fa-spin"
+                                    style={{ marginRight: "5px" }}
+                                />}</span>
                       </div>
                       <div className='button-red' onClick={this.handleResetClick}>
                         <span>Clear</span>

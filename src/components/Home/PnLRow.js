@@ -24,11 +24,11 @@ class PnLRow extends React.Component {
         <hr/>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>19</h3>
+            <h3 style={{fontWeight:'600'}}>{this.props.numTransactionsToday}</h3>
             <label>Transactions</label>
           </div>
           <div style={{flex:1}}>
-            <h3 style={{marginBottom:'-.5rem'}}>$193<span>.94</span></h3>
+            <h3 style={{marginBottom:'-.5rem'}}>${this.props.pnlToday}{/**<span>.22</span>**/}</h3>
             <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
               <i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+3.37%)</span></label>
             </div>
@@ -43,11 +43,11 @@ class PnLRow extends React.Component {
         <hr/>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>88</h3>
+            <h3 style={{fontWeight:'600'}}>{this.props.numTransactionsWeek}</h3>
             <label>Transactions</label>
           </div>
           <div style={{flex:1}}>
-            <h3 style={{marginBottom:'-.5rem'}}>$2,124<span>.22</span></h3>
+            <h3 style={{marginBottom:'-.5rem'}}>${this.props.pnlWeek}{/**<span>.22</span>**/}</h3>
             <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
               <i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+13.37%)</span></label>
             </div>
@@ -62,11 +62,11 @@ class PnLRow extends React.Component {
         <hr/>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>193</h3>
+            <h3 style={{fontWeight:'600'}}>{this.props.numTransactionsMonth}</h3>
             <label>Transactions</label>
           </div>
           <div style={{flex:1}}>
-            <h3 style={{marginBottom:'-.5rem'}}>$4,293<span>.11</span></h3>
+            <h3 style={{marginBottom:'-.5rem'}}>${this.props.pnlMonth}{/**<span>.22</span>**/}</h3>
             <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
               <i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+23.37%)</span></label>
             </div>

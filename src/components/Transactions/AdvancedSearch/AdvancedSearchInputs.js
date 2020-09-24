@@ -380,7 +380,11 @@ class AdvancedSearchInputs extends React.Component {
           <div className='ml-auto d-flex flex-column justify-content-center' style={{ flex: 1 }}>
             <div style={{ width: '14rem' }}>
               <div className='button-solid' onClick={() => this.startSearch()}>
-                {this.state.collapse ? <span>Custom Export</span> : <span>Search</span>}
+                {this.state.collapse ? <span>Custom Export</span> : <span>
+                                {!this.props.loading ? "Search" : <i
+                                    className="fa fa-spinner fa-spin"
+                                    style={{ marginRight: "5px" }}
+                                />}</span>}
               </div>
               <div className='button-red' onClick={this.handleResetClick}>
                 Clear

@@ -18,17 +18,21 @@ class PnLBar extends React.Component {
     return (
       <Row style={{paddingTop:'5rem', paddingBottom:'0rem', justifyContent:'space-around'}}>
 
-      <Col md="4">
+      <Col md="8">
         <Card className='homecard'>
-        <h4>Activity</h4>
+        <h4>Today's Metrics</h4>
         <hr/>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>19</h3>
+            <h3 style={{fontWeight:'600'}}>{this.props.numTransactions} </h3>
             <label>Transactions</label>
           </div>
-          <div style={{flex:1}}>
-            <h3 style={{marginBottom:'-.5rem'}}>$193<span>.94</span></h3>
+          <div style={{flex:.5}}>
+            <h3 style={{fontWeight:'600'}}>{this.props.volumeToday} </h3>
+            <label>Volume</label>
+          </div>
+          <div style={{flex:1, marginRight:50}}>
+            <h3 style={{marginBottom:'-.5rem'}}>${this.props.pnlToday} </h3>
             <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
               <i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+3.37%)</span></label>
             </div>
@@ -37,27 +41,21 @@ class PnLBar extends React.Component {
         </Card>
       </Col>
 
-      <Col md="8">
+      <Col md="4">
         <Card className='homecard'>
         <h4>Positions</h4>
         <hr/>
         <div className='d-flex flex-row justify-content-around'>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>4</h3>
+            <h3 style={{fontWeight:'600'}}>{this.props.numOpen}</h3>
             <label>Open</label>
           </div>
         </div>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>4</h3>
+            <h3 style={{fontWeight:'600'}}>{this.props.numClosed}</h3>
             <label>Closed</label>
-          </div>
-        </div>
-        <div className='homecard-data'>
-          <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>0</h3>
-            <label>Net</label>
           </div>
         </div>
         </div>

@@ -92,7 +92,7 @@ class AdvancedSearch extends Component {
             
             </div>
             <Row style={{marginRight:'4rem'}}>
-              <AdvancedSearchInputs executeSearch={this.executeSearch} />
+              <AdvancedSearchInputs executeSearch={this.executeSearch} loading={this.state.loading} />
             </Row>
             <Col lg='12'>
               <div style={{zIndex:-1, paddingTop:'2rem', marginLeft:'-2rem'}}>

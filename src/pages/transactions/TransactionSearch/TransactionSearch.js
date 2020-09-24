@@ -17,6 +17,7 @@ class TransactionSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading : false,
       range:'range',
       type:'bond',
       transactions : []
@@ -27,7 +28,7 @@ class TransactionSearch extends Component {
   executeSearch = async (parameters) => {
     this.setState({ loading : true });
     const newTransactions = await getTransactions(parameters);
-    this.setState({ transactions : newTransactions })
+    this.setState({ transactions : newTransactions, loading:false })
   }
   
   render() {
@@ -39,10 +40,8 @@ class TransactionSearch extends Component {
             <h4 style={{marginTop:'3rem', fontFamily:'Poppins', fontWeight:'500', fontSize:'large', marginBottom:'2rem', color:'#5a5b5d'}}> Transactions {">"} <span style={{color:'white'}}>Search</span></h4>
             
             <Row>
-              <SearchInput executeSearch= {this.executeSearch} />      
+              <SearchInput executeSearch= {this.executeSearch} loading={this.state.loading} />      
             </Row>
-            
-
             <Col lg='12'>
               <div style={{zIndex:-1, paddingTop:'2rem', marginLeft:'-2rem'}}>
 

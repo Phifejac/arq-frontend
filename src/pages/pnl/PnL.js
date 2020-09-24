@@ -1,19 +1,11 @@
 import React from "react";
 
-// reactstrap components
-import {
-  Badge,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Row,
-  Col,
-  Progress,
-  Collapse,
-  NavItem,
-  NavLink
-} from "reactstrap";
+//api
+import { getOpenPositions, getInstances, getStatistics } from "../../api/http"
+import { formatDate } from "../../api/utils"
+
+
+// subcomponents
 import PnLBar from "components/PNL/PnLBar";
 import OpenClosed from "components/PNL/OpenClosed";
 import SearchInput from "components/PNL/SearchInput";
@@ -24,9 +16,29 @@ class PnL extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab:'today'
+      tab:'today',
+      openPositions : [],
+      closedInstances : [],
+      numTransactions : '',
+      pnlToday : '',
+      volumeToday : ''
     };
   }
+
+  componentDidMount = async () => {
+    const today = formatDate(new Date())
+    const openPositions = await getOpenPositions()
+    const closedInstances = await getInstances({"date":today})
+    const statistics = await getStatistics({ "date" : today, "type":"day"})
+    this.setState({ 
+      openPositions : openPositions,
+      closedInstances : closedInstances,
+      volumeToday : statistics.volume,
+      pnlToday : statistics.pnl,
+      numTransactions : statistics.num_transactions
+    })
+  }
+
   setToday() {
     this.setState({ tab: 'today' })
   }
@@ -44,8 +56,8 @@ class PnL extends React.Component {
           </div>
           {this.state.tab === 'today' ?
           <div>
-            <PnLBar/>
-            <OpenClosed/> 
+            <PnLBar volumeToday={this.state.volumeToday} numTransactions={this.state.numTransactions} pnlToday={this.state.pnlToday} numOpen={this.state.openPositions.length} numClosed={this.state.closedInstances.length * 2}/>
+            <OpenClosed openPositions={this.state.openPositions} closedInstances={this.state.openInstances}/> 
           </div>
           : 
           <span/>

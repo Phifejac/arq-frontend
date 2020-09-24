@@ -25,6 +25,18 @@ class MonthlyVolume extends React.Component {
     this.setState({ tagsinput });
   };
   render() {
+    console.log("months", this.props.monthlyData)
+    const month_labels = []
+    const month_transactions = []
+    if (this.props.monthlyData) {
+      for (const month of this.props.monthlyData) {
+        month_labels.push(month[2].slice(0,2) + "/" + month[2].slice(8,))
+        month_transactions.push(month[3])
+      }
+    }
+
+    console.log("month", this.props.monthlyData)
+
     // default color for the charts
     let chartColor = "#FFFFFF";
     // ##############################
@@ -53,18 +65,7 @@ class MonthlyVolume extends React.Component {
         gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
         gradientFill.addColorStop(1, hexToRGB("#2CA8FF", 0.4));
         return {
-          labels: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-          ],
+          labels: month_labels,
           datasets: [
             {
               label: "Active Countries",
@@ -75,7 +76,7 @@ class MonthlyVolume extends React.Component {
               fill: false,
               borderWidth: 3,
               barPercentage: 1.6,
-              data: [80, 78, 86, 96, 83, 85, 76, 75, 88, 90],
+              data: month_transactions,
             },
           ],
         };
@@ -85,7 +86,14 @@ class MonthlyVolume extends React.Component {
           display: false,
         },
         tooltips: {
-          enabled: false,
+          backgroundColor: "#f5f5f5",
+          titleFontColor: "#333",
+          bodyFontColor: "#666",
+          bodySpacing: 4,
+          xPadding: 12,
+          mode: "nearest",
+          intersect: 0,
+          position: "nearest"
         },
         scales: {
           yAxes: [

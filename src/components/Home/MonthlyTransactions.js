@@ -25,6 +25,16 @@ class MonthlyTransactions extends React.Component {
     this.setState({ tagsinput });
   };
   render() {
+    console.log("months", this.props.monthlyData)
+    const month_labels = []
+    const month_transactions = []
+    if (this.props.monthlyData) {
+      for (const month of this.props.monthlyData) {
+        month_labels.push(month[2].slice(0,2) + "/" + month[2].slice(8,))
+        month_transactions.push(month[3])
+      }
+    }
+
     // default color for the charts
     let chartColor = "#FFFFFF";
     // ##############################
@@ -43,13 +53,7 @@ class MonthlyTransactions extends React.Component {
     };
     const chartExample4 = {
       data: {
-        labels: [
-          'Jan',
-          'Feb',
-          'March',
-          'April',
-          'May',
-        ],
+        labels: month_labels,
         datasets: [
           {
             label: "Data",
@@ -59,13 +63,7 @@ class MonthlyTransactions extends React.Component {
             hoverBorderColor: "#4cbdd7",
             borderWidth: 8,
             barPercentage: 0.4,
-            data: [
-              80,
-              90,
-              100,
-              120,
-              125,
-            ],
+            data: month_transactions,
           },
         ],
       },
@@ -129,7 +127,7 @@ class MonthlyTransactions extends React.Component {
     };
     return (
       <>
-            <Col lg="4" sm="6">-
+            <Col lg="4" sm="6">
               <Card style={{margin:0, backgroundColor:'#27292D'}}>
                 <CardHeader>
                   <Row>
