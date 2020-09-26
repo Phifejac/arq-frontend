@@ -25,20 +25,25 @@ class OpenClosed extends React.Component {
             {/* <hr/> */}
             <div className='positions'>
               <ul className='positions-list card-shadow'>
-                <div className='positions-head' style={{ flex: 1.2 }}>
+                <div className='positions-head' style={{ flex: 1.1 }}>
+                  <div>
+                    Security ID
+                  </div>
+                </div>
+                <div className='positions-head'>
                   <div>
                     CUSIP
-              </div>
+                  </div>
                 </div>
                 <div className='positions-head-sm'>
                   <div>
                     Qty
-              </div>
+                  </div>
                 </div>
                 <div className='positions-head justify-content-end' >
                   <div>
                     Avg. Entry Price
-              </div>
+                  </div>
                 </div>
                 <div className='positions-head-sm'>
                 </div>
@@ -47,7 +52,12 @@ class OpenClosed extends React.Component {
 
                 {this.props.openPositions.map((position, i) => {
                   return (<li className='positions-listitem-pair grow-small'><div className='pair'>
-                    <div className='positions-row' style={{ flex: 1.2 }}>
+                    <div className='positions-row' style={{ flex: 1.1 }}>
+                      <div>
+                        ID
+                      </div>
+                    </div>
+                    <div className='positions-row'>
                       <div>
                         {position.cusip}
                       </div>
@@ -57,15 +67,12 @@ class OpenClosed extends React.Component {
                         {position.qty}
                       </div>
                     </div>
-                    <div className='positions-row-sm justify-content-end'>
+                    <div className='positions-row justify-content-end'>
                       <div>
                         {position.avg_entry_price}
                       </div>
                     </div>
                     <div className='positions-row-sm justify-content-end'>
-                      <div>
-                        <i className="fa fa-eye white" />
-                      </div>
                     </div>
                   </div>
                   </li>)
