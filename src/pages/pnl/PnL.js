@@ -57,7 +57,7 @@ class PnL extends React.Component {
           {this.state.tab === 'today' ?
           <div>
             <PnLBar volumeToday={this.state.volumeToday} numTransactions={this.state.numTransactions} pnlToday={this.state.pnlToday} numOpen={this.state.openPositions.length} numClosed={this.state.closedInstances.length * 2}/>
-            <OpenClosed openPositions={this.state.openPositions} closedInstances={this.state.openInstances}/> 
+            <OpenClosed openPositions={this.state.openPositions} closedInstances={this.state.closedInstances}/> 
           </div>
           : 
           <span/>

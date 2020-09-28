@@ -39,7 +39,7 @@ export const getHomeStatistics = async () => {
 
 export const getOpenPositions = async () => {
   try {
-    const res = await axios.get("/api/position?min_qty=1")
+    const res = await axios.get("/api/position?bad_qty=0&owner=ARQ ADVISORS LLC")
     return res.data;
   } catch (err) {
     throw err;

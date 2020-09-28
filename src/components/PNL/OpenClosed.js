@@ -21,7 +21,7 @@ class OpenClosed extends React.Component {
 
         <Col md="6">
           <Card className='card-openclosed' style={{ minHeight: '35rem', maxHeight: '40rem' }}>
-            <h4>Open</h4>
+            <h4>Open Positions</h4>
             {/* <hr/> */}
             <div className='positions'>
               <ul className='positions-list card-shadow'>
@@ -79,7 +79,7 @@ class OpenClosed extends React.Component {
 
         <Col md="6">
           <Card className='card-openclosed' style={{ minHeight: '35rem', maxHeight: '40rem' }}>
-            <h4>Closed</h4>
+            <h4>Closed Positions</h4>
             {/* <hr/> */}
             <div className='positions'>
               <ul className='positions-list card-shadow'>
@@ -117,7 +117,7 @@ class OpenClosed extends React.Component {
                 </div>
               </ul>
               <ul className='positions-header' style={{width:'100%'}}>
-                {this.props.openPositions.map((instance, i) => {
+                {this.props.closedInstances.map((instance, i) => {
                   return (
                     <li className='positions-listitem-pair grow-small'>
                     <div className='pair'>
