@@ -39,9 +39,9 @@ class Home extends React.Component {
       numTransactionsToday : statistics.num_transactions_today,
       numTransactionsWeek : statistics.num_transactions_week,
       numTransactionsMonth : statistics.num_transactions_month,
-      pnlToday : statistics.pnl_today,
-      pnlWeek : statistics.pnl_week,
-      pnlMonth : statistics.pnl_month,
+      pnlToday : statistics.pnl_today.toLocaleString(undefined, {maximumFractionDigits: 2}),
+      pnlWeek : statistics.pnl_week.toLocaleString(undefined, {maximumFractionDigits: 2}),
+      pnlMonth : statistics.pnl_month.toLocaleString(undefined, {maximumFractionDigits: 2}),
       month : statistics.month,
       week : statistics.week
     })

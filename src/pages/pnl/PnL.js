@@ -26,16 +26,17 @@ class PnL extends React.Component {
   }
 
   componentDidMount = async () => {
-    const today = formatDate(new Date())
+    const today = formatDate(new Date("9/24/20"))
     const openPositions = await getOpenPositions()
     const closedInstances = await getInstances({"date":today})
     const statistics = await getStatistics({ "date" : today, "type":"day"})
+    console.log("stats", statistics)
     this.setState({ 
       openPositions : openPositions,
       closedInstances : closedInstances,
-      volumeToday : statistics.volume,
-      pnlToday : statistics.pnl,
-      numTransactions : statistics.num_transactions
+      volumeToday : statistics[0].volume.toLocaleString(undefined, {maximumFractionDigits: 2}),
+      pnlToday : statistics[0].pnl.toLocaleString(undefined, {maximumFractionDigits: 2}),
+      numTransactions : statistics[0].num_transactions
     })
   }
 

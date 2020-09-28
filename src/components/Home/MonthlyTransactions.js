@@ -25,13 +25,13 @@ class MonthlyTransactions extends React.Component {
     this.setState({ tagsinput });
   };
   render() {
-    console.log("months", this.props.monthlyData)
     const month_labels = []
     const month_transactions = []
     if (this.props.monthlyData) {
       for (const month of this.props.monthlyData) {
-        month_labels.push(month[2].slice(0,2) + "/" + month[2].slice(8,))
-        month_transactions.push(month[3])
+        console.log("month",month)
+        month_labels.push(month[2])
+        month_transactions.push(month[4])
       }
     }
 
@@ -56,7 +56,7 @@ class MonthlyTransactions extends React.Component {
         labels: month_labels,
         datasets: [
           {
-            label: "Data",
+            label: "Monthly Volume",
             borderColor: "#4cbdd7",
             fill: true,
             backgroundColor: "#4cbdd7",

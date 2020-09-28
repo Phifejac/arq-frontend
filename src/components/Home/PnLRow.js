@@ -47,7 +47,7 @@ class PnLRow extends React.Component {
             <label>Transactions</label>
           </div>
           <div style={{flex:1}}>
-            <h3 style={{marginBottom:'-.5rem'}}>${this.props.pnlWeek}{/**<span>.22</span>**/}</h3>
+            <h3 style={{marginBottom:'-.5rem'}}>${this.props.pnlWeek ? this.props.pnlWeek.toLocaleString() : ''}{/**<span>.22</span>**/}</h3>
             <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
               <i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+13.37%)</span></label>
             </div>

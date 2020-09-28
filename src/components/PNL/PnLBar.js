@@ -28,13 +28,15 @@ class PnLBar extends React.Component {
             <label>Transactions</label>
           </div>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>{this.props.volumeToday} </h3>
+            <h3 style={{fontWeight:'600'}}>${this.props.volumeToday} </h3>
             <label>Volume</label>
           </div>
           <div style={{flex:1, marginRight:50}}>
             <h3 style={{marginBottom:'-.5rem'}}>${this.props.pnlToday} </h3>
+            <label>Realized PNL</label>
+
             <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
-              <i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+3.37%)</span></label>
+              {/**<i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+3.37%)</span></label> **/}
             </div>
           </div>
         </div>
@@ -43,7 +45,7 @@ class PnLBar extends React.Component {
 
       <Col md="4">
         <Card className='homecard'>
-        <h4>Positions</h4>
+        <h4>Transactions</h4>
         <hr/>
         <div className='d-flex flex-row justify-content-around'>
         <div className='homecard-data'>

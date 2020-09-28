@@ -30,7 +30,8 @@ class MonthlyVolume extends React.Component {
     const month_transactions = []
     if (this.props.monthlyData) {
       for (const month of this.props.monthlyData) {
-        month_labels.push(month[2].slice(0,2) + "/" + month[2].slice(8,))
+        console.log("month",month)
+        month_labels.push(month[2])
         month_transactions.push(month[3])
       }
     }
@@ -68,7 +69,7 @@ class MonthlyVolume extends React.Component {
           labels: month_labels,
           datasets: [
             {
-              label: "Active Countries",
+              label: "Monthly Transactions",
               backgroundColor: gradientFill,
               borderColor: "#fbc658",
               pointHoverRadius: 0,
@@ -134,7 +135,7 @@ class MonthlyVolume extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col sm="7">
-                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Monthly Transasctions</div>
+                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Monthly Transactions</div>
                     </Col>
                     <Col sm="5">
                       <div className="pull-right">
