@@ -29,9 +29,10 @@ class PnLRow extends React.Component {
           </div>
           <div style={{flex:1}}>
             <h3 style={{marginBottom:'-.5rem'}}>${this.props.pnlToday}{/**<span>.22</span>**/}</h3>
-            <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
+            <label>Today</label>
+            {/* <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
               <i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+3.37%)</span></label>
-            </div>
+            </div> */}
           </div>
         </div>
         </Card>
@@ -48,9 +49,10 @@ class PnLRow extends React.Component {
           </div>
           <div style={{flex:1}}>
             <h3 style={{marginBottom:'-.5rem'}}>${this.props.pnlWeek ? this.props.pnlWeek.toLocaleString() : ''}{/**<span>.22</span>**/}</h3>
-            <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
+            <label>This Week</label>
+            {/* <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
               <i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+13.37%)</span></label>
-            </div>
+            </div> */}
           </div>
         </div>
         </Card>
@@ -67,9 +69,10 @@ class PnLRow extends React.Component {
           </div>
           <div style={{flex:1}}>
             <h3 style={{marginBottom:'-.5rem'}}>${this.props.pnlMonth}{/**<span>.22</span>**/}</h3>
-            <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
+            <label>This Month</label>
+            {/* <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
               <i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+23.37%)</span></label>
-            </div>
+            </div> */}
           </div>
         </div>
         </Card>

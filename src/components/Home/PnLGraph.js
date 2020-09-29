@@ -134,21 +134,25 @@ class PnLGraph extends React.Component {
             <CardHeader>
               <Row>
                 <Col sm="7">
-                  <div className="numbers pull-left text-white" style={{ fontSize: 'large' }}>Daily P&L</div>
+                  <div className="numbers pull-left text-white" style={{ fontSize: 'large' }}>P&L</div>
                 </Col>
                 <Col sm="5">
-                  <div className="pull-right">
-                    <Badge color="danger" pill>
-                      +14% today
-                        </Badge>
+                  <div className="pull-right smalltab" style={{fontSize:'small', fontWeight:'regular'}}>
+                    Month
+                  </div>
+                  <div className="pull-right smalltab" style={{fontSize:'small', fontWeight:'regular'}}>
+                    Week
+                  </div>
+                  <div className="pull-right smalltab-active" style={{fontSize:'small', fontWeight:'regular'}}>
+                    Day
                   </div>
                 </Col>
               </Row>
             </CardHeader>
             <CardBody>
-              <h6 className="big-title" style={{ color: '#FFFFFF80' }}>
+              {/* <h6 className="big-title" style={{ color: '#FFFFFF80' }}>
                 P&L
-                  </h6>
+                  </h6> */}
               <Line
                 data={chartExample2.data}
                 options={chartExample2.options}

@@ -135,21 +135,21 @@ class MonthlyVolume extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col sm="7">
-                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Monthly Transactions</div>
+                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Transactions</div>
                     </Col>
-                    <Col sm="5">
+                    {/* <Col sm="5">
                       <div className="pull-right">
                         <Badge color="warning" pill>
                           +2% this month
                         </Badge>
                       </div>
-                    </Col>
+                    </Col> */}
                   </Row>
                 </CardHeader>
                 <CardBody>
-                  <h6 className="big-title" style={{color:'#FFFFFF80'}}>
+                  {/* <h6 className="big-title" style={{color:'#FFFFFF80'}}>
                     Transactions Handled / Month
-                  </h6>
+                  </h6> */}
                   <Line
                     data={chartExample3.data}
                     options={chartExample3.options}
