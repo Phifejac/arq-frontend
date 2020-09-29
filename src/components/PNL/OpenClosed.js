@@ -175,7 +175,7 @@ class OpenClosed extends React.Component {
                             {instance1.brkr_name}
                           </div>
                         </div>
-                        <div className='positions-row-sm justify-content-end'>
+                        <div className='positions-row justify-content-end'>
                           +200
                         </div>
                       </div>
@@ -215,7 +215,7 @@ class OpenClosed extends React.Component {
                             {instance2.brkr_name}
                           </div>
                         </div>
-                        <div className='positions-row-sm justify-content-end'>
+                        <div className='positions-row justify-content-end'>
                           
                         </div>
                       </div>
