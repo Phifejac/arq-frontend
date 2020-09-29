@@ -19,15 +19,15 @@ class OpenClosed extends React.Component {
     return (
       <Row style={{ paddingTop: '0rem', paddingBottom: '1rem', justifyContent: 'space-around' }}>
 
-        <Col md="6">
-          <Card className='card-openclosed' style={{ minHeight: '35rem', maxHeight: '40rem' }}>
+        <Col md="4">
+          <Card className='card-openclosed' style={{ minHeight: '35.5rem' }}>
             <h4>Open Positions</h4>
             {/* <hr/> */}
             <div className='positions'>
               <ul className='positions-list card-shadow'>
                 <div className='positions-head' style={{ flex: 1.1 }}>
                   <div>
-                    Security ID
+                    Security
                   </div>
                 </div>
                 <div className='positions-head'>
@@ -46,6 +46,7 @@ class OpenClosed extends React.Component {
                   </div>
                 </div>
                 <div className='positions-head-sm'>
+                  
                 </div>
               </ul>
               <ul className='positions-header' style={{ width: '100%' }}>
@@ -73,6 +74,9 @@ class OpenClosed extends React.Component {
                       </div>
                     </div>
                     <div className='positions-row-sm justify-content-end'>
+                      <div>
+                        <i className="fa fa-eye white" />
+                      </div>
                     </div>
                   </div>
                   </li>)
@@ -84,8 +88,8 @@ class OpenClosed extends React.Component {
           </Card>
         </Col>
 
-        <Col md="6">
-          <Card className='card-openclosed' style={{ minHeight: '35rem', maxHeight: '40rem' }}>
+        <Col md="8">
+          <Card className='card-openclosed' style={{ minHeight: '35rem' }}>
             <h4>Closed Positions</h4>
             {/* <hr/> */}
             <div className='positions'>
@@ -93,34 +97,40 @@ class OpenClosed extends React.Component {
                 <div className='positions-head' style={{ flex: 1.2 }}>
                   <div>
                     Security ID
-              </div>
+                  </div>
+                </div>
+                <div className='positions-head'>
+                  <div>
+                    CUSIP
+                  </div>
                 </div>
                 <div className='positions-head-sm'>
                   <div>
                     Side
-              </div>
+                  </div>
                 </div>
                 <div className='positions-head-sm'>
                   <div>
                     P (M)
-              </div>
+                  </div>
                 </div>
                 <div className='positions-head-sm'>
                   <div>
                     Q (M)
-              </div>
+                  </div>
                 </div>
                 <div className='positions-head'>
                   <div>
                     Counterparty
-              </div>
+                  </div>
                 </div>
                 <div className='positions-head justify-content-end'>
                   <div>
                     Broker
-              </div>
+                  </div>
                 </div>
-                <div className='positions-head-sm'>
+                <div className='positions-head justify-content-end'>
+                  Realized P&L
                 </div>
               </ul>
               <ul className='positions-header' style={{ width: '100%' }}>
@@ -133,6 +143,11 @@ class OpenClosed extends React.Component {
                         <div className='positions-row' style={{ flex: 1.2 }}>
                           <div>
                             {instance1.security}
+                          </div>
+                        </div>
+                        <div className='positions-row'>
+                          <div>
+                            CUSIP
                           </div>
                         </div>
                         <div className='positions-row-sm'>
@@ -161,15 +176,18 @@ class OpenClosed extends React.Component {
                           </div>
                         </div>
                         <div className='positions-row-sm justify-content-end'>
-                          <div>
-                            <i className="fa fa-eye white" />
-                          </div>
+                          +200
                         </div>
                       </div>
                       <div className='pair'>
                         <div className='positions-row' style={{ flex: 1.2 }}>
                           <div>
                             {instance2.security}
+                          </div>
+                        </div>
+                        <div className='positions-row'>
+                          <div>
+                            CUSIP
                           </div>
                         </div>
                         <div className='positions-row-sm'>
@@ -198,9 +216,7 @@ class OpenClosed extends React.Component {
                           </div>
                         </div>
                         <div className='positions-row-sm justify-content-end'>
-                          <div>
-                            <i className="fa fa-eye white" />
-                          </div>
+                          
                         </div>
                       </div>
                     </li>

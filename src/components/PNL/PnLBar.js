@@ -23,16 +23,16 @@ class PnLBar extends React.Component {
         <h4>Today's Metrics</h4>
         <hr/>
         <div className='homecard-data'>
-          <div style={{flex:.5}}>
+          <div style={{flex:.45}}>
             <h3 style={{fontWeight:'600'}}>{this.props.numTransactions} </h3>
             <label>Transactions</label>
           </div>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>${this.props.volumeToday} </h3>
+            <h3 style={{}}>${this.props.volumeToday} </h3>
             <label>Volume</label>
           </div>
-          <div style={{flex:1, marginRight:50}}>
-            <h3 style={{marginBottom:'-.5rem'}}>${this.props.pnlToday} </h3>
+          <div style={{flex:.5, marginRight:50}}>
+            <h3 style={{fontWeight:'600', color:'#1cff36'}}>${this.props.pnlToday} </h3>
             <label>Realized PNL</label>
 
             <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
@@ -50,7 +50,7 @@ class PnLBar extends React.Component {
         <div className='d-flex flex-row justify-content-around'>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>{this.props.numOpen}</h3>
+            <h3 style={{fontWeight:'600', color:'#1C8CFF'}}>{this.props.numOpen}</h3>
             <label>Open</label>
           </div>
         </div>
