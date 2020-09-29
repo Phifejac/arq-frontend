@@ -7,7 +7,9 @@ import {
   FormGroup,
   Label,
   Input,
-  Collapse
+  Collapse,
+  Col,
+  Card
 } from "reactstrap";
 
 // import TransactionData from './TransactionData'
@@ -67,12 +69,12 @@ class SearchInput extends Component {
     return (
       <>
       {this.state.alert}            
-            <div style={{backgroundColor:'#27282d', borderRadius:'1rem', position:'relative', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', marginTop:'5rem', marginBottom:'1rem'}}>
+            <div style={{backgroundColor:'#27282d', borderRadius:'1rem', position:'relative', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', marginBottom:'1rem'}}>
               <Row style={{margin:'1rem'}}>
                   <div style={{marginRight:'1rem'}}>
                       <DayPicker
                         className="Range"
-                        numberOfMonths={1}
+                        numberOfMonths={2}
                         selectedDays={this.state.selectedDay}
                         onTodayButtonClick={(day, modifiers) => console.log(day, modifiers)}
                         onDayClick={this.handleDayClick}
@@ -135,7 +137,7 @@ class SearchInput extends Component {
                    </div>
                    <div style={{width:'80%'}} className='align-self-center'>
                     <label className="labeltext">Cusip</label>
-                    <Input placeholder="Enter cusip..." type="text" defaultValue="" style={{backgroundColor:'#27292D', color:'#FFFFFF80', padding:'.5rem', fontSize:'small', paddingTop:'.8rem', paddingBottom:'.8rem'}} onChange ={(e) => this.setState({ cusip : e.target.value})} />
+                    <Input placeholder="Enter cusip..." type="text" defaultValue="" className='search-textinput' onChange ={(e) => this.setState({ cusip : e.target.value})} />
                    </div>
                 </div>
                 <div style={{display:'flex', alignItems:'center'}}>
@@ -149,6 +151,8 @@ class SearchInput extends Component {
                     </div>
                 </div>
               </Row>
+            </div>
+            <div>
             </div>
       </>
     );

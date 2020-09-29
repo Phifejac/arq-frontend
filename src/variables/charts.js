@@ -789,10 +789,10 @@ const chartExample10 = {
     datasets: [
       {
         label: "Data",
-        borderColor: "#fcc468",
+        borderColor: "#1C8CFF",
         fill: true,
-        backgroundColor: "#fcc468",
-        hoverBorderColor: "#fcc468",
+        backgroundColor: "#1C8CFF",
+        hoverBorderColor: "#1C8CFF",
         borderWidth: 5,
         barPercentage: 0.4,
         data: [
