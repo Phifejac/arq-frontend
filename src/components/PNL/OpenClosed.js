@@ -123,89 +123,90 @@ class OpenClosed extends React.Component {
                 <div className='positions-head-sm'>
                 </div>
               </ul>
-              <ul className='positions-header' style={{width:'100%'}}>
+              <ul className='positions-header' style={{ width: '100%' }}>
                 {this.props.closedInstances.map((instance, i) => {
-                  console.log("instance", instance)
+                  const instance1 = instance.transactions[0]
+                  const instance2 = instance.transactions[1]
                   return (
                     <li className='positions-listitem-pair grow-small'>
-                    <div className='pair'>
-                    <div className='positions-row' style={{flex:1.2}}>
-                      <div>
-                      {instance.security}
+                      <div className='pair'>
+                        <div className='positions-row' style={{ flex: 1.2 }}>
+                          <div>
+                            {instance1.security}
+                          </div>
+                        </div>
+                        <div className='positions-row-sm'>
+                          <div>
+                            {instance1.side}
+                          </div>
+                        </div>
+                        <div className='positions-row-sm'>
+                          <div>
+                            {instance1.price}
+                          </div>
+                        </div>
+                        <div className='positions-row-sm'>
+                          <div>
+                            {instance1.qty}
+                          </div>
+                        </div>
+                        <div className='positions-row'>
+                          <div>
+                            {instance1.customer}
+                          </div>
+                        </div>
+                        <div className='positions-row justify-content-end'>
+                          <div>
+                            {instance1.brkr_name}
+                          </div>
+                        </div>
+                        <div className='positions-row-sm justify-content-end'>
+                          <div>
+                            <i className="fa fa-eye white" />
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className='positions-row-sm'>
-                      <div>
-                      {instance.side}
+                      <div className='pair'>
+                        <div className='positions-row' style={{ flex: 1.2 }}>
+                          <div>
+                            {instance2.security}
+                          </div>
+                        </div>
+                        <div className='positions-row-sm'>
+                          <div>
+                            {instance2.side}
+                          </div>
+                        </div>
+                        <div className='positions-row-sm'>
+                          <div>
+                            {instance2.price}
+                          </div>
+                        </div>
+                        <div className='positions-row-sm'>
+                          <div>
+                            {instance2.qty}
+                          </div>
+                        </div>
+                        <div className='positions-row'>
+                          <div>
+                            {instance2.customer}
+                          </div>
+                        </div>
+                        <div className='positions-row justify-content-end'>
+                          <div>
+                            {instance2.brkr_name}
+                          </div>
+                        </div>
+                        <div className='positions-row-sm justify-content-end'>
+                          <div>
+                            <i className="fa fa-eye white" />
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className='positions-row-sm'>
-                      <div>
-                      {instance.price}
-                      </div>
-                    </div>
-                    <div className='positions-row-sm'>
-                      <div>
-                      {instance.qty}
-                      </div>
-                    </div>
-                    <div className='positions-row'>
-                      <div>
-                      {instance.customer}
-                      </div>
-                    </div>
-                    <div className='positions-row justify-content-end'>
-                      <div>
-                      {instance.brkr_name}
-                      </div>
-                    </div>
-                    <div className='positions-row-sm justify-content-end'>
-                      <div>
-                      <i className="fa fa-eye white" />
-                      </div>
-                    </div>
-                    </div>
-                    <div className='pair'>
-                    <div className='positions-row' style={{flex:1.2}}>
-                      <div>
-                      {instance.security}
-                      </div>
-                    </div>
-                    <div className='positions-row-sm'>
-                      <div>
-                      {instance.side}
-                      </div>
-                    </div>
-                    <div className='positions-row-sm'>
-                      <div>
-                      {instance.price}
-                      </div>
-                    </div>
-                    <div className='positions-row-sm'>
-                      <div>
-                      {instance.qty}
-                      </div>
-                    </div>
-                    <div className='positions-row'>
-                      <div>
-                      {instance.customer}
-                      </div>
-                    </div>
-                    <div className='positions-row justify-content-end'>
-                      <div>
-                      {instance.brkr_name}
-                      </div>
-                    </div>
-                    <div className='positions-row-sm justify-content-end'>
-                      <div>
-                      <i className="fa fa-eye white" />
-                      </div>
-                    </div>
-                    </div>
-                  </li>
+                    </li>
                   )
                 })}
-                
+
               </ul>
 
             </div>
