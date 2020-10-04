@@ -77,7 +77,7 @@ class TodaysTransactions extends React.Component {
           customer:prop[7],
           broker:prop[8],
           status:prop[9],
-          yield:prop[10],
+          // yield:prop[10],
           actions: (
             // we've added some custom button actions
             <div className="actions-right grow">
@@ -351,10 +351,10 @@ class TodaysTransactions extends React.Component {
                       //   Header: "Status",
                       //   accessor: "status",
                       // },
-                      {
-                        Header: "Yield",
-                        accessor: "yield",
-                      },
+                      // {
+                      //   Header: "Yield",
+                      //   accessor: "yield",
+                      // },
                       {
                         Header: "",
                         accessor: "actions",

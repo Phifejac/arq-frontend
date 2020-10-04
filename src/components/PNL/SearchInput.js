@@ -137,7 +137,7 @@ class SearchInput extends Component {
                    </div>
                    <div style={{width:'80%'}} className='align-self-center'>
                     <label className="labeltext">Cusip</label>
-                    <Input placeholder="Enter cusip..." type="text" defaultValue="" className='search-textinput' onChange ={(e) => this.setState({ cusip : e.target.value})} />
+                    <Input placeholder="Enter cusip..." type="text" defaultValue="" style={{backgroundColor:'#27292D', color:'#FFFFFF80', padding:'.5rem', fontSize:'small', paddingTop:'.8rem', paddingBottom:'.8rem'}} onChange ={(e) => this.setState({ cusip : e.target.value})} />
                    </div>
                 </div>
                 <div style={{display:'flex', alignItems:'center'}}>

@@ -49,7 +49,7 @@ class SearchResults extends React.Component {
           id: key,
           cusip: prop.cusip,
           tradedate: prop.trade_date,
-          time: "4:22:52 PM",
+          time: prop.time,
           security: prop.security,
           side: prop.side,
           qty: prop.qty,
@@ -57,7 +57,7 @@ class SearchResults extends React.Component {
           customer: prop.customer,
           broker: prop.brkr_name,
           status: prop.status,
-          yield: prop.yield,
+          // yield: prop.yield,
           actions: (
             // we've added some custom button actions
             <div className="actions-right grow">
@@ -120,7 +120,7 @@ class SearchResults extends React.Component {
             id: key,
             cusip: prop.cusip,
             tradedate: prop.trade_date,
-            time: "4:22:52 PM",
+            time: prop.time,
             security: prop.security,
             side: prop.side,
             qty: prop.qty,
@@ -128,7 +128,7 @@ class SearchResults extends React.Component {
             customer: prop.customer,
             broker: prop.brkr_name,
             status: prop.status,
-            yield: prop.yield,
+            // yield: prop.yield,
             actions: (
               // we've added some custom button actions
               <div className="actions-right grow">
@@ -404,10 +404,10 @@ class SearchResults extends React.Component {
                       //   Header: "Status",
                       //   accessor: "status",
                       // },
-                      {
-                        Header: "Yield",
-                        accessor: "yield",
-                      },
+                      // {
+                      //   Header: "Yield",
+                      //   accessor: "yield",
+                      // },
                       {
                         Header: "",
                         accessor: "actions",

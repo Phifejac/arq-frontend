@@ -136,7 +136,7 @@ class PnLGraph extends React.Component {
                 <Col sm="7">
                   <div className="numbers pull-left text-white" style={{ fontSize: 'large' }}>P&L</div>
                 </Col>
-                <Col sm="5">
+                {/* <Col sm="5">
                   <div className="pull-right smalltab" style={{fontSize:'small', fontWeight:'regular'}}>
                     Month
                   </div>
@@ -146,7 +146,7 @@ class PnLGraph extends React.Component {
                   <div className="pull-right smalltab-active" style={{fontSize:'small', fontWeight:'regular'}}>
                     Day
                   </div>
-                </Col>
+                </Col> */}
               </Row>
             </CardHeader>
             <CardBody>
