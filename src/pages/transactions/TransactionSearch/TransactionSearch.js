@@ -20,7 +20,8 @@ class TransactionSearch extends Component {
       loading : false,
       range:'range',
       type:'bond',
-      transactions : []
+      transactions : [],
+      tab:'day',
     };
     this.executeSearch= this.executeSearch.bind(this);
   }
@@ -36,8 +37,8 @@ class TransactionSearch extends Component {
       <>
       {this.state.alert}
       
-          <div style={{width:'100%', marginLeft:'1.5rem'}}>
-            <h4 style={{marginTop:'3rem', fontFamily:'Poppins', fontWeight:'500', fontSize:'large', marginBottom:'2rem', color:'#5a5b5d'}}> Transactions {">"} <span style={{color:'white'}}>Search</span></h4>
+          <div style={{width:'100%'}}>
+            {/* <h4 style={{marginTop:'3rem', fontFamily:'Poppins', fontWeight:'500', fontSize:'large', marginBottom:'2rem', color:'#5a5b5d'}}> Transactions {">"} <span style={{color:'white'}}>Search</span></h4> */}
             
             <Row>
               <SearchInput executeSearch= {this.executeSearch} loading={this.state.loading} />      

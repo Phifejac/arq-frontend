@@ -51,14 +51,6 @@ class AdvancedSearchInputs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value4: {
-        min: 5,
-        max: 10,
-      },
-      value5: {
-        min: 5,
-        max: 15,
-      },
       alert: null,
       side: null,
       start_date: null,
@@ -222,8 +214,8 @@ class AdvancedSearchInputs extends React.Component {
     return (
       <div>
         {this.state.alert}
-        <div className='d-flex flex-row'>
-          <div style={{ flex: 4, backgroundColor: '#27282d', borderRadius: '1rem', boxShadow: '0 6px 10px -4px rgba(0,0,0,0.15)',padding: '2rem', paddingTop: '.5rem', marginLeft: '1rem', flexWrap: 'wrap-reverse', paddingRight: '.5rem' }} className='d-flex flex-row'>
+        <div className='d-flex flex-row' style={{margin:0}}>
+          <div style={{ flex: 4, backgroundColor: '#27282d', borderRadius: '1rem', boxShadow: '0 6px 10px -4px rgba(0,0,0,0.15)',padding: '2rem', paddingTop: '.5rem', marginLeft: '0rem', flexWrap: 'wrap-reverse', paddingRight: '.5rem' }} className='d-flex flex-row'>
             <div className='d-flex flex-column align-items-center justify-content-center' style={{ flex: .5, minWidth: '32rem', maxWidth: '35rem' }}>
               <Row>
                 <Col md="4">

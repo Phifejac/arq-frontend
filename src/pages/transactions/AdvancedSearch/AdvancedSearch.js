@@ -76,22 +76,8 @@ class AdvancedSearch extends Component {
     return (
       <>
       {this.state.alert}
-          <div style={{width:'100%', marginLeft:'1.5rem'}}>
-            <h4 style={{marginTop:'3rem', fontFamily:'Poppins', fontWeight:'500', fontSize:'large', marginBottom:'2rem', color:'#5a5b5d'}}> Transactions {">"} <span style={{color:'white'}}>Advanced Search</span></h4>
-            
-            {/* <div className="typeselector">
-              Type
-            </div> */}
-            {/* <div style={{marginTop:'0rem', marginBottom:'0rem', marginLeft:'0rem'}}>
-                <span className={this.state.type === 'bond' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setBond}>Bond</span>
-                <span className={this.state.type === 'repo' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setRepo}>Repo</span>
-                <span className={this.state.type === 'future' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setFuture}>Future</span>
-                <span className={this.state.type === 'swap' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setSwap}>Swap</span>
-                <span className={this.state.type === 'option' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setOption}>Option</span>
-                <span className={this.state.type === 'unwind' ? 'smalltab2-active' : 'smalltab2'} onClick={this.setUnwind}>Unwind</span>
-            
-            </div> */}
-            <Row style={{marginRight:'4rem'}}>
+          <div style={{width:'100%'}}>
+            <Row>
               <AdvancedSearchInputs executeSearch={this.executeSearch} loading={this.state.loading} />
             </Row>
             <Col lg='12'>

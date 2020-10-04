@@ -24,18 +24,28 @@ import { formatDate} from "../../api/utils"
 
 class SearchInput extends Component {
   static defaultProps = {
-    numberOfMonths: 1,
+    numberOfMonths: 2,
   };
   constructor(props) {
     super(props);
     this.state = {
       collapse: false,
       selectedDay: null,
+      start_date: null,
+      end_date: null,
       client : null,
       cusip : null
     };
     this.toggle = this.toggle.bind(this);
     this.handleDayClick = this.handleDayClick.bind(this);
+    this.state = this.getInitialState();
+  }
+
+  getInitialState() {
+    return {
+      from: undefined,
+      to: undefined,
+    };
   }
 
   startSearch = () => {
@@ -53,11 +63,16 @@ class SearchInput extends Component {
     this.props.executeSearch(parameters)
   }
 
-  handleDayClick(day, { selected }) {
-    this.setState({
-      selectedDay: selected ? undefined : day,
-    });
+  handleDayClick(day) {
+    const range = DateUtils.addDayToRange(day, this.state);
+    console.log("range", range)
+    this.setState(range);
+    this.setState({ start_date: range.from, end_date: range.to });
   }
+
+  // handleResetClick() {
+  //   this.setState(this.getInitialState());
+  // }
 
   toggle() {
     this.setState({ collapse: !this.state.collapse });
@@ -66,6 +81,8 @@ class SearchInput extends Component {
 
   
   render() {
+    const { from, to } = this.state;
+    const modifiers = { start: from, end: to };
     return (
       <>
       {this.state.alert}            
@@ -75,10 +92,11 @@ class SearchInput extends Component {
                       <DayPicker
                         className="Range"
                         numberOfMonths={2}
-                        selectedDays={this.state.selectedDay}
-                        onTodayButtonClick={(day, modifiers) => console.log(day, modifiers)}
+                        fromMonth={from}
+                        selectedDays={[from, { from, to }]}
                         onDayClick={this.handleDayClick}
-                        // showOutsideDays
+                        modifiers={modifiers}
+                        onDayClick={this.handleDayClick}
 
                       />
                       <Helmet>
@@ -101,18 +119,25 @@ class SearchInput extends Component {
                 }
               `}</style>
                       </Helmet>
+                      <div className='d-flex flex-row justify-content-around white' style={{width:'100%', fontSize:'.8rem'}}>
+                        <div>
+                          {!from && <span style={{color:'#6C757D'}}>Start date...</span>}
+                          {from && <span>{from.toLocaleDateString()}</span>}
+                        </div>
+                        <div style={{marginLeft:'-7rem', marginRight:'-7rem'}}>
+                          {!from && !to && <span style={{color:'#6C757D'}}>to</span>}
+                          {!from && to && <span style={{color:'#6C757D'}}>to</span>}
+                          {from && !to && <span style={{color:'#6C757D'}}>to</span>}
+                          {from && to && <span >to</span>}
+                        </div>
+                        <div>
+                          {!to && <span style={{color:'#6C757D'}}>End date...</span>}
+                          {to && <span>{to.toLocaleDateString()}</span>}
+                        </div>
+                      </div>
                     </div>
                   
                 <div style={{ display:'flex', flexDirection:'column', justifyContent:'center', width:'15rem'}}>
-                        <div style={{display:'flex', flexDirection:'column', paddingRight:'2rem', backgroundColor:'#202225', borderRadius:'.5rem', padding:'1rem', paddingTop:'.5rem', paddingBottom:'.5rem'}} className='align-self-center d-flex'>
-                           <span className='inputlabel'>Set Date</span>
-                             {!this.state.selectedDay && 
-                             <span style={{color:'white', width:'10rem'}}>Select...</span>
-                             }
-                             {this.state.selectedDay && 
-                             <span style={{color:'white', width:'10rem'}}>{this.state.selectedDay.toLocaleDateString()}</span>
-                             }
-                         </div>  
                     <div style={{width:'80%'}} className='align-self-center'>
                     <label className="labeltext">Client</label>
                     <Select
@@ -139,9 +164,7 @@ class SearchInput extends Component {
                     <label className="labeltext">Cusip</label>
                     <Input placeholder="Enter cusip..." type="text" defaultValue="" style={{backgroundColor:'#27292D', color:'#FFFFFF80', padding:'.5rem', fontSize:'small', paddingTop:'.8rem', paddingBottom:'.8rem'}} onChange ={(e) => this.setState({ cusip : e.target.value})} />
                    </div>
-                </div>
-                <div style={{display:'flex', alignItems:'center'}}>
-                    <div style={{width:'14rem'}}>
+                   <div style={{width:'14rem', paddingTop:'1rem'}}>
                       <div className='button-solid grow' onClick={this.startSearch}>
                         <span>Search</span>
                       </div>
