@@ -45,8 +45,8 @@ class AuthNavbar extends React.Component {
       >
         <Container>
           <div className="navbar-wrapper">
-            <NavbarBrand href="#pablo" onClick={(e) => e.preventDefault()}>
-              Arq
+            <NavbarBrand>
+              PORTIS
             </NavbarBrand>
           </div>
           <button
@@ -84,18 +84,6 @@ class AuthNavbar extends React.Component {
                 <NavLink to="/auth/login" className="nav-link">
                   <i className="nc-icon nc-tap-01" />
                   Login
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink to="/admin/user-profile" className="nav-link">
-                  <i className="nc-icon nc-satisfied" />
-                  User
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink to="/auth/lock-screen" className="nav-link">
-                  <i className="nc-icon nc-key-25" />
-                  Lock
                 </NavLink>
               </NavItem>
             </Nav>
