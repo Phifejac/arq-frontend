@@ -358,10 +358,6 @@ class SearchResults extends React.Component {
                     data={this.state.data}
                     
                     columns={[
-                      // {
-                      //   Header: "ID",
-                      //   accessor: "transactionId",
-                      // },
                       {
                         Header: "Date",
                         accessor: "tradedate",
@@ -388,26 +384,10 @@ class SearchResults extends React.Component {
                         Header: "Qty (M)",
                         accessor: "qty",
                       },
-                      // {
-                      //   Header: "Broker",
-                      //   accessor: "broker",
-                      // },
                       {
                         Header: "Customer",
                         accessor: "customer",
                       },
-                      // {
-                      //   Header: "Cusip",
-                      //   accessor: "cusip",
-                      // },
-                      // {
-                      //   Header: "Status",
-                      //   accessor: "status",
-                      // },
-                      // {
-                      //   Header: "Yield",
-                      //   accessor: "yield",
-                      // },
                       {
                         Header: "",
                         accessor: "actions",

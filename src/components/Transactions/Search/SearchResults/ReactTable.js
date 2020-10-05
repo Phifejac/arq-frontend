@@ -205,6 +205,7 @@ function Table({ columns, data }) {
               
           </div>
         </div>
+        <div style={{border:'solid 1px', marginLeft:'-1rem', padding:'1rem', paddingTop:'0rem', minHeight:'35rem', marginTop:'1rem', borderRadius:'1rem', marginBottom:'2rem'}}>
         <table {...getTableProps()} className="rt-table" style={{borderWidth:0, paddingTop:'1rem'}}>
           <div className='todaystable-header card-shadow'>
             <thead className="rt-thead -header">
@@ -236,6 +237,14 @@ function Table({ columns, data }) {
               ))}
             </thead>
           </div>
+          
+          <div style={{display:'flex', flexDirection:'column', minHeight:'30rem'}} className='justify-content-center align-items-center'>
+            {/* <div> */}
+              <img src={require("../../../../assets/img/calendar.png")} style={{width:'7rem', marginBottom:'0rem'}}></img>
+              <h5 style={{color:'#27292d'}}>No date input</h5>
+            {/* </div> */}
+          </div>
+          
           <tbody {...getTableBodyProps()} className="rt-tbody text-white">
             {page.map((row, i) => {
               prepareRow(row);
@@ -261,6 +270,7 @@ function Table({ columns, data }) {
           </tbody>
         </table>
         <div className="pagination-bottom"></div>
+      </div>
       </div>
     </>
   );

@@ -44,14 +44,6 @@ fuzzyTextFilterFn.autoRemove = (val) => !val;
 
 // Our table component
 function Table({ columns, data }) {
-  const [numberOfRows, setNumberOfRows] = React.useState({
-    value: 10,
-    label: "10 rows",
-  });
-  const [pageSelect, handlePageSelect] = React.useState({
-    value: 0,
-    label: "Page 1",
-  });
   const filterTypes = React.useMemo(
     () => ({
       // Add a new fuzzyTextFilterFn filter type.
@@ -121,72 +113,6 @@ function Table({ columns, data }) {
     <>
       <div className="ReactTable -striped -highlight primary-pagination">
         <div className="pagination-top">
-          {/* <div className="-pagination">
-            <div className="-previous">
-              <button
-                type="button"
-                onClick={() => previousPage()}
-                disabled={!canPreviousPage}
-                className="-btn"
-              >
-                Previous
-              </button>
-            </div>
-            <div className="-center">
-              <Container>
-                <Row className="justify-content-center">
-                  <Col md="4" sm="6" xs="12">
-                    <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
-                      name="pageSelect"
-                      value={pageSelect}
-                      onChange={(value) => {
-                        gotoPage(value.value);
-                        handlePageSelect(value);
-                      }}
-                      options={pageSelectData.map((prop, key) => {
-                        return {
-                          value: key,
-                          label: "Page " + (key + 1),
-                        };
-                      })}
-                      placeholder="Choose Page"
-                    />
-                  </Col>
-                  <Col md="4" sm="6" xs="12">
-                    <Select
-                      className="react-select primary"
-                      classNamePrefix="react-select"
-                      name="numberOfRows"
-                      value={numberOfRows}
-                      onChange={(value) => {
-                        setPageSize(value.value);
-                        setNumberOfRows(value);
-                      }}
-                      options={numberOfRowsData.map((prop) => {
-                        return {
-                          value: prop,
-                          label: prop + " rows",
-                        };
-                      })}
-                      placeholder="Choose Rows"
-                    />
-                  </Col>
-                </Row>
-              </Container>
-            </div>
-            <div className="-next">
-              <button
-                type="button"
-                onClick={() => nextPage()}
-                disabled={!canNextPage}
-                className="-btn"
-              >
-                Next
-              </button>
-            </div>
-          </div> */}
         </div>
         <table {...getTableProps()} className="rt-table" style={{borderWidth:0}} style={{overflowX:'hidden'}}>
           <div className='todaystable-header card-shadow'>

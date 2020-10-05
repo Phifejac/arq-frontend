@@ -57,13 +57,6 @@ class TodaysTransactions extends React.Component {
     super(props);
     this.state = {
       alert: null,
-      // fund: null,
-      // client: null,
-      // book: null,
-      // counterparty: null,
-      // excounterparty: null,
-      // singleSelect: null,
-      // multipleSelect: null,
       data: dataTable.map((prop, key) => {
         return {
           id: key,
@@ -98,32 +91,6 @@ class TodaysTransactions extends React.Component {
               >
                 <i className="fa fa-edit white" />
               </Button>{" "}
-              {/* <Input style={{marginTop:'.5rem'}} type="checkbox" /> */}
-
-              {/* use this button to add a edit kind of action */}
-
-              {/* use this button to remove the data row */}
-              {/* <Button
-                onClick={() => {
-                  var data = this.state.data;
-                  data.find((o, i) => {
-                    if (o.id === key) {
-                      // here you should add some custom code so you can delete the data
-                      // from this component and from your server as well
-                      data.splice(i, 1);
-                      console.log(data);
-                      return true;
-                    }
-                    return false;
-                  });
-                  this.setState({ data: data });
-                }}
-                color="danger"
-                size="sm"
-                className="btn-icon btn-link remove"
-              >
-                <i className="fa fa-times" />
-              </Button>{" "} */}
             </div>
           ),
         };
