@@ -385,6 +385,10 @@ class SearchResults extends React.Component {
                         accessor: "qty",
                       },
                       {
+                        Header: "Broker",
+                        accessor: "broker",
+                      },
+                      {
                         Header: "Customer",
                         accessor: "customer",
                       },

@@ -14,6 +14,9 @@ import SearchResults from "components/PNL/SearchResults";
 import Closed from "components/PNL/Closed";
 import PnLWeek from "components/PNL/PnLWeek";
 
+// api imports
+import { getTransactions } from "../../api/http"
+
 class PnL extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +28,14 @@ class PnL extends React.Component {
       pnlToday : '',
       volumeToday : ''
     };
+    this.executeSearch= this.executeSearch.bind(this)
+  }
+
+  executeSearch = async (parameters) => {
+    this.setState({ loading : true });
+    // const newTransactions = await getTransactions(parameters);
+    // const newInstances = await getInstances({parameters})
+    // this.setState({ loading : false, closedInstances : newInstances})
   }
 
   componentDidMount = async () => {
@@ -95,7 +106,7 @@ class PnL extends React.Component {
           }
           {this.state.tab === 'search' ?
           <div>
-            <PnLSearchBar/>
+            <PnLSearchBar executeSearch={this.executeSearch} loading={this.state.loading} />
             <Closed openPositions={this.state.openPositions} closedInstances={this.state.closedInstances}/>
           </div>
           : 

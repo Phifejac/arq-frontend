@@ -372,10 +372,12 @@ class AdvancedSearchResults extends React.Component {
                 {
                   Header: "Side",
                   accessor: "side",
+                  sortable: false,
                 },
                 {
                   Header: "Security",
                   accessor: "security",
+                  sortable: false,
                 },
                 {
                   Header: "Price",
@@ -384,6 +386,10 @@ class AdvancedSearchResults extends React.Component {
                 {
                   Header: "Qty (M)",
                   accessor: "qty",
+                },
+                {
+                  Header: "Broker",
+                  accessor: "broker",
                 },
                 {
                   Header: "Customer",

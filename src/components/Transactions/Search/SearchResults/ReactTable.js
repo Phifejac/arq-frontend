@@ -237,13 +237,7 @@ function Table({ columns, data }) {
               ))}
             </thead>
           </div>
-          
-          <div style={{display:'flex', flexDirection:'column', minHeight:'30rem'}} className='justify-content-center align-items-center'>
-            {/* <div> */}
-              <img src={require("../../../../assets/img/calendar.png")} style={{width:'7rem', marginBottom:'0rem'}}></img>
-              <h5 style={{color:'#27292d'}}>No date input</h5>
-            {/* </div> */}
-          </div>
+        
           
           <tbody {...getTableBodyProps()} className="rt-tbody text-white">
             {page.map((row, i) => {
@@ -269,7 +263,15 @@ function Table({ columns, data }) {
             })}
           </tbody>
         </table>
-        <div className="pagination-bottom"></div>
+
+        <div style={{display:'flex', flexDirection:'column', minHeight:'30rem'}} className='justify-content-center align-items-center'>
+            {/* <div> */}
+              <i className="fa fa-calendar-times-o" style={{fontSize:'6em', color:'#27292d', marginBottom:'.5rem'}}/>
+              {/* <img src={require("../../../../assets/img/calendar.png")} style={{width:'7rem', marginBottom:'0rem'}}></img> */}
+              <h5 style={{color:'#27292d', fontWeight:'600'}}>No date input</h5>
+            {/* </div> */}
+          </div>
+          
       </div>
       </div>
     </>

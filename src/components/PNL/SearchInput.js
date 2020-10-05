@@ -52,9 +52,9 @@ class SearchInput extends Component {
 
     const parameters = {}
 
-    if (this.state.selectedDay ) { 
-      parameters["start_date"] = formatDate(new Date(this.state.selectedDay));
-      parameters["end_date"] = formatDate(new Date(this.state.selectedDay));
+    if (this.state.start_date) {
+      parameters["start_date"] = formatDate(new Date(this.state.start_date));
+      parameters["end_date"] = formatDate(new Date(this.state.end_date));
     }
     if (this.state.client ) parameters["client"] = this.state.client.label;
     if (this.state.cusip) parameters["cusip"] = this.state.cusip;
@@ -86,7 +86,7 @@ class SearchInput extends Component {
     return (
       <>
       {this.state.alert}            
-            <div style={{backgroundColor:'#27282d', borderRadius:'1rem', position:'relative', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', marginBottom:'1rem'}}>
+            <div style={{backgroundColor:'#27282d', borderRadius:'1rem', position:'relative', boxShadow:'0 6px 10px -4px rgba(0,0,0,0.15)', marginBottom:'1rem', marginLeft:'.5rem'}}>
               <Row style={{margin:'1rem'}}>
                   <div style={{marginRight:'1rem'}}>
                       <DayPicker

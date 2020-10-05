@@ -67,7 +67,6 @@ class AdvancedSearchInputs extends React.Component {
       counterparty: null,
       singleSelect: null,
       multipleSelect: null,
-      tagsinput: ["Amsterdam", "Washington", "Sydney", "Beijing"],
     };
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleResetClick = this.handleResetClick.bind(this);

@@ -7,13 +7,6 @@ import {
   Card,
 } from "reactstrap";
 
-import ReactBSAlert from "react-bootstrap-sweetalert";
-import { Line } from "react-chartjs-2";
-import {
-  chartExample1,
-} from "variables/charts.js";
-
-import Transaction from '../Transactions/Search/SearchResults/Transaction'
 
 class Closed extends React.Component {
   constructor(props) {
@@ -37,7 +30,7 @@ class Closed extends React.Component {
               <ul className='positions-list card-shadow'>
                 <div className='positions-head' style={{ flex: 1.2 }}>
                   <div>
-                    Security ID
+                    Security
                   </div>
                 </div>
                 <div className='positions-head'>
