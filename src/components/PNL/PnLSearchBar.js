@@ -8,6 +8,13 @@ import {
   Input
 } from "reactstrap";
 
+// react plugin used to create charts
+import { Bar } from "react-chartjs-2";
+
+// core components
+import {
+  chartExample10,
+} from "variables/charts.js";
 
 // import TransactionData from './TransactionData'
 import Helmet from 'react-helmet'
@@ -166,7 +173,14 @@ class PnLSearchBar extends React.Component {
         </div>
 
       
-      <Col md="4" style={{}}>
+      <Col md="5" style={{}}>
+      <Card className='homecard'>
+        <Bar
+            data={chartExample10}
+            options={chartExample10.options}
+            
+          />
+      </Card>
       <Card className='homecard'>
         <h4>From 
             {!from && <span style={{color:'#6C757D', paddingLeft:'.5rem', paddingRight:'.5rem'}}>  Select...  </span>}
