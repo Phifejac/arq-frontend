@@ -215,7 +215,7 @@ class OpenClosed extends React.Component {
                     Counterparty
                   </div>
                 </div>
-                <div className='positions-head justify-content-end'>
+                <div className='positions-head'>
                   <div>
                     Broker
                   </div>
@@ -233,8 +233,8 @@ class OpenClosed extends React.Component {
                     {instance.transactions.map((transaction, i) => {
                       return (
                         <div className='pair'>
-                        <div className='positions-row' style={{ flex: 1.2 }}>
-                          <div>
+                        <div className='positions-row' style={{ flex: 1.2}}>
+                          <div >
                             {transaction.security}
                           </div>
                         </div>
@@ -249,7 +249,7 @@ class OpenClosed extends React.Component {
                           </div>
                         </div>
                         <div className='positions-row-sm'>
-                          <div>
+                          <div className='ellipsis-sm'>
                             {transaction.price}
                           </div>
                         </div>
@@ -258,17 +258,17 @@ class OpenClosed extends React.Component {
                             {transaction.qty}
                           </div>
                         </div>
-                        <div className='positions-row'>
-                          <div>
+                        <div className='positions-row' style={{textOverflow:'ellipsis'}}>
+                          <div className='ellipsis'>
                             {transaction.customer}
                           </div>
                         </div>
-                        <div className='positions-row justify-content-end'>
+                        <div className='positions-row'>
                           <div>
                             {transaction.brkr_name}
                           </div>
                         </div>
-                        <div className='positions-row justify-content-end'>
+                        <div className='positions-row justify-content-end green font-weight-bold'>
                           {/* {(instance2.price*instance2.qty)-(instance1.price*instance1.qty)} */}
                           {i === 0 ? "$"+instance.realized_pnl.toLocaleString(undefined, {maximumFractionDigits: 2}) : ''}
                         </div>

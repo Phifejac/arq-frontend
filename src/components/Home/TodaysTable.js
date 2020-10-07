@@ -114,6 +114,7 @@ function Table({ columns, data }) {
       <div className="ReactTable -striped -highlight primary-pagination">
         <div className="pagination-top">
         </div>
+        <div style={{border:'solid 1px', marginLeft:'-1rem', padding:'1rem', paddingTop:'0rem', minHeight:'35rem', marginTop:'1rem', borderRadius:'1rem', marginBottom:'2rem'}}>
         <table {...getTableProps()} className="rt-table" style={{borderWidth:0}} style={{overflowX:'hidden'}}>
           <div className='todaystable-header card-shadow'>
             <thead className="rt-thead -header">
@@ -170,7 +171,7 @@ function Table({ columns, data }) {
             })}
           </tbody>
         </table>
-        <div className="pagination-bottom"></div>
+        </div>
       </div>
     </>
   );

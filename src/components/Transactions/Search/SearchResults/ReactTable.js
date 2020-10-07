@@ -263,14 +263,16 @@ function Table({ columns, data }) {
             })}
           </tbody>
         </table>
-
-        <div style={{display:'flex', flexDirection:'column', minHeight:'30rem'}} className='justify-content-center align-items-center'>
+        
+        {/* {data && */}
+            <div style={{display:'flex', flexDirection:'column', minHeight:'30rem'}} className='justify-content-center align-items-center'>
             {/* <div> */}
               <i className="fa fa-calendar-times-o" style={{fontSize:'6em', color:'#27292d', marginBottom:'.5rem'}}/>
               {/* <img src={require("../../../../assets/img/calendar.png")} style={{width:'7rem', marginBottom:'0rem'}}></img> */}
               <h5 style={{color:'#27292d', fontWeight:'600'}}>No date input</h5>
             {/* </div> */}
           </div>
+       {/* } */}
           
       </div>
       </div>

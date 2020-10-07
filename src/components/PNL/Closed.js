@@ -58,7 +58,7 @@ class Closed extends React.Component {
                     Counterparty
                   </div>
                 </div>
-                <div className='positions-head justify-content-end'>
+                <div className='positions-head'>
                   <div>
                     Broker
                   </div>
@@ -95,22 +95,22 @@ class Closed extends React.Component {
                             {transaction.price}
                           </div>
                         </div>
-                        <div className='positions-row-sm'>
+                        <div className='positions-row-sm '>
                           <div>
                             {transaction.qty}
                           </div>
                         </div>
                         <div className='positions-row'>
-                          <div>
+                          <div className='ellipsis-md'>
                             {transaction.customer}
                           </div>
                         </div>
-                        <div className='positions-row justify-content-end'>
-                          <div>
+                        <div className='positions-row'>
+                          <div className='ellipsis-md'>
                             {transaction.brkr_name}
                           </div>
                         </div>
-                        <div className='positions-row justify-content-end'>
+                        <div className='positions-row justify-content-end green font-weight-bold'>
                           {/* {(instance2.price*instance2.qty)-(instance1.price*instance1.qty)} */}
                           {i === 0 ? "$" + instance.realized_pnl.toLocaleString(undefined, {maximumFractionDigits: 2}) : ""}
                         </div>

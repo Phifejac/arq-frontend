@@ -588,6 +588,12 @@ head {
     padding-left: .5rem;
     padding-right: .5rem;
     border-radius: .25rem;
+    background-image: linear-gradient(to right, #23272A, #2d303500, #23272A);
+    margin-bottom: 1em;
+    padding-top:.25em;
+    padding-bottom:.25em;
+    box-shadow: 0px 5px 10px #00000013;
+    border: 1px #FFFFFF00 solid;
 }
 .positions-listitem-pair i {
     color: #27292D;
@@ -601,11 +607,12 @@ head {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 .positions-listitem-pair:hover {
     background-color: #FFFFFF10;
+    border: 1px #FFFFFF20 solid;
 }
 .positions-header {
     display: flex;
@@ -758,7 +765,7 @@ head {
     
 }
 .green {
-    color:#56ef81;
+    color:#1DFE37;
     background-color: transparent;
 }
 .todaystable-header {
@@ -964,4 +971,27 @@ head {
 }
 
 
-
+.ellipsis {
+    display: block;
+    /* white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 1rem;
+    width: 95%;
+  }
+  .ellipsis-md {
+    display: block;
+    /* white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 1rem;
+    width: 80%;
+  }
+  .ellipsis-sm {
+    display: block;
+    /* white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 1rem;
+    width: 50%;
+  }
