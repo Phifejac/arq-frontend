@@ -31,7 +31,7 @@ class MonthlyTransactions extends React.Component {
       for (const month of this.props.monthlyData) {
         console.log("month",month)
         month_labels.push(month[2])
-        month_transactions.push(month[4])
+        month_transactions.push(parseInt(month[4]))
       }
     }
 

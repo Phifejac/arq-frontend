@@ -1,7 +1,7 @@
 import React from "react";
 
 //api
-import { getOpenPositions, getInstances, getStatistics } from "../../api/http"
+import { getOpenPositions, getInstances, getStatistics, getStatisticsRange } from "../../api/http"
 import { formatDate, formatStatisticsWeek, formatStatisticsMonth } from "../../api/utils"
 
 
@@ -32,16 +32,17 @@ class PnL extends React.Component {
       volumeWeek : '',
       numTransactionsMonth : '',
       pnlMonth : '',
-      volumeMonth : ''
+      volumeMonth : '',
+      searchStatistics : {}
     };
     this.executeSearch= this.executeSearch.bind(this)
   }
 
   executeSearch = async (parameters) => {
     this.setState({ loading : true });
-    const statistics = await getStatistics( parameters )
+    const statistics = await getStatisticsRange( parameters )
     const newInstances = await getInstances(parameters)
-    this.setState({ loading : false, closedInstances : newInstances})
+    this.setState({ loading : false, closedInstances : newInstances, searchStatistics : statistics})
   }
 
   componentDidMount = async () => {
@@ -56,7 +57,7 @@ class PnL extends React.Component {
     const openPositions = await getOpenPositions()
     const closedInstances = await getInstances({"date":todayFormatted})
     const statisticsList = await getStatistics({ "start_date" : weekAgo, "end_date": todayFormatted})
-    const statisticsListMonth = await getStatistics({ "start_date" : firstOfMonth, "end_date":todayFormatted})
+    const statisticsListMonth = await getStatistics({ "start_date" : firstOfMonth, "end_date":todayFormatted, "type":"day"})
     const monthStats = await getStatistics({ "date":firstOfMonth, "type":"month" })
 
     const { todayStats, weekStats, weekLabels, weekData } = formatStatisticsWeek(statisticsList, today)
@@ -109,7 +110,7 @@ class PnL extends React.Component {
           </div>
           {this.state.tab === 'today' ?
           <div>
-            <PnLBar volumeToday={this.state.volumeToday} numTransactions={this.state.numTransactions} pnlToday={this.state.pnlToday} numOpen={this.state.openPositions.length} numClosed={this.state.closedInstances.length * 2}/>
+            <PnLBar volumeToday={this.state.volumeToday} numTransactions={this.state.numTransactions} pnlToday={this.state.pnlToday} numOpen={this.state.openPositions.length} numClosed={this.state.numTransactions - this.state.openPositions.length}/>
             <OpenClosed openPositions={this.state.openPositions} closedInstances={this.state.closedInstances}/> 
           </div>
           : 
@@ -137,7 +138,7 @@ class PnL extends React.Component {
           }
           {this.state.tab === 'search' ?
           <div>
-            <PnLSearchBar executeSearch={this.executeSearch} loading={this.state.loading} />
+            <PnLSearchBar executeSearch={this.executeSearch} loading={this.state.loading} searchStatistics={this.state.searchStatistics} />
             <Closed openPositions={this.state.openPositions} closedInstances={this.state.closedInstances}/>
           </div>
           : 

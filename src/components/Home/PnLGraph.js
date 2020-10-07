@@ -31,7 +31,7 @@ class PnLGraph extends React.Component {
     if (this.props.weekData) {
       for (const day of this.props.weekData) {
         day_labels.push(day[2])
-        day_pnls.push(day[5])
+        day_pnls.push(parseInt(day[5]))
       }
     }
 

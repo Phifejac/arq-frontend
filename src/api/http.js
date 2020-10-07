@@ -52,7 +52,6 @@ export const getInstances = async (parameters) => {
     queryString[param] = parameters[param]
   }
   try {
-    console.log("test querystring", querystring.stringify(queryString))
     const res = await axios.get("/api/instance?" + querystring.stringify(queryString))
     return res.data;
   } catch (err) {
@@ -72,3 +71,17 @@ export const getStatistics= async (parameters) => {
     throw err;
   }
 }
+
+
+export const getStatisticsRange = async (parameters) => {
+  const queryString = querystring.parse()
+  for (const param in parameters) {
+    queryString[param] = parameters[param]
+  }
+  try {
+    const res = await axios.get("/api/statistic/range?" + querystring.stringify(queryString));
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+} 

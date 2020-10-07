@@ -178,19 +178,19 @@ class PnLSearchBar extends React.Component {
         <div className='d-flex flex-row justify-content-around'>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>{this.state.numTransactions}</h3>
+            <h3 style={{fontWeight:'600'}}>{this.props.searchStatistics.total_transactions}</h3>
             <label>Transactions</label>
           </div>
         </div>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>{this.state.volume} </h3>
+            <h3 style={{fontWeight:'600'}}>{this.props.searchStatistics.total_volume ? "$" + this.props.searchStatistics.total_volume.toLocaleString(undefined, {maximumFractionDigits: 2}) : ""} </h3>
             <label>Volume</label>
           </div>
         </div>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>{this.state.pnl}</h3>
+            <h3 style={{fontWeight:'600'}}>{this.props.searchStatistics.total_pnl ? "$" +this.props.searchStatistics.total_pnl.toLocaleString(undefined, {maximumFractionDigits: 2}) : ""}</h3>
             <label>P&L</label>
           </div>
         </div>
