@@ -150,7 +150,10 @@ class PnLSearchBar extends React.Component {
                    </div>
                    <div style={{width:'14rem', paddingTop:'1rem'}}>
                       <div className='button-solid grow' onClick={this.startSearch}>
-                        <span>Search</span>
+                        <span>{!this.props.loading ? "Search" : <i
+                                    className="fa fa-spinner fa-spin"
+                                    style={{ marginRight: "5px" }}
+                                />}</span>
                       </div>
                       <div className='button-red' onClick={this.handleResetClick}>
                         <span>Clear</span>
@@ -175,20 +178,20 @@ class PnLSearchBar extends React.Component {
         <div className='d-flex flex-row justify-content-around'>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>16</h3>
+            <h3 style={{fontWeight:'600'}}>{this.state.numTransactions}</h3>
             <label>Transactions</label>
           </div>
         </div>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>3</h3>
-            <label>Instances</label>
+            <h3 style={{fontWeight:'600'}}>{this.state.volume} </h3>
+            <label>Volume</label>
           </div>
         </div>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>+200</h3>
-            <label>Net P&L</label>
+            <h3 style={{fontWeight:'600'}}>{this.state.pnl}</h3>
+            <label>P&L</label>
           </div>
         </div>
         </div>

@@ -23,6 +23,10 @@ class OpenClosed extends React.Component {
     };
   }
 
+  componentDidMount() {
+    console.log("this.props", this.props)
+  }
+
   confirmEdit = () => {
     this.setState({
       alert: (
@@ -140,6 +144,7 @@ class OpenClosed extends React.Component {
               <ul className='positions-header' style={{ width: '100%' }}>
 
                 {this.props.openPositions.map((position, i) => {
+                  console.log("running")
                   return (<li className='positions-listitem-pair grow-small'><div className='pair'>
                     <div className='positions-row' style={{ flex: 1.1 }}>
                       <div>
@@ -169,9 +174,7 @@ class OpenClosed extends React.Component {
                   </div>
                   </li>)
                 })}
-
               </ul>
-
             </div>
           </Card>
         </Col>
@@ -223,91 +226,56 @@ class OpenClosed extends React.Component {
               </ul>
               <ul className='positions-header' style={{ width: '100%' }}>
                 {this.props.closedInstances.map((instance, i) => {
-                  const instance1 = instance.transactions[0]
-                  const instance2 = instance.transactions[1]
+                  console.log("open instance", instance)
                   return (
                     <li className='positions-listitem-pair grow-small'>
-                      <div className='pair'>
+                    
+                    {instance.transactions.map((transaction, i) => {
+                      return (
+                        <div className='pair'>
                         <div className='positions-row' style={{ flex: 1.2 }}>
                           <div>
-                            {instance1.security}
+                            {transaction.security}
                           </div>
                         </div>
                         <div className='positions-row'>
                           <div>
-                            CUSIP
+                            {transaction.cusip}
                           </div>
                         </div>
                         <div className='positions-row-sm'>
                           <div>
-                            {instance1.side}
+                            {transaction.side}
                           </div>
                         </div>
                         <div className='positions-row-sm'>
                           <div>
-                            {instance1.price}
+                            {transaction.price}
                           </div>
                         </div>
                         <div className='positions-row-sm'>
                           <div>
-                            {instance1.qty}
+                            {transaction.qty}
                           </div>
                         </div>
                         <div className='positions-row'>
                           <div>
-                            {instance1.customer}
+                            {transaction.customer}
                           </div>
                         </div>
                         <div className='positions-row justify-content-end'>
                           <div>
-                            {instance1.brkr_name}
+                            {transaction.brkr_name}
                           </div>
                         </div>
                         <div className='positions-row justify-content-end'>
                           {/* {(instance2.price*instance2.qty)-(instance1.price*instance1.qty)} */}
-                          200
+                          {i === 0 ? "$"+instance.realized_pnl.toLocaleString(undefined, {maximumFractionDigits: 2}) : ''}
                         </div>
                       </div>
-                      <div className='pair'>
-                        <div className='positions-row' style={{ flex: 1.2 }}>
-                          <div>
-                            {instance2.security}
-                          </div>
-                        </div>
-                        <div className='positions-row'>
-                          <div>
-                            CUSIP
-                          </div>
-                        </div>
-                        <div className='positions-row-sm'>
-                          <div>
-                            {instance2.side}
-                          </div>
-                        </div>
-                        <div className='positions-row-sm'>
-                          <div>
-                            {instance2.price}
-                          </div>
-                        </div>
-                        <div className='positions-row-sm'>
-                          <div>
-                            {instance2.qty}
-                          </div>
-                        </div>
-                        <div className='positions-row'>
-                          <div>
-                            {instance2.customer}
-                          </div>
-                        </div>
-                        <div className='positions-row justify-content-end'>
-                          <div>
-                            {instance2.brkr_name}
-                          </div>
-                        </div>
-                        <div className='positions-row justify-content-end'>
-                          
-                        </div>
-                      </div>
+                      )
+                    })}
+                     
                     </li>
                   )
                 })}

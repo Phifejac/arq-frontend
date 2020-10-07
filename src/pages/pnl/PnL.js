@@ -2,7 +2,7 @@ import React from "react";
 
 //api
 import { getOpenPositions, getInstances, getStatistics } from "../../api/http"
-import { formatDate } from "../../api/utils"
+import { formatDate, formatStatisticsWeek, formatStatisticsMonth } from "../../api/utils"
 
 
 // subcomponents
@@ -12,7 +12,7 @@ import SearchInput from "components/PNL/SearchInput";
 import PnLSearchBar from "components/PNL/PnLSearchBar";
 import SearchResults from "components/PNL/SearchResults";
 import Closed from "components/PNL/Closed";
-import PnLWeek from "components/PNL/PnLWeek";
+import PnLOverview from "components/PNL/PnLOverview";
 
 // api imports
 import { getTransactions } from "../../api/http"
@@ -21,35 +21,66 @@ class PnL extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab:'search',
+      tab:'today',
       openPositions : [],
       closedInstances : [],
       numTransactions : '',
       pnlToday : '',
-      volumeToday : ''
+      volumeToday : '',
+      numTransactionsWeek : '',
+      pnlWeek : '',
+      volumeWeek : '',
+      numTransactionsMonth : '',
+      pnlMonth : '',
+      volumeMonth : ''
     };
     this.executeSearch= this.executeSearch.bind(this)
   }
 
   executeSearch = async (parameters) => {
     this.setState({ loading : true });
-    // const newTransactions = await getTransactions(parameters);
-    // const newInstances = await getInstances({parameters})
-    // this.setState({ loading : false, closedInstances : newInstances})
+    const statistics = await getStatistics( parameters )
+    const newInstances = await getInstances(parameters)
+    this.setState({ loading : false, closedInstances : newInstances})
   }
 
   componentDidMount = async () => {
-    const today = formatDate(new Date("9/24/20"))
+    const today = new Date("9/21/20")
+    const todayFormatted = formatDate(new Date("9/21/20"))
+
+    var oneWeekAgo = new Date("9/21/2020");
+    const weekAgo = formatDate(oneWeekAgo.setDate(oneWeekAgo.getDate()-7))
+    console.log("week ago", weekAgo)
+    const firstOfMonth = formatDate(today.getMonth()+1 + "/01/" + String(today.getFullYear()))
+    
     const openPositions = await getOpenPositions()
-    const closedInstances = await getInstances({"date":today})
-    const statistics = await getStatistics({ "date" : today, "type":"day"})
-    console.log("stats", statistics)
+    const closedInstances = await getInstances({"date":todayFormatted})
+    const statisticsList = await getStatistics({ "start_date" : weekAgo, "end_date": todayFormatted})
+    const statisticsListMonth = await getStatistics({ "start_date" : firstOfMonth, "end_date":todayFormatted})
+    const monthStats = await getStatistics({ "date":firstOfMonth, "type":"month" })
+
+    const { todayStats, weekStats, weekLabels, weekData } = formatStatisticsWeek(statisticsList, today)
+    const { monthLabels, monthData } = formatStatisticsMonth(statisticsListMonth)
+
     this.setState({ 
+      statisticsListWeek : statisticsList,
       openPositions : openPositions,
       closedInstances : closedInstances,
-      volumeToday : statistics[0].volume.toLocaleString(undefined, {maximumFractionDigits: 2}),
-      pnlToday : statistics[0].pnl.toLocaleString(undefined, {maximumFractionDigits: 2}),
-      numTransactions : statistics[0].num_transactions
+      volumeToday : todayStats.volume.toLocaleString(undefined, {maximumFractionDigits: 2}),
+      pnlToday : todayStats.pnl.toLocaleString(undefined, {maximumFractionDigits: 2}),
+      numTransactions : todayStats.num_transactions,
+
+      volumeWeek : weekStats.volume.toLocaleString(undefined, {maximumFractionDigits: 2}),
+      pnlWeek : weekStats.pnl.toLocaleString(undefined, {maximumFractionDigits: 2}),
+      numTransactionsWeek : weekStats.num_transactions,
+      weekLabels : weekLabels,
+      weekData : weekData,
+
+      volumeMonth : monthStats[0].volume.toLocaleString(undefined, {maximumFractionDigits: 2}),
+      pnlMonth : monthStats[0].pnl.toLocaleString(undefined, {maximumFractionDigits: 2}),
+      numTransactionsMonth: monthStats[0].num_transactions,
+      monthLabels : monthLabels,
+      monthData : monthData
     })
   }
 
@@ -87,7 +118,7 @@ class PnL extends React.Component {
           {this.state.tab === 'week' ?
           <div>
             {/* <PnLBar volumeToday={this.state.volumeToday} numTransactions={this.state.numTransactions} pnlToday={this.state.pnlToday} numOpen={this.state.openPositions.length} numClosed={this.state.closedInstances.length * 2}/> */}
-            <PnLWeek volumeToday={this.state.volumeToday} numTransactions={this.state.numTransactions} pnlToday={this.state.pnlToday} numOpen={this.state.openPositions.length} numClosed={this.state.closedInstances.length * 2} />
+            <PnLOverview type={"Week"} volume={this.state.volumeWeek} numTransactions={this.state.numTransactionsWeek} pnl={this.state.pnlWeek} numOpen={this.state.openPositions.length} numClosed={this.state.numTransactionsWeek - this.state.openPositions.length} labels={this.state.weekLabels} data={this.state.weekData} />
             {/* <OpenClosed openPositions={this.state.openPositions} closedInstances={this.state.closedInstances}/>  */}
             <Closed openPositions={this.state.openPositions} closedInstances={this.state.closedInstances}/>
           </div>
@@ -97,7 +128,7 @@ class PnL extends React.Component {
          {this.state.tab === 'month' ?
           <div>
             {/* <PnLBar volumeToday={this.state.volumeToday} numTransactions={this.state.numTransactions} pnlToday={this.state.pnlToday} numOpen={this.state.openPositions.length} numClosed={this.state.closedInstances.length * 2}/> */}
-            <PnLWeek volumeToday={this.state.volumeToday} numTransactions={this.state.numTransactions} pnlToday={this.state.pnlToday} numOpen={this.state.openPositions.length} numClosed={this.state.closedInstances.length * 2} />
+            <PnLOverview type={"Month"} volume={this.state.volumeMonth} numTransactions={this.state.numTransactionsMonth} pnl={this.state.pnlMonth} numOpen={this.state.openPositions.length} numClosed={this.state.numTransactionsMonth-this.state.openPositions.length} labels={this.state.monthLabels} data={this.state.monthData}/>
             {/* <OpenClosed openPositions={this.state.openPositions} closedInstances={this.state.closedInstances}/>  */}
             <Closed openPositions={this.state.openPositions} closedInstances={this.state.closedInstances}/>
           </div>

@@ -16,20 +16,43 @@ import {
   chartExample10,
 } from "variables/charts.js";
 
-class PnLWeek extends React.Component {
+class PnLOverview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     };
   }
+  
+  
+
+  
   render() {
+
+    const data = {
+      labels: 
+        this.props.labels
+      ,
+      datasets: [
+        {
+          label: "PNL",
+          borderColor: "#1C8CFF",
+          fill: true,
+          backgroundColor: "#1C8CFF",
+          hoverBorderColor: "#1C8CFF",
+          borderWidth: 5,
+          barPercentage: 0.4,
+          data: this.props.data,
+        },
+      ],
+    }
+    
     
     return (
       <Row style={{paddingTop:'5rem', paddingBottom:'0rem'}}>
 
       <Col md="6">
         <Card className='homecard'>
-        <h4>This Week</h4>
+        <h4>This {this.props.type}</h4>
         <hr/>
         <div className='homecard-data' style={{marginBottom:'1rem'}}>
           <div style={{flex:.5}}>
@@ -51,15 +74,11 @@ class PnLWeek extends React.Component {
         </div>
         <div className='homecard-data'>
           <div style={{flex:.5}}>
-            <h3 style={{}}>${this.props.volumeToday} </h3>
+            <h3 style={{}}>${this.props.volume} </h3>
             <label>Volume</label>
           </div>
-          <div style={{flex:.5}}>
-            <h3 style={{fontWeight:'600'}}>{this.props.numTransactions} </h3>
-            <label>Unrealized P&L</label>
-          </div>
           <div style={{flex:.35}}>
-            <h3 style={{fontWeight:'600', color:'#1cff36'}}>${this.props.pnlToday} </h3>
+            <h3 style={{fontWeight:'600', color:'#1cff36'}}>${this.props.pnl} </h3>
             <label>Realized PNL</label>
             <div style={{display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
               {/**<i className="fa fa-sort-up green" style={{marginRight:'.25rem'}}/><label><span className='green'>(+3.37%)</span></label> **/}
@@ -75,7 +94,7 @@ class PnLWeek extends React.Component {
         <hr/>
         <div className='d-flex flex-row justify-content-around'>
         <Bar
-                    data={chartExample10.data}
+                    data={data}
                     options={chartExample10.options}
                   />
         </div>
@@ -87,4 +106,4 @@ class PnLWeek extends React.Component {
   }
 }
 
-export default PnLWeek;
+export default PnLOverview;

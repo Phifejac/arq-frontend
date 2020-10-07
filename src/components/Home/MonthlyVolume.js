@@ -32,7 +32,7 @@ class MonthlyVolume extends React.Component {
       for (const month of this.props.monthlyData) {
         console.log("month",month)
         month_labels.push(month[2])
-        month_transactions.push(month[3])
+        month_transactions.push(parseInt(month[3]))
       }
     }
 

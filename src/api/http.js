@@ -52,6 +52,7 @@ export const getInstances = async (parameters) => {
     queryString[param] = parameters[param]
   }
   try {
+    console.log("test querystring", querystring.stringify(queryString))
     const res = await axios.get("/api/instance?" + querystring.stringify(queryString))
     return res.data;
   } catch (err) {

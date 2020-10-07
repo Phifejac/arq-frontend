@@ -9,3 +9,40 @@ export const formatDate = (date) => {
     return mm + '/' + dd + '/' + yyyy;
 }
 
+
+export const formatStatisticsWeek = (statistics, today) => {
+
+    const todayFormat = today.getFullYear() + "-" + ('0' + (today.getMonth()+1)).slice(-2) + "-" + today.getDate()
+    var todayStats
+    var weekStats = {
+        pnl : 0,
+        num_transactions : 0,
+        volume : 0
+    }
+
+    const weekLabels = []
+    const weekData = []
+    for (const stat of statistics) {
+        if (todayFormat == stat.date) {
+            todayStats = stat
+        }
+        weekStats.pnl += stat.pnl
+        weekStats.volume += stat.volume
+        weekStats.num_transactions += stat.num_transactions
+        weekLabels.push(stat.date)
+        weekData.push(parseInt(stat.pnl))
+    }
+    console.log("weekdata", weekData)
+    return {todayStats : todayStats, weekStats : weekStats, weekLabels : weekLabels, weekData, weekData}
+}
+
+
+export const formatStatisticsMonth = (statistics) => {
+    const monthLabels = []
+    const monthData = []
+    for (const stat of statistics) {
+        monthLabels.push(stat.date)
+        monthData.push(parseInt(stat.pnl))
+    }
+    return { monthLabels : monthLabels, monthData : monthData }
+}
