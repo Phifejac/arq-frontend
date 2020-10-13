@@ -46,10 +46,10 @@ class PnL extends React.Component {
   }
 
   componentDidMount = async () => {
-    const today = new Date("9/21/20")
-    const todayFormatted = formatDate(new Date("9/21/20"))
+    const today = new Date()
+    const todayFormatted = formatDate(new Date())
 
-    var oneWeekAgo = new Date("9/21/2020");
+    var oneWeekAgo = new Date();
     const weekAgo = formatDate(oneWeekAgo.setDate(oneWeekAgo.getDate()-7))
     console.log("week ago", weekAgo)
     const firstOfMonth = formatDate(today.getMonth()+1 + "/01/" + String(today.getFullYear()))

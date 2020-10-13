@@ -113,7 +113,7 @@ class OpenClosed extends React.Component {
         {this.state.alert}
         <Col md="4">
           <Card className='card-openclosed' style={{ minHeight: '35.5rem' }}>
-            <h4>Open Positions</h4>
+            <h4>Open Transactions</h4>
             {/* <hr/> */}
             <div className='positions'>
               <ul className='positions-list card-shadow'>
@@ -134,7 +134,7 @@ class OpenClosed extends React.Component {
                 </div>
                 <div className='positions-head justify-content-end' >
                   <div>
-                    Avg. Entry Price
+                    Price
                   </div>
                 </div>
                 <div className='positions-head-sm'>
@@ -163,7 +163,7 @@ class OpenClosed extends React.Component {
                     </div>
                     <div className='positions-row justify-content-end'>
                       <div>
-                        {position.avg_entry_price}
+                        ${position.price}
                       </div>
                     </div>
                     <div className='positions-row-sm justify-content-end'>
