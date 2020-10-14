@@ -16,7 +16,8 @@ import MonthlyTransactions from "components/Home/MonthlyTransactions";
 
 // api
 
-import { getHomeStatistics } from "../../api/http"
+import { getHomeStatistics, getTransactions } from "../../api/http"
+import { formatDate } from "../../api/utils"
 import AdvancedSearchResults from "components/Transactions/AdvancedSearch/AdvancedSearchResults";
 
 class Home extends React.Component {
@@ -28,12 +29,14 @@ class Home extends React.Component {
       numTransactionsMonth : null,
       pnlToday : null,
       pnlWeek : null,
-      pnlMonth : null
+      pnlMonth : null,
+      transactions : []
     };
   }
 
   componentDidMount = async () => {
     const statistics = await getHomeStatistics();
+    const transactions = await getTransactions({"start_date": formatDate(new Date()), "end_date": formatDate(new Date())})
     console.log("statistics", statistics)
     this.setState({ 
       numTransactionsToday : statistics.num_transactions_today,
@@ -43,7 +46,8 @@ class Home extends React.Component {
       pnlWeek : statistics.pnl_week.toLocaleString(undefined, {maximumFractionDigits: 2}),
       pnlMonth : statistics.pnl_month.toLocaleString(undefined, {maximumFractionDigits: 2}),
       month : statistics.month,
-      week : statistics.week
+      week : statistics.week,
+      transactions : transactions
     })
   }
   handleTagsinput = (tagsinput) => {
