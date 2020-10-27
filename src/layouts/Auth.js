@@ -56,13 +56,6 @@ class Pages extends React.Component {
             component: Login,
             layout: "/auth",
           },
-          {
-            path: "/register",
-            name: "Register",
-            mini: "R",
-            component: Register,
-            layout: "/auth",
-          },
         ],
       },
     ];

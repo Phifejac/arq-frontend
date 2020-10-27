@@ -20,13 +20,36 @@ import {
   Row,
 } from "reactstrap";
 
+import { login } from "../../api/http"
+
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading : false,
+      username: "",
+      password: "",
+      incorrectLogin : false
+    };
+  }
   componentDidMount() {
     document.body.classList.toggle("login-page");
   }
   componentWillUnmount() {
     document.body.classList.toggle("login-page");
   }
+
+  verifyLogin = async () => {
+    this.setState({ loading : true })
+    const loginResult = await login(this.state.username, this.state.password)
+    if (loginResult.jwt) {
+      this.props.history.push("/admin/home")
+      this.setState({ loading : false })
+    } else {
+      this.setState({ incorrectLogin : true, loading: false })
+    }
+  }
+
   render() {
     return (
       <div className="login-page">
@@ -41,9 +64,9 @@ class Login extends React.Component {
                     </CardHeader>
                   </CardHeader>
                   <CardBody>
-                    <InputGroup>
+                    <InputGroup onChange={(e)=> this.setState( {username : e.target.value} )}>
                       <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
+                        <InputGroupText onChange={()=> console.log("this was changed")}> 
                           <i className="nc-icon nc-single-02" />
                         </InputGroupText>
                       </InputGroupAddon>
@@ -56,6 +79,7 @@ class Login extends React.Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
+                        onChange={(e)=> this.setState( {password : e.target.value} )}
                         placeholder="Password"
                         type="password"
                         autoComplete="off"
@@ -69,10 +93,14 @@ class Login extends React.Component {
                       className="btn-round mb-3"
                       color="primary"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={() => this.verifyLogin()}
                     >
-                      Log In
+                      {!this.state.loading ? "Login" : <i
+                                    className="fa fa-spinner fa-spin"
+                                    style={{ marginRight: "5px" }}
+                                />}
                     </Button>
+                    {this.state.incorrectLogin && <span style={{ color: "red", textAlign:"center", width:"100%", alignSelf:"center"}}>Incorrect Username or Password</span>}
                   </CardFooter>
                 </Card>
               </Form>

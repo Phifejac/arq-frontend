@@ -2,6 +2,40 @@ import querystring from "query-string"
 import axios from "./axios"
 
 
+// login route
+export const login = async (username, password) => {
+  try {
+    const body = {
+      username:username,
+      password:password
+    }
+    const res = await axios.post(`/api/login`, body );
+    if (res.data.jwt) {
+      console.log("this was set")
+      sessionStorage.setItem("jwt", res.data.jwt)
+    }
+    return res.data;
+  } catch (err) {
+    return {"error" :"incorrect username or password"}
+  }
+}
+
+// register route
+export const register = async (username, email, password) => {
+  try {
+    const body = {
+      username:username,
+      email:email,
+      password:password
+    }
+    const res = await axios.post(`/api/register`, body );
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+
 // get all transactions subject to a query string
 export const getTransactions = async (parameters) => {
   try {

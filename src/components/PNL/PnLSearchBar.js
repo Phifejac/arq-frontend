@@ -56,6 +56,7 @@ class PnLSearchBar extends React.Component {
     if (this.state.start_date) {
       parameters["start_date"] = formatDate(new Date(this.state.start_date));
       parameters["end_date"] = formatDate(new Date(this.state.end_date));
+      parameters["type"] = "day"
     }
     if (this.state.client ) parameters["client"] = this.state.client.label;
     if (this.state.cusip) parameters["cusip"] = this.state.cusip;
