@@ -55,7 +55,7 @@ class PnL extends React.Component {
     
     const openPositions = await getOpenPositions()
     const closedInstances = await getInstances({"date":todayFormatted})
-    const statisticsList = await getStatistics({ "start_date" : weekAgo, "end_date": todayFormatted})
+    const statisticsList = await getStatistics({ "start_date" : weekAgo, "end_date": todayFormatted, "type":"day"})
     const statisticsListMonth = await getStatistics({ "start_date" : firstOfMonth, "end_date":todayFormatted, "type":"day"})
     const monthStats = await getStatistics({ "date":firstOfMonth, "type":"month" })
 
