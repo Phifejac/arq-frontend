@@ -51,7 +51,6 @@ class PnL extends React.Component {
 
     var oneWeekAgo = new Date();
     const weekAgo = formatDate(oneWeekAgo.setDate(oneWeekAgo.getDate()-7))
-    console.log("week ago", weekAgo)
     const firstOfMonth = formatDate(today.getMonth()+1 + "/01/" + String(today.getFullYear()))
     
     const openPositions = await getOpenPositions()
@@ -62,6 +61,8 @@ class PnL extends React.Component {
 
     const { todayStats, weekStats, weekLabels, weekData } = formatStatisticsWeek(statisticsList, today)
     const { monthLabels, monthData } = formatStatisticsMonth(statisticsListMonth)
+
+    console.log("today", todayStats)
 
     this.setState({ 
       statisticsListWeek : statisticsList,
