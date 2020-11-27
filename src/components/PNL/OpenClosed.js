@@ -23,10 +23,6 @@ class OpenClosed extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log("this.props", this.props)
-  }
-
   confirmEdit = () => {
     this.setState({
       alert: (
@@ -144,7 +140,6 @@ class OpenClosed extends React.Component {
               <ul className='positions-header' style={{ width: '100%' }}>
 
                 {this.props.openPositions.map((position, i) => {
-                  console.log("running")
                   return (<li className='positions-listitem-pair grow-small'><div className='pair'>
                     <div className='positions-row' style={{ flex: 1.1 }}>
                       <div>
@@ -226,7 +221,6 @@ class OpenClosed extends React.Component {
               </ul>
               <ul className='positions-header' style={{ width: '100%' }}>
                 {this.props.closedInstances.map((instance, i) => {
-                  console.log("open instance", instance)
                   return (
                     <li className='positions-listitem-pair grow-small'>
                     

@@ -62,8 +62,6 @@ class PnL extends React.Component {
     const { todayStats, weekStats, weekLabels, weekData } = formatStatisticsWeek(statisticsList, today)
     const { monthLabels, monthData } = formatStatisticsMonth(statisticsListMonth)
 
-    console.log("today", todayStats)
-
     this.setState({ 
       statisticsListWeek : statisticsList,
       openPositions : openPositions,

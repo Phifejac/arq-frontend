@@ -11,7 +11,6 @@ export const login = async (username, password) => {
     }
     const res = await axios.post(`/api/login`, body );
     if (res.data.jwt) {
-      console.log("this was set")
       sessionStorage.setItem("jwt", res.data.jwt)
     }
     return res.data;

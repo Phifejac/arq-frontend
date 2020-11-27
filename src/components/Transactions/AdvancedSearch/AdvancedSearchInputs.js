@@ -108,13 +108,11 @@ class AdvancedSearchInputs extends React.Component {
       if (this.state.side === "sell") parameters["side"] = "S";
     }
 
-    console.log("new transactions parameters", parameters)
     this.props.executeSearch(parameters)
   }
 
   handleDayClick(day) {
     const range = DateUtils.addDayToRange(day, this.state);
-    console.log("range", range)
     this.setState(range);
     this.setState({ start_date: range.from, end_date: range.to });
   }

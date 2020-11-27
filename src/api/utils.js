@@ -23,7 +23,6 @@ export const formatStatisticsWeek = (statistics, today) => {
     const weekLabels = []
     const weekData = []
     for (const stat of statistics) {
-        console.log("today", todayFormat, stat.date)
         if (todayFormat == stat.date) {
             todayStats = stat
         }
@@ -33,7 +32,6 @@ export const formatStatisticsWeek = (statistics, today) => {
         weekLabels.push(stat.date)
         weekData.push(parseInt(stat.pnl))
     }
-    console.log("weekdata", weekData)
     return {todayStats : todayStats, weekStats : weekStats, weekLabels : weekLabels, weekData, weekData}
 }
 

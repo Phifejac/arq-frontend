@@ -58,12 +58,10 @@ class AdvancedSearchResults extends React.Component {
           customer: prop.customer,
           broker: prop.brkr_name,
           status: prop.status,
-          // yield: prop.yield,
           actions: (
-            // we've added some custom button actions
             <div className="actions-right grow">
               <Button
-                onClick={() => { this.viewButton() }}
+                onClick={() => { this.viewButton(prop) }}
                 style={{ color: 'grey' }}
                 size="md"
                 className="btn-icon btn-link edit"
@@ -249,7 +247,7 @@ class AdvancedSearchResults extends React.Component {
       ),
     });
   };
-  viewButton = () => {
+  viewButton = (transaction) => {
     this.setState({
       alert: (
         <ReactBSAlert
@@ -269,7 +267,7 @@ class AdvancedSearchResults extends React.Component {
         >
           <div className='text-left' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <span className='input-category' style={{ marginTop: '-1rem', color: 'white' }}>Security</span>
-            <h5 style={{ color: 'white' }}>T 1 1/4 05/15/50</h5>
+            <h5 style={{ color: 'white' }}>hi</h5>
             <hr />
             <div style={{ width: '80%' }}>
               <Line

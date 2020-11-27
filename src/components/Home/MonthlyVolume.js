@@ -25,18 +25,14 @@ class MonthlyVolume extends React.Component {
     this.setState({ tagsinput });
   };
   render() {
-    console.log("months", this.props.monthlyData)
     const month_labels = []
     const month_transactions = []
     if (this.props.monthlyData) {
       for (const month of this.props.monthlyData) {
-        console.log("month",month)
         month_labels.push(month[2])
         month_transactions.push(parseInt(month[3]))
       }
     }
-
-    console.log("month", this.props.monthlyData)
 
     // default color for the charts
     let chartColor = "#FFFFFF";

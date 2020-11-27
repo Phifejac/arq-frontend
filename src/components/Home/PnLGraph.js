@@ -35,8 +35,6 @@ class PnLGraph extends React.Component {
       }
     }
 
-    console.log("pnl", day_pnls)
-    console.log("labels", day_labels) 
     // default color for the charts
     let chartColor = "#FFFFFF";
     // ##############################

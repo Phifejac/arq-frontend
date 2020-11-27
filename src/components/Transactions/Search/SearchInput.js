@@ -47,7 +47,6 @@ class SearchInput extends Component {
     if (this.state.client ) parameters["client"] = this.state.client.label;
     if (this.state.cusip) parameters["cusip"] = this.state.cusip;
 
-    console.log("new transactions parameters", parameters)
     this.props.executeSearch(parameters)
   }
 

@@ -37,7 +37,6 @@ class Home extends React.Component {
   componentDidMount = async () => {
     const statistics = await getHomeStatistics();
     const transactions = await getTransactions({"start_date": formatDate(new Date()), "end_date": formatDate(new Date())})
-    console.log("statistics", statistics)
     this.setState({ 
       numTransactionsToday : statistics.num_transactions_today,
       numTransactionsWeek : statistics.num_transactions_week,

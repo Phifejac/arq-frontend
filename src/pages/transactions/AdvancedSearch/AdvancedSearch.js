@@ -11,11 +11,6 @@ import AdvancedSearchResults from "components/Transactions/AdvancedSearch/Advanc
 // api imports
 import { getTransactions } from "../../../api/http"
 
-const Transactions = [
-  // {id: uuid(), content:'First Task'},
-  // {id: uuid(), content:'First Task'}
-]
-
 
 class AdvancedSearch extends Component {
   static defaultProps = {
@@ -69,7 +64,6 @@ class AdvancedSearch extends Component {
     this.setState({ loading : true });
     const newTransactions = await getTransactions(parameters);
     this.setState({ loading : false, transactions : newTransactions})
-    console.log("new transactions", newTransactions);
   }
   
   render() {
