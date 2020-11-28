@@ -133,7 +133,7 @@ class SearchResults extends React.Component {
               // we've added some custom button actions
               <div className="actions-right grow">
                 <Button
-                  onClick={() => { this.viewButton() }}
+                  onClick={() => { this.viewButton(prop) }}
                   style={{ color: 'grey' }}
                   size="md"
                   className="btn-icon btn-link edit"
@@ -142,7 +142,7 @@ class SearchResults extends React.Component {
                   <i className="fa fa-eye white" />
                 </Button>{" "}
                 <Button
-                  onClick={() => { this.editButton() }}
+                  onClick={() => { this.editButton(prop) }}
                   style={{ color: 'grey' }}
                   size="md"
                   className="btn-icon btn-link edit"
@@ -248,7 +248,7 @@ class SearchResults extends React.Component {
       ),
     });
   };
-  viewButton = () => {
+  viewButton = (transaction) => {
     this.setState({
       alert: (
         <ReactBSAlert
@@ -267,7 +267,7 @@ class SearchResults extends React.Component {
           btnSize=""
         >
           <div className='text-left' style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-            <span className='input-category' style={{marginTop:'-1rem', color:'white'}}>Security</span>
+            {/* <span className='input-category' style={{marginTop:'-1rem', color:'white'}}>Security</span>
             <h5 style={{color:'white'}}>T 1 1/4 05/15/50</h5>
               <hr/>
               <div style={{width:'80%'}}>
@@ -276,8 +276,8 @@ class SearchResults extends React.Component {
                     options={chartExample1.options}
                   />
                 <br/><br/>
-              </div>
-            <Transaction/>
+              </div> */}
+            <Transaction transaction={transaction}/>
           </div>
         </ReactBSAlert>
       ),

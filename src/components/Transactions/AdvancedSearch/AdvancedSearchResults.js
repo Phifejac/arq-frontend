@@ -30,7 +30,8 @@ import ReactTable from "../Search/SearchResults/ReactTableFilters.js";
 import EditTransaction from "../Search/SearchResults/EditTransaction";
 import Transaction from "../Search/SearchResults/Transaction";
 import TransactionSearch from "pages/transactions/TransactionSearch/TransactionSearch.js";
-import {updateTransaction} from "../../../api/http"
+import {updateTransaction, deleteTransaction} from "../../../api/http"
+import { string } from "prop-types";
 
 const dataTable = [
 ];
@@ -155,7 +156,7 @@ class AdvancedSearchResults extends React.Component {
                   <i className="fa fa-edit white" />
                 </Button>
                 <Button
-                  // onClick={}
+                  onClick={() => { this.confirmDelete(prop) }}
                   style={{ color: 'grey' }}
                   size="md"
                   className="btn-icon btn-link edit"
@@ -163,32 +164,6 @@ class AdvancedSearchResults extends React.Component {
                 >
                   <i className="fa fa-trash white" />
                 </Button>
-                {/* <Input style={{ marginTop: '.5rem' }} type="checkbox" /> */}
-
-                {/* use this button to add a edit kind of action */}
-
-                {/* use this button to remove the data row */}
-                {/* <Button
-                onClick={() => {
-                  var data = this.state.data;
-                  data.find((o, i) => {
-                    if (o.id === key) {
-                      // here you should add some custom code so you can delete the data
-                      // from this component and from your server as well
-                      data.splice(i, 1);
-                      console.log(data);
-                      return true;
-                    }
-                    return false;
-                  });
-                  this.setState({ data: data });
-                }}
-                color="danger"
-                size="sm"
-                className="btn-icon btn-link remove"
-              >
-                <i className="fa fa-times" />
-              </Button>{" "} */}
               </div>
             )
           }
@@ -210,6 +185,48 @@ class AdvancedSearchResults extends React.Component {
     const yyyy = date.getFullYear();
     return (yyyy + "-" + mm + "-" + dd)
   }
+  addButton() {
+    const empty = {
+      "security": "",
+      "cusip": "",
+      "side": "",
+      "broker": "",
+      "customer": "",
+      "trade_date": new Date(),
+      "time": "",
+      "price": "",
+      "qty": ""
+    }
+    this.setState({
+      trade_date: this.dateToString(new Date()),
+      alert: (
+        <ReactBSAlert
+          style={{ display: "block", marginTop: "-100px", width: '60%', backgroundColor: '#27292D' }}
+          className='text-left'
+          onConfirm={() => this.confirmEdit()}
+          onCancel={() => this.hideAlert()}
+          confirmBtnBsStyle="primary"
+          cancelBtnBsStyle="danger"
+          confirmBtnText="Save Changes"
+          cancelBtnText="Cancel"
+          showCancel
+          btnSize=""
+        >
+          <div className='text-left'>
+            <h5 style={{ color: 'white' }}>Add Transaction</h5>
+            <p style={{ fontSize: '.8rem', color: 'white' }}>Fill in all fields and confirm changes to save.</p>
+            <hr />
+            <EditTransaction 
+              transaction={empty}
+              handleChange={this.handleChange}
+              handleDateChange={this.handleDateChange}
+            />
+          </div>
+        </ReactBSAlert>
+      ),
+    })
+  }
+
   editButton = (transaction) => {
     this.setState({
       id: transaction.id,
@@ -314,12 +331,12 @@ class AdvancedSearchResults extends React.Component {
         <ReactBSAlert
           style={{ display: "block", marginTop: "-100px", backgroundColor: '#27292D' }}
           title="Changes Saved!"
-          onConfirm={() => this.hideAlert()}
-          onCancel={() => this.hideAlert()}
+          onConfirm={() => {this.hideAlert(); window.location.reload()}}
+          onCancel={() => {this.hideAlert(); window.location.reload()}}
           confirmBtnBsStyle="primary"
           btnSize=""
         >
-          Changes to the transaction have been saved.
+          The database has been updated accordingly.
         </ReactBSAlert>
       ),
     });
@@ -331,7 +348,6 @@ class AdvancedSearchResults extends React.Component {
           // warning
           style={{ display: "block", marginTop: "-100px", width: '60%', backgroundColor: '#27292D' }}
           className='text-left'
-          // title="Edit Transaction"
           onConfirm={() => this.confirmEdit()}
           onCancel={() => this.hideAlert()}
           confirmBtnBsStyle="primary"
@@ -343,80 +359,44 @@ class AdvancedSearchResults extends React.Component {
           btnSize=""
         >
           <div className='text-left' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            {/* <span className='input-category' style={{ marginTop: '-1rem', color: 'white' }}>Security</span>
-            <h5 style={{ color: 'white' }}>{transaction.security}</h5>
-            <hr />
-            <div style={{ width: '80%' }}>
-              <Line
-                data={chartExample1.data}
-                options={chartExample1.options}
-              />
-              <br /><br />
-            </div> */}
             <Transaction transaction={transaction}/>
           </div>
         </ReactBSAlert>
       ),
     });
   };
-  warningWithConfirmAndCancelMessage = () => {
+  confirmDelete = (transaction) => {
     this.setState({
+      id: transaction.id,
+      trade_date: transaction.trade_date,
       alert: (
         <ReactBSAlert
-          // warning
-          style={{ display: "block", marginTop: "-100px", width: '90%' }}
-          className='text-left'
-          // title="Edit Transaction"
-          onConfirm={() => this.successDelete()}
-          onCancel={() => this.cancelDetele()}
-          confirmBtnBsStyle="info"
+          warning
+          style={{ display: "block", marginTop: "-100px", backgroundColor: '#27292D' }}
+          title="Confirm Deletion"
+          onConfirm={() => this.deleteTransaction()}
+          onCancel={() => this.hideAlert()}
+          confirmBtnBsStyle="primary"
           cancelBtnBsStyle="danger"
-          confirmBtnText="Save Changes"
+          confirmBtnText="Confirm"
           cancelBtnText="Cancel"
+          btnSize=""
           showCancel
-          btnSize=""
         >
-          <div className='text-left'>
-            <EditTransaction />
-          </div>
+          Are you sure you want to delete this transaction?
         </ReactBSAlert>
       ),
     });
   };
-  successDelete = () => {
-    this.setState({
-      alert: (
-        <ReactBSAlert
-          success
-          style={{ display: "block", marginTop: "-100px" }}
-          title="Changes Saved!"
-          onConfirm={() => this.hideAlert()}
-          onCancel={() => this.hideAlert()}
-          confirmBtnBsStyle="info"
-          btnSize=""
-        >
-          Transaction data has been updated.
-        </ReactBSAlert>
-      ),
-    });
-  };
-  cancelDetele = () => {
-    this.setState({
-      alert: (
-        <ReactBSAlert
-          danger
-          style={{ display: "block", marginTop: "-100px" }}
-          title="Cancelled"
-          onConfirm={() => this.hideAlert()}
-          onCancel={() => this.hideAlert()}
-          confirmBtnBsStyle="info"
-          btnSize=""
-        >
-          No changes have been saved.
-        </ReactBSAlert>
-      ),
-    });
-  };
+  deleteTransaction = async() => {
+    const body = {
+      "id": this.state.id,
+      "trade_date": this.state.trade_date,
+    }
+    this.loading()
+    const del = await deleteTransaction(body)
+    this.successEdit()
+  }
 
 
   hideAlert = () => {
@@ -430,6 +410,9 @@ class AdvancedSearchResults extends React.Component {
         {this.state.alert}
         <div className="content" style={{ marginTop: '-.5rem' }}>
           <Col>
+            <div style={{justifyContent: "right"}}>
+              <Button onClick={() => this.addButton()}>Add Transaction</Button>
+            </div>
             <ReactTable
               data={this.state.data}
 

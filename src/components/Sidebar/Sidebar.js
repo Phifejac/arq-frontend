@@ -160,7 +160,7 @@ class Sidebar extends React.Component {
                 }
               >
                 <span>
-                  Account Name
+                  ARQ ADVISORS LLC
                   <b className="caret" />
                 </span>
               </a>
@@ -168,7 +168,7 @@ class Sidebar extends React.Component {
                 <ul className="nav">
                   <li>
                     <NavLink to="/admin/user-profile" activeClassName="">
-                      <span className="sidebar-mini-icon">EA</span>
+                      <span className="sidebar-mini-icon">E</span>
                       <span className="sidebar-normal">Edit Account</span>
                     </NavLink>
                   </li>

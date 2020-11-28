@@ -58,7 +58,7 @@ class Reports extends React.Component {
       <>
       {this.state.alert}
         <div className="content" style={{paddingLeft:'2.5rem', backgroundColor:'#202125', paddingTop:'6rem', paddingRight:'2rem'}}>
-          <h1 className='head1'>Reports</h1>
+          <h1 className='head1'>Reports **IN PROGRESS**</h1>
 
 
           <Row className='d-flex align-items-center'> 

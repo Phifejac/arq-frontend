@@ -69,6 +69,15 @@ export const updateTransaction = async (transaction_fields) => {
   }
 }
 
+// delete transaction 
+export const deleteTransaction = async (transaction_fields) => {
+  try {
+    const res = await axios.delete(`/api/transaction`, {params: transaction_fields});
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
 
 export const getHomeStatistics = async () => {
   try {
