@@ -17,6 +17,7 @@ import {
 import Select from "react-select";
 
 import { DragDropContext } from 'react-beautiful-dnd';
+import ReactLoading from 'react-loading'
 
 import ReactBSAlert from "react-bootstrap-sweetalert";
 import { Line } from "react-chartjs-2";
@@ -37,15 +38,20 @@ const dataTable = [
 class AdvancedSearchResults extends React.Component {
   constructor(props) {
     super(props);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleDateChange = this.handleDateChange.bind(this)
     this.state = {
       alert: null,
-      // fund: null,
-      // client: null,
-      // book: null,
-      // counterparty: null,
-      // excounterparty: null,
-      // singleSelect: null,
-      // multipleSelect: null,
+      id: null,
+      security: null,
+      cusip: null,
+      side: null,
+      broker: null,
+      customer: null,
+      trade_date: null,
+      time: null,
+      price: null,
+      qty: null,
       data: dataTable.map((prop, key) => {
         return {
           id: key,
@@ -190,8 +196,32 @@ class AdvancedSearchResults extends React.Component {
       })
     }
   }
+  handleChange(e) {
+    var change = {};
+    change[e.target.name] = e.target.value
+    this.setState(change)
+  }
+  handleDateChange(e) {
+    this.setState({trade_date: this.dateToString(e._d)})
+  }
+  dateToString(date) {
+    const dd = String(date.getDate()).padStart(2, '0');
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const yyyy = date.getFullYear();
+    return (yyyy + "-" + mm + "-" + dd)
+  }
   editButton = (transaction) => {
     this.setState({
+      id: transaction.id,
+      security: transaction.security,
+      cusip: transaction.cusip,
+      side: transaction.side,
+      broker: transaction.brkr_name,
+      customer: transaction.customer,
+      trade_date: transaction.trade_date,
+      time: transaction.time,
+      price: transaction.price,
+      qty: transaction.qty,
       alert: (
         <ReactBSAlert
           style={{ display: "block", marginTop: "-100px", width: '60%', backgroundColor: '#27292D' }}
@@ -209,14 +239,53 @@ class AdvancedSearchResults extends React.Component {
             <h5 style={{ color: 'white' }}>Edit Transaction</h5>
             <p style={{ fontSize: '.8rem', color: 'white' }}>Edit and confirm changes to save.</p>
             <hr />
-            <EditTransaction transaction={transaction}/>
+            <EditTransaction 
+              transaction={transaction}
+              handleChange={this.handleChange}
+              handleDateChange={this.handleDateChange}
+            />
           </div>
         </ReactBSAlert>
       ),
     });
   };
   async changeTransaction() {
-
+    const body = {
+      "id": this.state.id,
+      "security": this.state.security,
+      "cusip": this.state.cusip,
+      "side": this.state.side,
+      "broker": this.state.broker,
+      "customer": this.state.customer,
+      "trade_date": this.state.trade_date,
+      "time": this.state.time,
+      "price": this.state.price,
+      "qty": this.state.qty
+    }
+    this.loading()
+    const update = await updateTransaction(body)
+    this.successEdit()
+  }
+  loading() {
+    this.setState({
+      alert: (
+        <ReactBSAlert
+          style={{ display: "block", marginTop: "-100px", backgroundColor: '#27292D' }}
+          title="Loading... "
+          btnSize=""
+          showCancel={false}
+          showConfirm={false}
+        >
+        Please do not leave the page!
+        <div style={{ display: "flex", justifyContent: "center"}}>
+          <ReactLoading
+            type={"bars"}
+            color={"white"}
+          />
+        </div>
+        </ReactBSAlert>
+      ),
+    })
   }
   confirmEdit = () => {
     this.setState({
@@ -225,7 +294,7 @@ class AdvancedSearchResults extends React.Component {
           warning
           style={{ display: "block", marginTop: "-100px", backgroundColor: '#27292D' }}
           title="Confirm Edit"
-          onConfirm={() => this.successEdit()}
+          onConfirm={() => this.changeTransaction()}
           onCancel={() => this.hideAlert()}
           confirmBtnBsStyle="primary"
           cancelBtnBsStyle="danger"

@@ -42,79 +42,7 @@ class EditTransaction extends React.Component {
       window.clearTimeout(id);
     }
   }
-  handleTagsinput = (tagsinput) => {
-    this.setState({ tagsinput });
-  };
 
-  warningWithConfirmAndCancelMessage = () => {
-    this.setState({
-      alert: (
-        <ReactBSAlert
-          warning
-          style={{ display: "block", marginTop: "-100px" }}
-          title="Are you sure?"
-          onConfirm={() => this.successDelete()}
-          onCancel={() => this.cancelDelete()}
-          confirmBtnBsStyle="info"
-          cancelBtnBsStyle="danger"
-          confirmBtnText="Yes, delete it!"
-          cancelBtnText="Cancel"
-          showCancel
-          btnSize=""
-        >
-          You will not be able to recover this imaginary file!
-        </ReactBSAlert>
-      ),
-    });
-  };
-  successDelete = () => {
-    this.setState({
-      alert: (
-        <ReactBSAlert
-          success
-          style={{ display: "block", marginTop: "-100px" }}
-          title="Deleted!"
-          onConfirm={() => this.hideAlert()}
-          onCancel={() => this.hideAlert()}
-          confirmBtnBsStyle="info"
-          btnSize=""
-        >
-          Your imaginary file has been deleted.
-        </ReactBSAlert>
-      ),
-    });
-  };
-  cancelDelete = () => {
-    this.setState({
-      alert: (
-        <ReactBSAlert
-          danger
-          style={{ display: "block", marginTop: "-100px" }}
-          title="Cancelled"
-          onConfirm={() => this.hideAlert()}
-          onCancel={() => this.hideAlert()}
-          confirmBtnBsStyle="info"
-          btnSize=""
-        >
-          Your imaginary file is safe :)
-        </ReactBSAlert>
-      ),
-    });
-  };
-  
-  dateToString(date) {
-    const dd = String(date.getDate()).padStart(2, '0');
-    const mm = String(date.getMonth() + 1).padStart(2, '0');
-    const yyyy = date.getFullYear();
-    return (yyyy + "-" + mm + "-" + dd)
-  }
-
-  hideAlert = () => {
-    this.setState({
-      alert: null,
-    });
-  };
-  
   
   render() {
     return (
@@ -131,16 +59,16 @@ class EditTransaction extends React.Component {
                       <Row>
                         <Col md="4">
                             <p className="input-category">Security</p>
-                            <Input placeholder="" type="text" defaultValue={this.state.security} className='bgtext' onChange={(e) => this.setState({security: e.target.value})}/>
+                            <Input placeholder="" type="text" defaultValue={this.state.security} className='bgtext' name="security" onChange={(e) => this.props.handleChange(e)}/>
                         </Col>
                         <Col md="4">
                           <p className="input-category">CUSIP</p>
                           <Input
+                            type="text"
+                            className='bgtext'
                             defaultValue={this.state.cusip}
-                            style={{backgroundColor:'#27292D', color:'#4a90e2'}}
-                            onChange={(e) =>
-                              this.setState({ cusip: e.target.value })
-                            }
+                            name="cusip"
+                            onChange={(e) => this.props.handleChange(e)}
                           />
                         </Col>
                         <Col md="2">
@@ -152,7 +80,9 @@ class EditTransaction extends React.Component {
                                 outline
                                 type="button"
                                 size='sm'
-                                onClick={() => this.setState({side: "B"})}
+                                name="side"
+                                value="B"
+                                onClick={(e) => {this.props.handleChange(e); this.setState({side: "B"})}}
                               >
                                 Buy
                               </Button>
@@ -162,7 +92,9 @@ class EditTransaction extends React.Component {
                                 outline
                                 type="button"
                                 size='sm'
-                                onClick={() => this.setState({side: "S"})}
+                                name="side"
+                                value="S"
+                                onClick={(e) => {this.props.handleChange(e); this.setState({side: "S"})}}
                               >
                                 Sell
                               </Button>
@@ -173,21 +105,21 @@ class EditTransaction extends React.Component {
                         <Col md="3">
                           <p className="input-category">Broker</p>
                             <Input
+                              type="text"
+                              className='bgtext'
                               defaultValue={this.state.broker}
-                              style={{backgroundColor:'#27292D', color:'#4a90e2'}}
-                              onChange={(e) =>
-                                this.setState({ broker: e.target.value })
-                              }
+                              name="broker"
+                              onChange={(e) => this.props.handleChange(e)}
                             />
                           </Col>
                           <Col md="3">
                             <p className="input-category">Customer</p>
                               <Input
+                                type="text"
+                                className='bgtext'
                                 defaultValue={this.state.customer}
-                                style={{backgroundColor:'#27292D', color:'#4a90e2'}}
-                                onChange={(e) =>
-                                  this.setState({ customer: e.target.value })
-                                }
+                                name="customer"
+                                onChange={(e) => this.props.handleChange(e)}
                               />
                           </Col>
                         <Col md="3">
@@ -200,18 +132,19 @@ class EditTransaction extends React.Component {
                                         placeholder: "Set date...",
                                         
                                       }}
-                                      onChange={(e) => this.setState({trade_date: this.dateToString(e._d)})}
+                                      name="trade_date"
+                                      onChange={(e) => this.props.handleDateChange(e)}
                                       timeFormat={false}
                                     />
                           </Col>   
                           <Col md="3">
                           <p className="input-category">Trade Time</p>      
                               <Input
+                                type="text"
+                                className='bgtext'
                                 defaultValue={this.state.time}
-                                style={{backgroundColor:'#27292D', color:'#4a90e2'}}
-                                onChange={(e) =>
-                                  this.setState({ time: e.target.value })
-                                }
+                                name="time"
+                                onChange={(e) => this.props.handleChange(e)}
                               />
                           </Col> 
                       </Row>
@@ -221,11 +154,23 @@ class EditTransaction extends React.Component {
                 <Row className='justify-content-around'>
                   <Col md="5">
                       <p className="input-category">Price (Dec)</p>
-                      <Input placeholder="" type="text" defaultValue={this.state.price} onChange={(e) => this.setState({price: e.target.value})} className='bgtext'/>
+                      <Input 
+                        placeholder="" 
+                        type="text" 
+                        defaultValue={this.state.price} 
+                        name="price"
+                        onChange={(e) => this.props.handleChange(e)}
+                        className='bgtext'/>
                   </Col>
                   <Col md="5">
                       <p className="input-category">Quantity (MM)</p>
-                      <Input placeholder="" type="text" defaultValue={this.state.qty} onChange={(e) => this.setState({qty: e.target.value})} className='bgtext'/>
+                      <Input 
+                        placeholder="" 
+                        type="text" 
+                        defaultValue={this.state.qty} 
+                        name="qty"
+                        onChange={(e) => this.props.handleChange(e)} 
+                        className='bgtext'/>
                   </Col>
                 </Row>
               </FormGroup>

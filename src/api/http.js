@@ -62,7 +62,7 @@ export const createTransaction = async (transaction_fields) => {
 // update transaction 
 export const updateTransaction = async (transaction_fields) => {
   try {
-    const res = await axios.update(`/api/transaction`, transaction_fields);
+    const res = await axios.put(`/api/transaction`, transaction_fields);
     return res.data;
   } catch (err) {
     throw err;
