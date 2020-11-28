@@ -29,6 +29,7 @@ import ReactTable from "../Search/SearchResults/ReactTableFilters.js";
 import EditTransaction from "../Search/SearchResults/EditTransaction";
 import Transaction from "../Search/SearchResults/Transaction";
 import TransactionSearch from "pages/transactions/TransactionSearch/TransactionSearch.js";
+import {updateTransaction} from "../../../api/http"
 
 const dataTable = [
 ];
@@ -61,7 +62,7 @@ class AdvancedSearchResults extends React.Component {
           actions: (
             <div className="actions-right grow">
               <Button
-                onClick={() => { this.viewButton(prop) }}
+                onClick={() => { this.viewButton() }}
                 style={{ color: 'grey' }}
                 size="md"
                 className="btn-icon btn-link edit"
@@ -127,12 +128,10 @@ class AdvancedSearchResults extends React.Component {
             customer: prop.customer,
             broker: prop.brkr_name,
             status: prop.status,
-            // yield: prop.yield,
             actions: (
-              // we've added some custom button actions
               <div className="actions-right grow">
                 <Button
-                  onClick={() => { this.viewButton() }}
+                  onClick={() => { this.viewButton(prop) }}
                   style={{ color: 'grey' }}
                   size="md"
                   className="btn-icon btn-link edit"
@@ -141,15 +140,24 @@ class AdvancedSearchResults extends React.Component {
                   <i className="fa fa-eye white" />
                 </Button>{" "}
                 <Button
-                  onClick={() => { this.editButton() }}
+                  onClick={() => { this.editButton(prop) }}
                   style={{ color: 'grey' }}
                   size="md"
                   className="btn-icon btn-link edit"
-                  style={{ marginTop: '-.3rem', marginRight: '2rem' }}
+                  style={{ marginTop: '-.3rem', marginRight: '-0.6rem' }}
                 >
                   <i className="fa fa-edit white" />
-                </Button>{" "}
-                <Input style={{ marginTop: '.5rem' }} type="checkbox" />
+                </Button>
+                <Button
+                  // onClick={}
+                  style={{ color: 'grey' }}
+                  size="md"
+                  className="btn-icon btn-link edit"
+                  style={{ marginTop: '-.3rem'}}
+                >
+                  <i className="fa fa-trash white" />
+                </Button>
+                {/* <Input style={{ marginTop: '.5rem' }} type="checkbox" /> */}
 
                 {/* use this button to add a edit kind of action */}
 
@@ -182,14 +190,12 @@ class AdvancedSearchResults extends React.Component {
       })
     }
   }
-  editButton = () => {
+  editButton = (transaction) => {
     this.setState({
       alert: (
         <ReactBSAlert
-          // warning
           style={{ display: "block", marginTop: "-100px", width: '60%', backgroundColor: '#27292D' }}
           className='text-left'
-          // title="Edit Transaction"
           onConfirm={() => this.confirmEdit()}
           onCancel={() => this.hideAlert()}
           confirmBtnBsStyle="primary"
@@ -203,12 +209,15 @@ class AdvancedSearchResults extends React.Component {
             <h5 style={{ color: 'white' }}>Edit Transaction</h5>
             <p style={{ fontSize: '.8rem', color: 'white' }}>Edit and confirm changes to save.</p>
             <hr />
-            <EditTransaction />
+            <EditTransaction transaction={transaction}/>
           </div>
         </ReactBSAlert>
       ),
     });
   };
+  async changeTransaction() {
+
+  }
   confirmEdit = () => {
     this.setState({
       alert: (
@@ -217,7 +226,7 @@ class AdvancedSearchResults extends React.Component {
           style={{ display: "block", marginTop: "-100px", backgroundColor: '#27292D' }}
           title="Confirm Edit"
           onConfirm={() => this.successEdit()}
-          onCancel={() => this.editButton()}
+          onCancel={() => this.hideAlert()}
           confirmBtnBsStyle="primary"
           cancelBtnBsStyle="danger"
           confirmBtnText="Confirm"
@@ -234,7 +243,6 @@ class AdvancedSearchResults extends React.Component {
     this.setState({
       alert: (
         <ReactBSAlert
-          success
           style={{ display: "block", marginTop: "-100px", backgroundColor: '#27292D' }}
           title="Changes Saved!"
           onConfirm={() => this.hideAlert()}
@@ -266,8 +274,8 @@ class AdvancedSearchResults extends React.Component {
           btnSize=""
         >
           <div className='text-left' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <span className='input-category' style={{ marginTop: '-1rem', color: 'white' }}>Security</span>
-            <h5 style={{ color: 'white' }}>hi</h5>
+            {/* <span className='input-category' style={{ marginTop: '-1rem', color: 'white' }}>Security</span>
+            <h5 style={{ color: 'white' }}>{transaction.security}</h5>
             <hr />
             <div style={{ width: '80%' }}>
               <Line
@@ -275,8 +283,8 @@ class AdvancedSearchResults extends React.Component {
                 options={chartExample1.options}
               />
               <br /><br />
-            </div>
-            <Transaction />
+            </div> */}
+            <Transaction transaction={transaction}/>
           </div>
         </ReactBSAlert>
       ),

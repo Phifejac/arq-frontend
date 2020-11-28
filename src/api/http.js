@@ -52,7 +52,17 @@ export const getTransactions = async (parameters) => {
 // create a new transaction 
 export const createTransaction = async (transaction_fields) => {
   try {
-    const res = await axios.post(`/api/transaction`);
+    const res = await axios.post(`/api/transaction`, transaction_fields);
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+// update transaction 
+export const updateTransaction = async (transaction_fields) => {
+  try {
+    const res = await axios.update(`/api/transaction`, transaction_fields);
     return res.data;
   } catch (err) {
     throw err;

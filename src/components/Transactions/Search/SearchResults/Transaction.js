@@ -55,26 +55,6 @@ class Transaction extends React.Component {
   
   
   render() {
-    const options_cusip = [
-      { value: '1', label: '912810SN9' },
-      { value: '2', label: 'AR4890242' },
-      { value: '3', label: '912810SN9' }
-    ]
-    const options_broker = [
-      { value: '1', label: 'ARQ ADVISORS LLC' },
-      { value: '2', label: 'HEXAGON AM LLC' },
-      { value: '3', label: 'BGC PARTNERS' }
-    ]
-    const options_customer = [
-      { value: '1', label: 'ARQ ADVISORS LLC' },
-      { value: '2', label: 'HEXAGON AM LLC' },
-      { value: '3', label: 'BGC PARTNERS' }
-    ]
-    const options_status = [
-      { value: '1', label: 'Accepted' },
-      { value: '2', label: 'Pending' },
-      { value: '3', label: 'Cancelled' }
-    ]
     return (
       <>
       {this.state.alert}
@@ -87,21 +67,17 @@ class Transaction extends React.Component {
                   <Row style={{justifyContent:'space-between'}}>
                     <Col md="12">
                       <Row>
-                        <Col md="6">
+                        <Col md="4">
                             <p className="input-category">Security</p>
-                            <Input placeholder="" type="text" defaultValue="T 1 1/4 05/15/50" style={{backgroundColor:'#27292D', color:'#4a90e2'}} />
+                            <Input placeholder="" type="text" defaultValue={this.props.transaction.security} disabled style={{backgroundColor:'#27292D', color:'#4a90e2'}} />
                         </Col>
                         <Col md="4">
-                          <p className="input-category">Cusip #</p>
-                          <Select
-                            className="react-select primary"
-                            classNamePrefix="react-select"
-                            name="singleSelect"
-                            defaultValue={[options_cusip[0]]}
-                            options={options_cusip}
-                            onChange={(value) =>
-                              this.setState({ cusip: value })
-                            }
+                          <p className="input-category">CUSIP</p>
+                          <Input
+                            type="text"
+                            defaultValue={this.props.transaction.cusip}
+                            style={{backgroundColor:'#27292D', color:'#4a90e2'}}
+                            disabled
                           />
                         </Col>
                         <Col md="2">
@@ -109,19 +85,21 @@ class Transaction extends React.Component {
                             <ButtonGroup style={{marginTop:'-.4rem', marginLeft:'-1.4rem', padding:'.5rem', paddingTop:0}}>
                               <Button
                                 className="btn-round"
-                                color="primary"
+                                color={this.props.transaction.side === "B" ? "secondary" :"primary"}
                                 outline
                                 type="button"
                                 size='sm'
+                                disabled
                               >
                                 Buy
                               </Button>
                               <Button
                                 className="btn-round"
-                                color="primary"
+                                color={this.props.transaction.side === "S" ? "secondary" :"primary"}
                                 outline
                                 type="button"
                                 size='sm'
+                                disabled
                               >
                                 Sell
                               </Button>
@@ -131,103 +109,52 @@ class Transaction extends React.Component {
                       <Row>
                         <Col md="3">
                           <p className="input-category">Broker</p>
-                            <Select
-                              className="react-select primary"
-                              classNamePrefix="react-select"
-                              name="singleSelect"
-                              defaultValue={[options_broker[0]]}
-                              options={options_broker}
-                              onChange={(value) =>
-                                this.setState({ cusip: value })
-                              }
+                            <Input
+                            type="text"
+                            defaultValue={this.props.transaction.brkr_name}
+                            style={{backgroundColor:'#27292D', color:'#4a90e2'}}
+                            disabled
                             />
                           </Col>
                           <Col md="3">
                             <p className="input-category">Customer</p>
-                              <Select
-                                className="react-select primary"
-                                classNamePrefix="react-select"
-                                name="singleSelect"
-                                defaultValue={[options_customer[1]]}
-                                options={options_customer}
-                                onChange={(value) =>
-                                  this.setState({ cusip: value })
-                                }
+                              <Input
+                              type="text"
+                              defaultValue={this.props.transaction.customer}
+                              style={{backgroundColor:'#27292D', color:'#4a90e2'}}
+                              disabled
                               />
                           </Col>
                         <Col md="3">
-                          <p className="input-category">Trade Date</p>
-                                    
-                                    <ReactDatetime
-                                      defaultValue = "7/13/20"
-                                      inputProps={{
-                                        className: "form-control bgtext",
-                                        placeholder: "Set date...",
-                                        
-                                      }}
-                                      
-                                      // open={true}
-                                      // timeFormat={true}
-                                    />
+                          <p className="input-category">Trade Date</p>                                    
+                            <Input
+                              defaultValue = {this.props.transaction.trade_date}
+                              style={{backgroundColor:'#27292D', color:'#4a90e2'}}
+                              disabled
+                            />
                           </Col>   
                           <Col md="3">
                           <p className="input-category">Trade Time</p>
-                                    
-                                    <ReactDatetime
-                                      defaultValue = "4:50:27 PM"
-                                      inputProps={{
-                                        className: "form-control bgtext",
-                                        placeholder: "Set date...",
-                                        
-                                      }}
-                                      
-                                      // open={true}
-                                      // timeFormat={true}
-                                    />
+                            <Input
+                              defaultValue = {this.props.transaction.time}
+                              style={{backgroundColor:'#27292D', color:'#4a90e2'}}
+                              disabled
+                            />
                           </Col> 
                       </Row>
                     </Col>
                 </Row>
                 <div style={{height:'2rem'}}></div>
                 <Row className='justify-content-around'>
-                    <Col md="2">
-                        <p className="input-category">Price</p>
-                        <Input placeholder="" type="text" defaultValue="98-18+" style={{backgroundColor:'#27292D', color:'#4a90e2'}}/>
-                    </Col>
-                    <Col md="2">
+                    <Col md="5">
                         <p className="input-category">Price (Dec)</p>
-                        <Input placeholder="" type="text" defaultValue="98.57813" style={{backgroundColor:'#27292D', color:'#4a90e2'}}/>
+                        <Input placeholder="" type="text" defaultValue={this.props.transaction.price} disabled style={{backgroundColor:'#27292D', color:'#4a90e2'}}/>
                     </Col>
-                    <Col md="3">
-                        <p className="input-category">Quantity (M)</p>
-                        <Input placeholder="" type="text" defaultValue="2000" style={{backgroundColor:'#27292D', color:'#4a90e2'}}/>
-                    </Col>
-                    <Col md="2">
-                        <p className="input-category">Yield</p>
-                        <Input placeholder="" type="text" defaultValue="1.3077" style={{backgroundColor:'#27292D', color:'#4a90e2'}}/>
+                    <Col md="5">
+                        <p className="input-category">Quantity (MM)</p>
+                        <Input placeholder="" type="text" defaultValue={this.props.transaction.qty} disabled style={{backgroundColor:'#27292D', color:'#4a90e2'}}/>
                     </Col>
                 </Row>
-                {/* <div style={{height:'2rem'}}></div>
-                  <Row>
-                    <Col md="8">
-                    <p className="input-category">Note</p>
-                      <Input placeholder="" type="text" style={{height:'6.7rem'}}/>
-                    </Col>
-                    <Col md="4" style={{marginTop:'2rem'}}>
-                      <p className="input-category">Status</p>
-                         <Select
-                            className="react-select primary"
-                            classNamePrefix="react-select"
-                            name="singleSelect"
-                            defaultValue={[options_status[0]]}
-                            options={options_status}
-                            onChange={(value) =>
-                              this.setState({ cusip: value })
-                            }
-                          />
-                    </Col>
-                  </Row> */}
-
               </FormGroup>
             </Col>
           </Col>
