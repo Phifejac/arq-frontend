@@ -110,55 +110,25 @@ class SearchInput extends Component {
                              {this.state.selectedDay && 
                              <span style={{color:'white', width:'10rem'}}>{this.state.selectedDay.toLocaleDateString()}</span>
                              }
-                         </div>  
-                    <div style={{width:'80%'}} className='align-self-center'>
-                    <label className="labeltext">Client</label>
-                    <Select
-                            className="react-select"
-                            classNamePrefix="react-select"
-                            name="singleSelect"
-                            value={this.state.client}
-                            onChange={(value) =>
-                              this.setState({ client: value })
-                            }
-                            options={[
-                              {
-                                value: "",
-                                label: "Select One",
-                                isDisabled: true,
-                              },
-                              { value: 1, label: "Hexagon AM LLC" },
-                              { value: 2, label: "BGC Partners" },
-                            ]}
-                            placeholder="Select client..."
-                          />
-                   </div>
-                   <div style={{width:'80%'}} className='align-self-center'>
-                    <label className="labeltext">Cusip</label>
-                    <Input placeholder="Enter cusip..." type="text" defaultValue="" className='search-textinput' onChange ={(e) => this.setState({ cusip : e.target.value})} />
-                   </div>
-                </div>
-                <div style={{display:'flex', alignItems:'center'}}>
-                    <div style={{width:'14rem'}}>
-                      <div className='button-solid grow' onClick={this.startSearch}>
-                        <span>                        
-                                {!this.props.loading ? "Search" : <i
-                                    className="fa fa-spinner fa-spin"
-                                    style={{ marginRight: "5px" }}
-                                />}</span>
+                        </div> 
+                        <br></br> 
+                        <div style={{width:'14rem'}}>
+                        <div className='button-solid grow' onClick={this.startSearch}>
+                          <span>                        
+                                  {!this.props.loading ? "Search" : <i
+                                      className="fa fa-spinner fa-spin"
+                                      style={{ marginRight: "5px" }}
+                                  />}</span>
+                        </div>
+                        <div className='button-red' onClick={this.handleResetClick}>
+                          <span>Clear</span>
+                        </div>
+                        <div style={{height:'1rem'}}/>
+                        <div className='button'>
+                          {this.state.collapse ? <span>Custom Export</span> : <span>Export</span> }
+                        </div>
                       </div>
-                      <div className='button-red' onClick={this.handleResetClick}>
-                        <span>Clear</span>
-                      </div>
-                      <div style={{height:'1rem'}}/>
-                      <div className='button'>
-                        {this.state.collapse ? <span>Custom Export</span> : <span>Export</span> }
-                      </div>
-                      {/* <div className='button' onClick={this.toggle}>
-                        {this.state.collapse ? 'Custom ' : 'Custom'}
-                        <i className={this.state.collapse ? "fa fa-caret-up" :"fa fa-caret-down"} style={{paddingLeft:'.25rem', marginTop:'0rem', transition:'200ms ease'}}/>
-                      </div> */}
-                    </div>
+
                 </div>
               </Row>
             </div>

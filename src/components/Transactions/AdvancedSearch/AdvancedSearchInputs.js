@@ -64,6 +64,7 @@ class AdvancedSearchInputs extends React.Component {
       cusip: null,
       book: null,
       brkr_name: null,
+      security: null,
       counterparty: null,
       singleSelect: null,
       multipleSelect: null,
@@ -90,7 +91,8 @@ class AdvancedSearchInputs extends React.Component {
     }
     if (this.state.client) parameters["client"] = this.state.client.label;
     if (this.state.cusip) parameters["cusip"] = this.state.cusip;
-    if (this.state.counterparty) parameters["counterparty"] = this.state.counterparty;
+    if (this.state.security) parameters["security"] = this.state.security;
+    if (this.state.counterparty) parameters["counterpart"] = this.state.counterparty;
     if (this.state.brkr_name) parameters["brkr_name"] = this.state.brkr_name;
     if (this.state.yield) parameters["yield"] = this.state.yield;
     if (this.state.min_qty) {
@@ -107,7 +109,7 @@ class AdvancedSearchInputs extends React.Component {
       if (this.state.side === "buy") parameters["side"] = "B";
       if (this.state.side === "sell") parameters["side"] = "S";
     }
-
+    console.log(parameters)
     this.props.executeSearch(parameters)
   }
 
@@ -132,61 +134,6 @@ class AdvancedSearchInputs extends React.Component {
     this.setState({ tagsinput });
   };
 
-  warningWithConfirmAndCancelMessage = () => {
-    this.setState({
-      alert: (
-        <ReactBSAlert
-          warning
-          style={{ display: "block", marginTop: "-100px" }}
-          title="Are you sure?"
-          onConfirm={() => this.successDelete()}
-          onCancel={() => this.cancelDetele()}
-          confirmBtnBsStyle="info"
-          cancelBtnBsStyle="danger"
-          confirmBtnText="Yes, delete it!"
-          cancelBtnText="Cancel"
-          showCancel
-          btnSize=""
-        >
-          You will not be able to recover this imaginary file!
-        </ReactBSAlert>
-      ),
-    });
-  };
-  successDelete = () => {
-    this.setState({
-      alert: (
-        <ReactBSAlert
-          success
-          style={{ display: "block", marginTop: "-100px" }}
-          title="Deleted!"
-          onConfirm={() => this.hideAlert()}
-          onCancel={() => this.hideAlert()}
-          confirmBtnBsStyle="info"
-          btnSize=""
-        >
-          Your imaginary file has been deleted.
-        </ReactBSAlert>
-      ),
-    });
-  };
-  cancelDetele = () => {
-    this.setState({
-      alert: (
-        <ReactBSAlert
-          danger
-          style={{ display: "block", marginTop: "-100px" }}
-          title="Cancelled"
-          onConfirm={() => this.hideAlert()}
-          onCancel={() => this.hideAlert()}
-          confirmBtnBsStyle="info"
-          btnSize=""
-        >
-          Your imaginary file is safe :)
-        </ReactBSAlert>
-      ),
-    });
-  };
 
 
   hideAlert = () => {
@@ -235,7 +182,7 @@ class AdvancedSearchInputs extends React.Component {
                   <Input placeholder="Search cusip..." type="text" className='search-textinput' onChange={(e) => this.setState({ cusip: e.target.value })} />
                 </Col>
                 <Col md="4">
-                  <label className="labeltext">Price (M)</label>
+                  <label className="labeltext">Price</label>
                   <div className='d-flex'>
                     <div className='rangeinput'>
                       <Input placeholder="0" type="number" className='search-numberinput' onChange={(e) => this.setState({ min_price: e.target.value })} />
@@ -249,7 +196,7 @@ class AdvancedSearchInputs extends React.Component {
                   </div>
                 </Col>
                 <Col md="4">
-                  <label className="labeltext">Qty (M)</label>
+                  <label className="labeltext">Qty (MM)</label>
                   <div className='d-flex'>
                     <div className='rangeinput'>
                       <Input placeholder="0" type="number" className='search-numberinput' onChange={(e) => this.setState({ min_qty: e.target.value })} />
@@ -258,49 +205,21 @@ class AdvancedSearchInputs extends React.Component {
                       <i className="fa fa-caret-right" />
                     </div>
                     <div className='rangeinput'>
-                      <Input placeholder="200" type="number" className='search-numberinput' onChange={(e) => this.setState({ max_qty: e.target.value })} />
+                      <Input placeholder="5" type="number" className='search-numberinput' onChange={(e) => this.setState({ max_qty: e.target.value })} />
                     </div>
                   </div>
                 </Col>
                 <Col md="4">
                   <label className="labeltext">Security</label>
-                  <Input placeholder="Search name..." type="text" className='search-textinput' onChange={(e) => this.setState({ security: e.target.value })} />
+                  <Input placeholder="Search security..." type="text" className='search-textinput' onChange={(e) => this.setState({ security: e.target.value })} />
                 </Col>
                 <Col lg='6'>
                   <label className="labeltext">Broker Name</label>
                   <Input placeholder="Search broker..." type="text" className='search-textinput' onChange={(e) => this.setState({ brkr_name: e.target.value })} />
                 </Col>
                 <Col lg='6'>
-                  <label className="labeltext">Client</label>
-                  <Select
-                    className="react-select search-selectinput"
-                    classNamePrefix="react-select"
-                    components={animatedComponents}
-                    name="singleSelect"
-                    value={this.state.client}
-                    onChange={(value) =>
-                      this.setState({ client: value })
-                    }
-                    options={[
-                      {
-                        value: "",
-                        label: "Select One",
-                        isDisabled: true,
-                      },
-                      { value: "2", label: "Fund" },
-                      { value: "3", label: "Option2" },
-                    ]}
-                    placeholder="Select fund..."
-                    styles={customStyles}
-                  />
-                </Col>
-                <Col lg='6'>
-                  <label className="labeltext">Counterparty</label>
-                  <Input placeholder="Search counterparty..." type="text" className='search-textinput' onClick={(e) => this.setState({ counterparty: e.target.value })} />
-                </Col>
-                <Col lg='6'>
-                  <label className="labeltext">Yield</label>
-                  <Input placeholder="Search yield..." type="number" className='search-textinput' onClick={(e) => this.setState({ yield: e.target.value })} />
+                  <label className="labeltext">Customer</label>
+                  <Input placeholder="Search customer..." type="text" className='search-textinput' onChange={(e) => this.setState({ counterparty: e.target.value })} />
                 </Col>
               </Row>
             </div>
