@@ -996,9 +996,6 @@ head {
     width: 50%;
   }
 
-LOGO 
-.sidebar .logo .simple-text .logo-img {
-    background-color: red !important; }
 
 /* CHECKBOX */
 .btn-group .btn:focus {
@@ -1022,6 +1019,9 @@ LOGO
 .rdtDays tr .rdtOld, .rdtDays tr .rdtNew {
     color:#f1f1f150 !important
 }
+.DayPicker-Day:hover {
+    background-color: #FFFFFF40 !important;
+  }
   /* TEXT FIELDS */
   .form-control {
     background-color: #00000010;
