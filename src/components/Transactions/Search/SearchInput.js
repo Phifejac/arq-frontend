@@ -73,6 +73,7 @@ class SearchInput extends Component {
                       <DayPicker
                         className="Range"
                         numberOfMonths={1}
+                        toMonth={new Date()}
                         selectedDays={this.state.selectedDay}
                         onTodayButtonClick={(day, modifiers) => console.log(day, modifiers)}
                         onDayClick={this.handleDayClick}

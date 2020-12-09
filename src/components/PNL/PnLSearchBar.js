@@ -83,6 +83,7 @@ class PnLSearchBar extends React.Component {
                         className="Range"
                         numberOfMonths={2}
                         fromMonth={from}
+                        toMonth={new Date()}
                         selectedDays={[from, { from, to }]}
                         onDayClick={this.handleDayClick}
                         modifiers={modifiers}
@@ -173,13 +174,13 @@ class PnLSearchBar extends React.Component {
 
       
       <Col md="5" style={{}}>
-      <Card className='homecard'>
+      {/* <Card className='homecard'>
         <Bar
             data={chartExample10}
             options={chartExample10.options}
             
           />
-      </Card>
+      </Card> */}
       <Card className='homecard'>
         <h4>From 
             {!from && <span style={{color:'#6C757D', paddingLeft:'.5rem', paddingRight:'.5rem'}}>  Select...  </span>}

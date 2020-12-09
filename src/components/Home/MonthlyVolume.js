@@ -50,6 +50,46 @@ class MonthlyVolume extends React.Component {
         return "rgb(" + r + ", " + g + ", " + b + ")";
       }
     };
+    // const labels = month_labels.map((month) => month.substring(5,7) +"-'"+ month.substring(2, 4))
+    const labels = []
+    for (var i = 0; i < month_labels.length; i++) {
+      if (month_labels[i].substring(5,7) === '01') {
+        labels.push('Jan')
+      }
+      if (month_labels[i].substring(5,7) === '02') {
+        labels.push('Feb')
+      }
+      if (month_labels[i].substring(5,7) === '03') {
+        labels.push('Mar')
+      }
+      if (month_labels[i].substring(5,7) === '04') {
+        labels.push('Apr')
+      }
+      if (month_labels[i].substring(5,7) === '05') {
+        labels.push('May')
+      }
+      if (month_labels[i].substring(5,7) === '06') {
+        labels.push('Jun')
+      }
+      if (month_labels[i].substring(5,7) === '07') {
+        labels.push('July')
+      }
+      if (month_labels[i].substring(5,7) === '08') {
+        labels.push('Aug')
+      }
+      if (month_labels[i].substring(5,7) === '09') {
+        labels.push('Sep')
+      }
+      if (month_labels[i].substring(5,7) === '10') {
+        labels.push('Oct')
+      }
+      if (month_labels[i].substring(5,7) === '11') {
+        labels.push('Nov')
+      }
+      if (month_labels[i].substring(5,7) === '12') {
+        labels.push('Dec')
+      }
+    }
     const chartExample3 = {
       data: (canvas) => {
         let ctx = canvas.getContext("2d");
@@ -62,7 +102,7 @@ class MonthlyVolume extends React.Component {
         gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
         gradientFill.addColorStop(1, hexToRGB("#2CA8FF", 0.4));
         return {
-          labels: month_labels,
+          labels: labels,
           datasets: [
             {
               label: "Monthly Transactions",
@@ -131,7 +171,7 @@ class MonthlyVolume extends React.Component {
                 <CardHeader>
                   <Row>
                     <Col sm="7">
-                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Transactions</div>
+                      <div className="numbers pull-left text-white" style={{fontSize:'large'}}>Monthly Transactions</div>
                     </Col>
                     {/* <Col sm="5">
                       <div className="pull-right">

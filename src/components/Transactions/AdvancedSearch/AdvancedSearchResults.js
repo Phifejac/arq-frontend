@@ -178,7 +178,7 @@ class AdvancedSearchResults extends React.Component {
       trade_date: this.dateToString(new Date()),
       alert: (
         <ReactBSAlert
-          style={{ display: "block", marginTop: "-100px", width: '60%', backgroundColor: '#27292D' }}
+          style={{ display: "block", marginTop: "-100px", width: '60%', backgroundColor: '#27292D', overflow:'visible' }}
           className='text-left'
           onConfirm={() => this.confirmEdit()}
           onCancel={() => this.hideAlert()}
@@ -385,10 +385,10 @@ class AdvancedSearchResults extends React.Component {
     return (
       <>
         {this.state.alert}
-        <div className="content" style={{ marginTop: '-.5rem' }}>
-          <Col>
-            <div style={{justifyContent: "right"}}>
-              <Button onClick={() => this.addButton()}>Add Transaction</Button>
+        <div className="content" style={{ marginTop: '-1rem' }}>
+          <Col style={{padding:0}}>
+            <div style={{position:'absolute', zIndex:+1, top:-5}}>
+              <Button color='primary' onClick={() => this.addButton()}>Add Transaction</Button>
             </div>
             <ReactTable
               data={this.state.data}

@@ -69,14 +69,13 @@ class Transaction extends React.Component {
                       <Row>
                         <Col md="4">
                             <p className="input-category">Security</p>
-                            <Input placeholder="" type="text" defaultValue={this.props.transaction.security} disabled style={{backgroundColor:'#27292D', color:'#4a90e2'}} />
+                            <Input placeholder="" type="text" defaultValue={this.props.transaction.security} disabled />
                         </Col>
                         <Col md="4">
                           <p className="input-category">CUSIP</p>
                           <Input
                             type="text"
                             defaultValue={this.props.transaction.cusip}
-                            style={{backgroundColor:'#27292D', color:'#4a90e2'}}
                             disabled
                           />
                         </Col>
@@ -112,7 +111,6 @@ class Transaction extends React.Component {
                             <Input
                             type="text"
                             defaultValue={this.props.transaction.brkr_name}
-                            style={{backgroundColor:'#27292D', color:'#4a90e2'}}
                             disabled
                             />
                           </Col>
@@ -121,7 +119,6 @@ class Transaction extends React.Component {
                               <Input
                               type="text"
                               defaultValue={this.props.transaction.customer}
-                              style={{backgroundColor:'#27292D', color:'#4a90e2'}}
                               disabled
                               />
                           </Col>
@@ -129,7 +126,6 @@ class Transaction extends React.Component {
                           <p className="input-category">Trade Date</p>                                    
                             <Input
                               defaultValue = {this.props.transaction.trade_date}
-                              style={{backgroundColor:'#27292D', color:'#4a90e2'}}
                               disabled
                             />
                           </Col>   
@@ -137,7 +133,6 @@ class Transaction extends React.Component {
                           <p className="input-category">Trade Time</p>
                             <Input
                               defaultValue = {this.props.transaction.time}
-                              style={{backgroundColor:'#27292D', color:'#4a90e2'}}
                               disabled
                             />
                           </Col> 
@@ -148,11 +143,11 @@ class Transaction extends React.Component {
                 <Row className='justify-content-around'>
                     <Col md="5">
                         <p className="input-category">Price (Dec)</p>
-                        <Input placeholder="" type="text" defaultValue={this.props.transaction.price} disabled style={{backgroundColor:'#27292D', color:'#4a90e2'}}/>
+                        <Input placeholder="" type="text" defaultValue={this.props.transaction.price} disabled />
                     </Col>
                     <Col md="5">
                         <p className="input-category">Quantity (MM)</p>
-                        <Input placeholder="" type="text" defaultValue={this.props.transaction.qty} disabled style={{backgroundColor:'#27292D', color:'#4a90e2'}}/>
+                        <Input placeholder="" type="text" defaultValue={this.props.transaction.qty} disabled/>
                     </Col>
                 </Row>
               </FormGroup>

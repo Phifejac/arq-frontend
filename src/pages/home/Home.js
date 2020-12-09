@@ -78,35 +78,7 @@ class Home extends React.Component {
             <h1 className='head1'>Today's Transactions</h1>
             <AdvancedSearchResults transactions={this.state.transactions} />
           </div>
-
-          {/* OLD */}
-
-          {/* Activity Overview */}
-
-          {/* <h4 style={{marginTop:0, color:'#FFFFFF80', marginBottom:0, paddingBottom:'1rem'}}>Activity Overview</h4>
-          <Row className='d-flex align-items-center'> 
-            <NextReport/>
-            <Counterparties/>
-          </Row> */}
-
-          {/* Quick Look */}
-
-          {/* <h4 style={{marginTop:0, color:'#FFFFFF80'}}>Quick Look</h4>
-          <div style={{marginTop:'-.5rem',}}>
-            <TagsInput
-              value={this.state.tagsinput}
-              onChange={this.handleTagsinput}
-              tagProps={{ className: "react-tagsinput-tag primary" }}
-              inputProps={{
-                className: 'react-tagsinput-input',
-                placeholder: 'Filter...',
-              }}
-            />
-          </div>
-          <Row>
-            <TotalTransactions/>
-            <MonthlyVolume/>
-          </Row> */}
+          
         </div>
       </>
     );

@@ -384,8 +384,8 @@ class SearchResults extends React.Component {
       {this.state.alert}
         <div className="content" style={{marginTop:'-.5rem'}}>
             <Col>
-              <div style={{justifyContent: "right"}}>
-                <Button onClick={() => this.addButton()}>Add Transaction</Button>
+              <div style={{position:'absolute', zIndex:+1, top:-5}}>
+                <Button color='primary' onClick={() => this.addButton()}>Add Transaction</Button>
               </div>
               <ReactTable
                 data={this.state.data}

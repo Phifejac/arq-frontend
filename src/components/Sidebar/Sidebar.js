@@ -145,8 +145,10 @@ class Sidebar extends React.Component {
           {/* <img src={require("../../assets/img/portislogo.svg")}></img> */}
         </div>
 
+        
+
         <div className="sidebar-wrapper" ref="sidebar">
-          <div className="user">
+          {/* <div className="user">
             <div className="photo">
               <img src={avatar} alt="Avatar" />
             </div>
@@ -181,7 +183,7 @@ class Sidebar extends React.Component {
                 </ul>
               </Collapse>
             </div>
-          </div>
+          </div> */}
           <Nav>{this.createLinks(this.props.routes)}</Nav>
         </div>
       </div>

@@ -73,11 +73,15 @@ class EditTransaction extends React.Component {
                         </Col>
                         <Col md="2">
                             <p className="input-category">Side</p>
-                            <ButtonGroup style={{marginTop:'-.4rem', marginLeft:'-1.4rem', padding:'.5rem', paddingTop:0}}>
+                            <div>
+                              <div></div>
+                            </div>
+                            <ButtonGroup style={{marginTop:'-.4rem', marginLeft:'-1rem', padding:'.5rem', paddingTop:0}}>
                               <Button
                                 className="btn-round"
                                 color={this.state.side === "B" ? "secondary" :"primary"}
                                 outline
+                                color='primary'
                                 type="button"
                                 size='sm'
                                 name="side"
@@ -88,7 +92,7 @@ class EditTransaction extends React.Component {
                               </Button>
                               <Button
                                 className="btn-round"
-                                color={this.state.side === "S" ? "secondary" :"primary"}
+                                color={!this.state.side === "S" ? "secondary" :"primary"}
                                 outline
                                 type="button"
                                 size='sm'
