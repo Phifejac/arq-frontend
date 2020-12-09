@@ -16,9 +16,10 @@ import {
 } from "reactstrap";
 import ClientsTable from './ClientsTable'
 import ReactBSAlert from "react-bootstrap-sweetalert";
+import EditClient from "./EditClient";
 
 const dataTable = [
-    ['Jane Doe', 'Position Name', 'Firm Name', 'janedoe@email.com']
+    ['Jane Doe', 'Location', 'Firm Name', 'janedoe@email.com']
   ];
 
 class Clients extends React.Component {
@@ -64,7 +65,7 @@ class Clients extends React.Component {
     this.setState({
       alert: (
         <ReactBSAlert
-          style={{ display: "block", marginTop: "-100px", width:'60%', backgroundColor:'#27292D'}}
+          style={{ display: "block", marginTop: "-100px", width:'70%', backgroundColor:'#27292D'}}
           className='text-left'
           onConfirm={() => this.hideAlert()}
           onCancel={() => this.hideAlert()}
@@ -76,9 +77,7 @@ class Clients extends React.Component {
           btnSize=""
         >
           <div className='text-left'>
-            <h5 style={{color:'white'}}>Client Info</h5>
-              <p style={{fontSize:'.8rem', color:'white'}}>Edit and confirm changes to save.</p>
-              <hr/>
+            <EditClient/>
           </div>
         </ReactBSAlert>
       ),
@@ -123,16 +122,16 @@ class Clients extends React.Component {
 
               columns={[
                 {
-                  Header: "Contact Name",
-                  accessor: "name",
+                  Header: "Firm",
+                  accessor: "firm",
                 },
                 {
-                  Header: "Position",
+                  Header: "Location",
                   accessor: "position",
                 },
                 {
-                  Header: "Firm",
-                  accessor: "firm",
+                  Header: "Main Contact",
+                  accessor: "name",
                 },
                 {
                   Header: "Email",
