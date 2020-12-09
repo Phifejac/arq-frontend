@@ -166,7 +166,7 @@ class AdvancedSearchInputs extends React.Component {
             <div className='d-flex flex-column align-items-center justify-content-center' style={{ flex: .5, minWidth: '32rem', maxWidth: '35rem' }}>
               <Row>
                 <Col md="4">
-                  <label className="labeltext">Side {Number(this.state.todayFormatted.substring(5,9))} {Number(this.state.todayFormatted.substring(0,2)) - 2}</label>
+                  <label className="labeltext">Side</label>
                   <div className='d-flex flex-row' style={{ marginTop: '.1rem' }}>
                     <div className={this.state.side === 'buy' ? 'buy tributton-selected' : 'buy'} onClick={this.setBuy}>
                       Buy
