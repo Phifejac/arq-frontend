@@ -15,6 +15,7 @@ import {
   NavLink
 } from "reactstrap";
 import Clients from '../../components/Settings/Clients'
+import AuditHistory from "components/Settings/AuditHistory";
 
 class Settings extends React.Component {
   constructor(props) {
@@ -31,10 +32,11 @@ class Settings extends React.Component {
         <div style={{}}>
             <span className={this.state.tab === 'account' ? 'smalltab-active' : 'smalltab'} onClick={() => this.setState({tab: 'account'})}>Account</span>
             <span className={this.state.tab === 'clients' ? 'smalltab-active' : 'smalltab'} onClick={() => this.setState({tab: 'clients'})}>Clients</span>
-            <span className={this.state.tab === 'history' ? 'smalltab-active' : 'smalltab'} onClick={() => this.setState({tab: 'history'})}>Audit History</span>
+            <span className={this.state.tab === 'history' ? 'smalltab-active' : 'smalltab'} onClick={() => this.setState({tab: 'history'})}>Audits</span>
         </div>
 
         {this.state.tab === 'clients' ? <Clients/> :''}
+        {this.state.tab === 'history' ? <AuditHistory/> :''}
 
         </div>
       </>
