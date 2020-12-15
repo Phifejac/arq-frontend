@@ -186,22 +186,12 @@ function Table({ columns, data }) {
                       placeholder="Choose Page"
                     />
 
-               <button
-                type="button"
-                onClick={() => previousPage()}
-                disabled={!canPreviousPage}
-                className="button-table"
-              >
-                Previous
-              </button>
-              <button
-                type="button"
-                onClick={() => nextPage()}
-                disabled={!canNextPage}
-                className="button-table"
-              >
-                Next
-              </button>
+            <a disabled={!canPreviousPage} onClick={() => previousPage()}>
+              <i className={!canPreviousPage ? 'fa fa-chevron-left fa-2x tablenavbutton-disabled' : 'fas fa-chevron-left fa-2x tablenavbutton'} />
+            </a>
+            <a disabled={!canNextPage} onClick={() => nextPage()}>
+              <i className={!canNextPage ? 'fa fa-chevron-right fa-2x tablenavbutton-disabled' : 'fas fa-chevron-right fa-2x tablenavbutton'} />
+            </a>
               
           </div>
         </div>
