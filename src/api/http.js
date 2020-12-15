@@ -11,7 +11,6 @@ export const login = async (username, password) => {
     }
     const res = await axios.post(`/api/login`, body );
     if (res.data.jwt) {
-      console.log("this was set")
       sessionStorage.setItem("jwt", res.data.jwt)
       sessionStorage.setItem("username", username)
       const jwt = await sessionStorage.getItem("jwt")
@@ -55,13 +54,32 @@ export const getTransactions = async (parameters) => {
 // create a new transaction 
 export const createTransaction = async (transaction_fields) => {
   try {
-    const res = await axios.post(`/api/transaction`);
+    const res = await axios.post(`/api/transaction`, transaction_fields);
     return res.data;
   } catch (err) {
     throw err;
   }
 }
 
+// update transaction 
+export const updateTransaction = async (transaction_fields) => {
+  try {
+    const res = await axios.put(`/api/transaction`, transaction_fields);
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+// delete transaction 
+export const deleteTransaction = async (transaction_fields) => {
+  try {
+    const res = await axios.delete(`/api/transaction`, {params: transaction_fields});
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
 
 export const getHomeStatistics = async () => {
   try {

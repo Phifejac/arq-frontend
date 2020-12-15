@@ -34,9 +34,6 @@ class PnLGraph extends React.Component {
         day_pnls.push(parseInt(day[5]))
       }
     }
-
-    console.log("pnl", day_pnls)
-    console.log("labels", day_labels) 
     // default color for the charts
     let chartColor = "#FFFFFF";
     // ##############################
@@ -53,6 +50,7 @@ class PnLGraph extends React.Component {
         return "rgb(" + r + ", " + g + ", " + b + ")";
       }
     };
+    const labels = day_labels.map((day) => day.substring(8,10)+ '-' +day.substring(5,7))
     const chartExample2 = {
       data: (canvas) => {
         let ctx = canvas.getContext("2d");
@@ -65,7 +63,7 @@ class PnLGraph extends React.Component {
         gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
         gradientFill.addColorStop(1, hexToRGB("#18ce0f", 0.4));
         return {
-          labels: day_labels,
+          labels: labels,
           datasets: [
             {
               label: "PNL",
@@ -86,9 +84,13 @@ class PnLGraph extends React.Component {
           display: false,
         },
         tooltips: {
-          backgroundColor: "#f5f5f5",
-          titleFontColor: "#333",
-          bodyFontColor: "#666",
+          tooltipFillColor: "rgba(0,0,0,0.5)",
+          tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+          tooltipFontSize: 14,
+          tooltipFontStyle: "normal",
+          tooltipFontColor: "#fff",
+          titleFontColor: "#fff",
+          bodyFontColor: "#fff",
           bodySpacing: 4,
           xPadding: 12,
           mode: "nearest",
@@ -134,25 +136,11 @@ class PnLGraph extends React.Component {
             <CardHeader>
               <Row>
                 <Col sm="7">
-                  <div className="numbers pull-left text-white" style={{ fontSize: 'large' }}>P&L</div>
+                  <div className="numbers pull-left text-white" style={{ fontSize: 'large' }}>Daily P&L</div>
                 </Col>
-                {/* <Col sm="5">
-                  <div className="pull-right smalltab" style={{fontSize:'small', fontWeight:'regular'}}>
-                    Month
-                  </div>
-                  <div className="pull-right smalltab" style={{fontSize:'small', fontWeight:'regular'}}>
-                    Week
-                  </div>
-                  <div className="pull-right smalltab-active" style={{fontSize:'small', fontWeight:'regular'}}>
-                    Day
-                  </div>
-                </Col> */}
               </Row>
             </CardHeader>
             <CardBody>
-              {/* <h6 className="big-title" style={{ color: '#FFFFFF80' }}>
-                P&L
-                  </h6> */}
               <Line
                 data={chartExample2.data}
                 options={chartExample2.options}
@@ -160,25 +148,6 @@ class PnLGraph extends React.Component {
                 width={828}
               />
             </CardBody>
-            {/* <CardFooter>
-                  <hr />
-                  <Row>
-                    <Col sm="7">
-                      <div className="footer-title" style={{color:'#FFFFFF80'}}>All Time</div>
-                    </Col>
-                    <Col sm="5">
-                      <div className="pull-right">
-                        <Button
-                          className="btn-round btn-icon"
-                          color="danger"
-                          size="sm"
-                        >
-                          <i className="nc-icon nc-button-play" />
-                        </Button>
-                      </div>
-                    </Col>
-                  </Row>
-                </CardFooter> */}
           </Card>
         </Col>
       </>

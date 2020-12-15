@@ -61,13 +61,11 @@ class PnLSearchBar extends React.Component {
     if (this.state.client ) parameters["client"] = this.state.client.label;
     if (this.state.cusip) parameters["cusip"] = this.state.cusip;
 
-    console.log("new transactions parameters", parameters)
     this.props.executeSearch(parameters)
   }
 
   handleDayClick(day) {
     const range = DateUtils.addDayToRange(day, this.state);
-    console.log("range", range)
     this.setState(range);
     this.setState({ start_date: range.from, end_date: range.to });
   }
@@ -85,6 +83,7 @@ class PnLSearchBar extends React.Component {
                         className="Range"
                         numberOfMonths={2}
                         fromMonth={from}
+                        toMonth={new Date()}
                         selectedDays={[from, { from, to }]}
                         onDayClick={this.handleDayClick}
                         modifiers={modifiers}
@@ -130,7 +129,7 @@ class PnLSearchBar extends React.Component {
                     </div>
                   
                 <div style={{ display:'flex', flexDirection:'column', justifyContent:'center', width:'15rem'}}>
-                    <div style={{width:'80%'}} className='align-self-center'>
+                    {/* <div style={{width:'80%'}} className='align-self-center'>
                     <label className="labeltext">Client</label>
                     <Select
                             className="react-select primary"
@@ -155,7 +154,7 @@ class PnLSearchBar extends React.Component {
                    <div style={{width:'80%'}} className='align-self-center'>
                    <label className="labeltext">Cusip</label>
                   <Input placeholder="Search cusip..." type="text" className='search-textinput' onChange={(e) => this.setState({ cusip: e.target.value })} />
-                   </div>
+                   </div> */}
                    <div style={{width:'14rem', paddingTop:'1rem'}}>
                       <div className='button-solid grow' onClick={this.startSearch}>
                         <span>{!this.props.loading ? "Search" : <i
@@ -175,13 +174,13 @@ class PnLSearchBar extends React.Component {
 
       
       <Col md="5" style={{}}>
-      <Card className='homecard'>
+      {/* <Card className='homecard'>
         <Bar
             data={chartExample10}
             options={chartExample10.options}
             
           />
-      </Card>
+      </Card> */}
       <Card className='homecard'>
         <h4>From 
             {!from && <span style={{color:'#6C757D', paddingLeft:'.5rem', paddingRight:'.5rem'}}>  Select...  </span>}

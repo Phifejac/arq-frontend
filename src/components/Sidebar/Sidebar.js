@@ -145,8 +145,10 @@ class Sidebar extends React.Component {
           {/* <img src={require("../../assets/img/portislogo.svg")}></img> */}
         </div>
 
+        
+
         <div className="sidebar-wrapper" ref="sidebar">
-          <div className="user">
+          {/* <div className="user">
             <div className="photo">
               <img src={avatar} alt="Avatar" />
             </div>
@@ -160,7 +162,7 @@ class Sidebar extends React.Component {
                 }
               >
                 <span>
-                  Account Name
+                  ARQ ADVISORS LLC
                   <b className="caret" />
                 </span>
               </a>
@@ -168,7 +170,7 @@ class Sidebar extends React.Component {
                 <ul className="nav">
                   <li>
                     <NavLink to="/admin/user-profile" activeClassName="">
-                      <span className="sidebar-mini-icon">EA</span>
+                      <span className="sidebar-mini-icon">E</span>
                       <span className="sidebar-normal">Edit Account</span>
                     </NavLink>
                   </li>
@@ -181,7 +183,7 @@ class Sidebar extends React.Component {
                 </ul>
               </Collapse>
             </div>
-          </div>
+          </div> */}
           <Nav>{this.createLinks(this.props.routes)}</Nav>
         </div>
       </div>

@@ -186,10 +186,10 @@ function Table({ columns, data }) {
                     />
 
             <a disabled={!canPreviousPage} onClick={() => previousPage()}>
-              <i className={!canPreviousPage ? 'fa fa-chevron-left fa-2x tablenavbutton-disabled' : 'fa fa-chevron-left fa-2x tablenavbutton'} />
+              <i className={!canPreviousPage ? 'fa fa-chevron-left fa-2x tablenavbutton-disabled' : 'fas fa-chevron-left fa-2x tablenavbutton'} />
             </a>
             <a disabled={!canNextPage} onClick={() => nextPage()}>
-              <i className={!canNextPage ? 'fa fa-chevron-right fa-2x tablenavbutton-disabled' : 'fa fa-chevron-right fa-2x tablenavbutton'} />
+              <i className={!canNextPage ? 'fa fa-chevron-right fa-2x tablenavbutton-disabled' : 'fas fa-chevron-right fa-2x tablenavbutton'} />
             </a>
               
           </div>

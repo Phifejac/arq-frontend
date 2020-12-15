@@ -50,8 +50,8 @@ class PnLOverview extends React.Component {
     return (
       <Row style={{paddingTop:'5rem', paddingBottom:'0rem'}}>
 
-      <Col md="6">
-        <Card className='homecard'>
+      <Col md="8" style={{display:'flex', flexDirection:'column'}}>
+        <Card className='pnlmetrics'>
         <h4>This {this.props.type}</h4>
         <hr/>
         <div className='homecard-data' style={{marginBottom:'1rem'}}>
@@ -88,14 +88,13 @@ class PnLOverview extends React.Component {
         </Card>
       </Col>
 
-      <Col md="6">
+      <Col md="4">
         <Card className='homecard'>
-        <h4>P&L</h4>
-        <hr/>
         <div className='d-flex flex-row justify-content-around'>
         <Bar
                     data={data}
                     options={chartExample10.options}
+                    // height={70}
                   />
         </div>
         </Card>

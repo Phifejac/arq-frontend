@@ -23,10 +23,6 @@ class OpenClosed extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log("this.props", this.props)
-  }
-
   confirmEdit = () => {
     this.setState({
       alert: (
@@ -65,7 +61,7 @@ class OpenClosed extends React.Component {
       ),
     });
   };
-  viewButton = () => {
+  viewButton = (transaction) => {
     this.setState({
       alert: (
         <ReactBSAlert
@@ -84,7 +80,7 @@ class OpenClosed extends React.Component {
           btnSize=""
         >
           <div className='text-left' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <span className='input-category' style={{ marginTop: '-1rem', color: 'white' }}>Security</span>
+            {/* <span className='input-category' style={{ marginTop: '-1rem', color: 'white' }}>Security</span>
             <h5 style={{ color: 'white' }}>T 1 1/4 05/15/50</h5>
             <hr />
             <div style={{ width: '80%' }}>
@@ -93,8 +89,8 @@ class OpenClosed extends React.Component {
                 options={chartExample1.options}
               />
               <br /><br />
-            </div>
-            <Transaction />
+            </div> */}
+            <Transaction transaction={transaction}/>
           </div>
         </ReactBSAlert>
       ),
@@ -144,7 +140,6 @@ class OpenClosed extends React.Component {
               <ul className='positions-header' style={{ width: '100%' }}>
 
                 {this.props.openPositions.map((position, i) => {
-                  console.log("running")
                   return (<li className='positions-listitem-pair grow-small'><div className='pair'>
                     <div className='positions-row' style={{ flex: 1.1 }}>
                       <div>
@@ -167,7 +162,7 @@ class OpenClosed extends React.Component {
                       </div>
                     </div>
                     <div className='positions-row-sm justify-content-end'>
-                      <div onClick={() => { this.viewButton() }}>
+                      <div onClick={() => { this.viewButton(position) }}>
                         <i className="fa fa-eye white" />
                       </div>
                     </div>
@@ -226,7 +221,6 @@ class OpenClosed extends React.Component {
               </ul>
               <ul className='positions-header' style={{ width: '100%' }}>
                 {this.props.closedInstances.map((instance, i) => {
-                  console.log("open instance", instance)
                   return (
                     <li className='positions-listitem-pair grow-small'>
                     

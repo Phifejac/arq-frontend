@@ -15,6 +15,7 @@ import Select from "react-select";
 
 // reactstrap components
 import { Container, Row, Col, FormGroup, Input } from "reactstrap";
+import './AuditHistoryTable.css'
 
 // Define a default UI for filtering
 function DefaultColumnFilter({
@@ -147,7 +148,7 @@ function Table({ columns, data }) {
   return (
 
     <>
-      <div className="ReactTable -striped -highlight primary-pagination">
+      <div className="ReactTable2 -striped -highlight primary-pagination">
         <div className="pagination-top">
           <div className='ml-auto d-flex justify-content-end'>
                     <Select
@@ -186,15 +187,15 @@ function Table({ columns, data }) {
                     />
 
             <a disabled={!canPreviousPage} onClick={() => previousPage()}>
-              <i className={!canPreviousPage ? 'fa fa-chevron-left fa-2x tablenavbutton-disabled' : 'fa fa-chevron-left fa-2x tablenavbutton'} />
+              <i className={!canPreviousPage ? 'fa fa-chevron-left fa-2x tablenavbutton-disabled' : 'fas fa-chevron-left fa-2x tablenavbutton'} />
             </a>
             <a disabled={!canNextPage} onClick={() => nextPage()}>
-              <i className={!canNextPage ? 'fa fa-chevron-right fa-2x tablenavbutton-disabled' : 'fa fa-chevron-right fa-2x tablenavbutton'} />
+              <i className={!canNextPage ? 'fa fa-chevron-right fa-2x tablenavbutton-disabled' : 'fas fa-chevron-right fa-2x tablenavbutton'} />
             </a>
               
           </div>
         </div>
-        <table {...getTableProps()} className="rt-table" style={{borderWidth:0, paddingTop:'1rem'}}>
+        <table {...getTableProps()} className="rt-table" style={{borderWidth:0, marginTop:'1rem'}}>
           <div className='todaystable-header card-shadow'>
             <thead className="rt-thead -header">
               {headerGroups.map((headerGroup) => (
@@ -213,7 +214,7 @@ function Table({ columns, data }) {
                       </div>
                       {/* Render the columns filter UI */}
                       <div>
-                        {headerGroup.headers.length - 1 === key
+                        {headerGroup.headers.length === key
                           ? null
                           : column.canFilter
                           ? column.render("Filter")

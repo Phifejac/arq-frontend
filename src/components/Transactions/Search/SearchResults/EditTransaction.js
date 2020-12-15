@@ -23,14 +23,15 @@ class EditTransaction extends React.Component {
     super(props);
     this.state = {
       alert: null,
-      fund: null,
-      client: null,
-      book: null,
-      counterparty: null,
-      cusip: null,
-      singleSelect: null,
-      multipleSelect: null,
-      tagsinput: ["Amsterdam", "Washington", "Sydney", "Beijing"],
+      cusip: this.props.transaction.cusip,
+      security: this.props.transaction.security,
+      side: this.props.transaction.side,
+      broker: this.props.transaction.brkr_name,
+      customer: this.props.transaction.customer,
+      trade_date: this.props.transaction.trade_date,
+      time: this.props.transaction.time,
+      price: this.props.transaction.price,
+      qty: this.props.transaction.qty,
     };
   }
 
@@ -41,95 +42,9 @@ class EditTransaction extends React.Component {
       window.clearTimeout(id);
     }
   }
-  handleTagsinput = (tagsinput) => {
-    this.setState({ tagsinput });
-  };
 
-  warningWithConfirmAndCancelMessage = () => {
-    this.setState({
-      alert: (
-        <ReactBSAlert
-          warning
-          style={{ display: "block", marginTop: "-100px" }}
-          title="Are you sure?"
-          onConfirm={() => this.successDelete()}
-          onCancel={() => this.cancelDetele()}
-          confirmBtnBsStyle="info"
-          cancelBtnBsStyle="danger"
-          confirmBtnText="Yes, delete it!"
-          cancelBtnText="Cancel"
-          showCancel
-          btnSize=""
-        >
-          You will not be able to recover this imaginary file!
-        </ReactBSAlert>
-      ),
-    });
-  };
-  successDelete = () => {
-    this.setState({
-      alert: (
-        <ReactBSAlert
-          success
-          style={{ display: "block", marginTop: "-100px" }}
-          title="Deleted!"
-          onConfirm={() => this.hideAlert()}
-          onCancel={() => this.hideAlert()}
-          confirmBtnBsStyle="info"
-          btnSize=""
-        >
-          Your imaginary file has been deleted.
-        </ReactBSAlert>
-      ),
-    });
-  };
-  cancelDetele = () => {
-    this.setState({
-      alert: (
-        <ReactBSAlert
-          danger
-          style={{ display: "block", marginTop: "-100px" }}
-          title="Cancelled"
-          onConfirm={() => this.hideAlert()}
-          onCancel={() => this.hideAlert()}
-          confirmBtnBsStyle="info"
-          btnSize=""
-        >
-          Your imaginary file is safe :)
-        </ReactBSAlert>
-      ),
-    });
-  };
-  
-
-  hideAlert = () => {
-    this.setState({
-      alert: null,
-    });
-  };
-  
   
   render() {
-    const options_cusip = [
-      { value: '1', label: '912810SN9' },
-      { value: '2', label: 'AR4890242' },
-      { value: '3', label: '912810SN9' }
-    ]
-    const options_broker = [
-      { value: '1', label: 'ARQ ADVISORS LLC' },
-      { value: '2', label: 'HEXAGON AM LLC' },
-      { value: '3', label: 'BGC PARTNERS' }
-    ]
-    const options_customer = [
-      { value: '1', label: 'ARQ ADVISORS LLC' },
-      { value: '2', label: 'HEXAGON AM LLC' },
-      { value: '3', label: 'BGC PARTNERS' }
-    ]
-    const options_status = [
-      { value: '1', label: 'Accepted' },
-      { value: '2', label: 'Pending' },
-      { value: '3', label: 'Cancelled' }
-    ]
     return (
       <>
       {this.state.alert}
@@ -142,41 +57,48 @@ class EditTransaction extends React.Component {
                   <Row style={{justifyContent:'space-between'}}>
                     <Col md="12">
                       <Row>
-                        <Col md="6">
+                        <Col md="4">
                             <p className="input-category">Security</p>
-                            <Input placeholder="" type="text" defaultValue="T 1 1/4 05/15/50" className='bgtext'/>
+                            <Input placeholder="" type="text" defaultValue={this.state.security} className='bgtext' name="security" onChange={(e) => this.props.handleChange(e)}/>
                         </Col>
                         <Col md="4">
-                          <p className="input-category">Cusip #</p>
-                          <Select
-                            className="react-select primary"
-                            classNamePrefix="react-select"
-                            name="singleSelect"
-                            defaultValue={[options_cusip[0]]}
-                            options={options_cusip}
-                            onChange={(value) =>
-                              this.setState({ cusip: value })
-                            }
+                          <p className="input-category">CUSIP</p>
+                          <Input
+                            type="text"
+                            className='bgtext'
+                            defaultValue={this.state.cusip}
+                            name="cusip"
+                            onChange={(e) => this.props.handleChange(e)}
                           />
                         </Col>
                         <Col md="2">
                             <p className="input-category">Side</p>
-                            <ButtonGroup style={{marginTop:'-.4rem', marginLeft:'-1.4rem', padding:'.5rem', paddingTop:0}}>
+                            <div>
+                              <div></div>
+                            </div>
+                            <ButtonGroup style={{marginTop:'-.4rem', marginLeft:'-1rem', padding:'.5rem', paddingTop:0}}>
                               <Button
                                 className="btn-round"
-                                color="primary"
+                                color={this.state.side === "B" ? "secondary" :"primary"}
                                 outline
+                                color='primary'
                                 type="button"
                                 size='sm'
+                                name="side"
+                                value="B"
+                                onClick={(e) => {this.props.handleChange(e); this.setState({side: "B"})}}
                               >
                                 Buy
                               </Button>
                               <Button
                                 className="btn-round"
-                                color="primary"
+                                color={!this.state.side === "S" ? "secondary" :"primary"}
                                 outline
                                 type="button"
                                 size='sm'
+                                name="side"
+                                value="S"
+                                onClick={(e) => {this.props.handleChange(e); this.setState({side: "S"})}}
                               >
                                 Sell
                               </Button>
@@ -186,103 +108,75 @@ class EditTransaction extends React.Component {
                       <Row>
                         <Col md="3">
                           <p className="input-category">Broker</p>
-                            <Select
-                              className="react-select primary"
-                              classNamePrefix="react-select"
-                              name="singleSelect"
-                              defaultValue={[options_broker[0]]}
-                              options={options_broker}
-                              onChange={(value) =>
-                                this.setState({ cusip: value })
-                              }
+                            <Input
+                              type="text"
+                              className='bgtext'
+                              defaultValue={this.state.broker}
+                              name="broker"
+                              onChange={(e) => this.props.handleChange(e)}
                             />
                           </Col>
                           <Col md="3">
                             <p className="input-category">Customer</p>
-                              <Select
-                                className="react-select primary"
-                                classNamePrefix="react-select"
-                                name="singleSelect"
-                                defaultValue={[options_customer[1]]}
-                                options={options_customer}
-                                onChange={(value) =>
-                                  this.setState({ cusip: value })
-                                }
+                              <Input
+                                type="text"
+                                className='bgtext'
+                                defaultValue={this.state.customer}
+                                name="customer"
+                                onChange={(e) => this.props.handleChange(e)}
                               />
                           </Col>
                         <Col md="3">
                           <p className="input-category">Trade Date</p>
                                     
                                     <ReactDatetime
-                                      defaultValue = "7/13/20"
+                                      defaultValue = {this.state.trade_date}
                                       inputProps={{
                                         className: "form-control bgtext",
                                         placeholder: "Set date...",
                                         
                                       }}
-                                      
-                                      // open={true}
-                                      // timeFormat={true}
+                                      name="trade_date"
+                                      onChange={(e) => this.props.handleDateChange(e)}
+                                      timeFormat={false}
                                     />
                           </Col>   
                           <Col md="3">
-                          <p className="input-category">Trade Time</p>
-                                    
-                                    <ReactDatetime
-                                      defaultValue = "4:50:27 PM"
-                                      inputProps={{
-                                        className: "form-control bgtext",
-                                        placeholder: "Set date...",
-                                        
-                                      }}
-                                      
-                                      // open={true}
-                                      // timeFormat={true}
-                                    />
+                          <p className="input-category">Trade Time</p>      
+                              <Input
+                                type="text"
+                                className='bgtext'
+                                defaultValue={this.state.time}
+                                name="time"
+                                onChange={(e) => this.props.handleChange(e)}
+                              />
                           </Col> 
                       </Row>
                     </Col>
                 </Row>
                 <div style={{height:'2rem'}}></div>
                 <Row className='justify-content-around'>
-                    <Col md="2">
-                        <p className="input-category">Price</p>
-                        <Input placeholder="" type="text" defaultValue="98-18+" className='bgtext'/>
-                    </Col>
-                    <Col md="2">
-                        <p className="input-category">Price (Dec)</p>
-                        <Input placeholder="" type="text" defaultValue="98.57813" className='bgtext'/>
-                    </Col>
-                    <Col md="3">
-                        <p className="input-category">Quantity (M)</p>
-                        <Input placeholder="" type="text" defaultValue="2000" className='bgtext'/>
-                    </Col>
-                    <Col md="2">
-                        <p className="input-category">Yield</p>
-                        <Input placeholder="" type="text" defaultValue="1.3077" className='bgtext'/>
-                    </Col>
+                  <Col md="5">
+                      <p className="input-category">Price (Dec)</p>
+                      <Input 
+                        placeholder="" 
+                        type="text" 
+                        defaultValue={this.state.price} 
+                        name="price"
+                        onChange={(e) => this.props.handleChange(e)}
+                        className='bgtext'/>
+                  </Col>
+                  <Col md="5">
+                      <p className="input-category">Quantity (MM)</p>
+                      <Input 
+                        placeholder="" 
+                        type="text" 
+                        defaultValue={this.state.qty} 
+                        name="qty"
+                        onChange={(e) => this.props.handleChange(e)} 
+                        className='bgtext'/>
+                  </Col>
                 </Row>
-                <div style={{height:'2rem'}}></div>
-                  <Row>
-                    <Col md="8">
-                    <p className="input-category">Note</p>
-                      <Input placeholder="" type="text" style={{height:'6.7rem'}} className='bgtext'/>
-                    </Col>
-                    <Col md="4" style={{marginTop:'2rem'}}>
-                      <p className="input-category">Status</p>
-                         <Select
-                            className="react-select primary"
-                            classNamePrefix="react-select"
-                            name="singleSelect"
-                            defaultValue={[options_status[0]]}
-                            options={options_status}
-                            onChange={(value) =>
-                              this.setState({ cusip: value })
-                            }
-                          />
-                    </Col>
-                  </Row>
-
               </FormGroup>
             </Col>
           </Col>

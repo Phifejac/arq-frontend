@@ -13,7 +13,11 @@ export const formatDate = (date) => {
 export const formatStatisticsWeek = (statistics, today) => {
 
     const todayFormat = today.getFullYear() + "-" + ('0' + (today.getMonth()+1)).slice(-2) + "-" + ('0' + (today.getDate())).slice(-2)
-    var todayStats
+    var todayStats = {
+        pnl : 0,
+        num_transactions : 0,
+        volume : 0
+    }
     var weekStats = {
         pnl : 0,
         num_transactions : 0,
@@ -23,7 +27,6 @@ export const formatStatisticsWeek = (statistics, today) => {
     const weekLabels = []
     const weekData = []
     for (const stat of statistics) {
-        console.log("today", todayFormat, stat.date)
         if (todayFormat == stat.date) {
             todayStats = stat
         }
@@ -33,7 +36,6 @@ export const formatStatisticsWeek = (statistics, today) => {
         weekLabels.push(stat.date)
         weekData.push(parseInt(stat.pnl))
     }
-    console.log("weekdata", weekData)
     return {todayStats : todayStats, weekStats : weekStats, weekLabels : weekLabels, weekData, weekData}
 }
 
