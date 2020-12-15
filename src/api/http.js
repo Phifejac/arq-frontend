@@ -13,6 +13,8 @@ export const login = async (username, password) => {
     if (res.data.jwt) {
       console.log("this was set")
       sessionStorage.setItem("jwt", res.data.jwt)
+      sessionStorage.setItem("username", username)
+      const jwt = await sessionStorage.getItem("jwt")
     }
     return res.data;
   } catch (err) {
