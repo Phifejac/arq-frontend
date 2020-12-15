@@ -180,7 +180,7 @@ class AdvancedSearchResults extends React.Component {
         <ReactBSAlert
           style={{ display: "block", marginTop: "-100px", width: '60%', backgroundColor: '#27292D', overflow:'visible' }}
           className='text-left'
-          onConfirm={() => this.confirmEdit()}
+          onConfirm={() => this.confirmEdit("added")}
           onCancel={() => this.hideAlert()}
           confirmBtnBsStyle="primary"
           cancelBtnBsStyle="danger"
@@ -220,7 +220,7 @@ class AdvancedSearchResults extends React.Component {
         <ReactBSAlert
           style={{ display: "block", marginTop: "-100px", width: '60%', backgroundColor: '#27292D' }}
           className='text-left'
-          onConfirm={() => this.confirmEdit()}
+          onConfirm={() => this.confirmEdit("edited")}
           onCancel={() => this.hideAlert()}
           confirmBtnBsStyle="primary"
           cancelBtnBsStyle="danger"
@@ -243,7 +243,7 @@ class AdvancedSearchResults extends React.Component {
       ),
     });
   };
-  async changeTransaction() {
+  async changeTransaction(action) {
     const body = {
       "id": this.state.id,
       "security": this.state.security,
@@ -254,7 +254,9 @@ class AdvancedSearchResults extends React.Component {
       "trade_date": this.state.trade_date,
       "time": this.state.time,
       "price": this.state.price,
-      "qty": this.state.qty
+      "qty": this.state.qty,
+      "username": sessionStorage.getItem("username"),
+      "action": action
     }
     this.loading()
     const update = await updateTransaction(body)
@@ -281,14 +283,14 @@ class AdvancedSearchResults extends React.Component {
       ),
     })
   }
-  confirmEdit = () => {
+  confirmEdit = (action) => {
     this.setState({
       alert: (
         <ReactBSAlert
           warning
           style={{ display: "block", marginTop: "-100px", backgroundColor: '#27292D' }}
           title="Confirm Edit"
-          onConfirm={() => this.changeTransaction()}
+          onConfirm={() => this.changeTransaction(action)}
           onCancel={() => this.hideAlert()}
           confirmBtnBsStyle="primary"
           cancelBtnBsStyle="danger"
@@ -346,6 +348,10 @@ class AdvancedSearchResults extends React.Component {
     this.setState({
       id: transaction.id,
       trade_date: transaction.trade_date,
+      price: transaction.price,
+      security: transaction.security,
+      time: transaction.time,
+      side: transaction.side,
       alert: (
         <ReactBSAlert
           warning
@@ -369,6 +375,12 @@ class AdvancedSearchResults extends React.Component {
     const body = {
       "id": this.state.id,
       "trade_date": this.state.trade_date,
+      "side": this.state.side,
+      "security": this.state.security,
+      "price": this.state.price,
+      "time": this.state.time,
+      "username": sessionStorage.getItem("username"),
+      "action": "deleted"
     }
     this.loading()
     const del = await deleteTransaction(body)
