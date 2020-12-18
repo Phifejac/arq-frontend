@@ -123,27 +123,55 @@ function Table({ columns, data }) {
   ).map(function () {});
   let numberOfRowsData = [5, 10, 20, 25, 50, 100];
   const customStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      borderBottom: '1px dotted grey',
-      color: state.isSelected ? 'red' : 'blue',
-      padding: 20,
+    control: (base, state) => ({
+      ...base,
+      cursor:'pointer',
+      // match with the menu
+      borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+      // Overwrittes the different states of border
+      borderColor: state.isFocused ? "yellow" : "green",
+      // Removes weird border around container
+      boxShadow: state.isFocused ? null : null,
+      "&:hover": {
+        // Overwrittes the different states of border
+        borderColor: state.isFocused ? "red" : "blue"
+      }
     }),
-    isSelected: () => ({
-      // none of react-select's styles are passed to <Control />
-    color:'white'
+    menu: base => ({
+      ...base,
+      borderRadius: 0,
+      backgroundColor:'#1D2123',
+      color:'white',
+      boxShadow: '0px 2px 20px rgba(0, 0, 0, 0.5)',
+      marginTop: 0,
+      fontSize:'.75rem',
     }),
-    control: () => ({
-      // none of react-select's styles are passed to <Control />
-      width: 200,
+    menuList: base => ({
+      ...base,
+      // kill the white space on first and last option
+      padding: 0
     }),
-    singleValue: (provided, state) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 300ms';
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      const color = 'red';
+      return {
+        ...styles,
+        backgroundColor: isDisabled
+          ? null
+          : isSelected
+          ? data.color
+          : isFocused
+          ? '#FFFFFF20'
+          : null,
+        
+        cursor: isDisabled ? 'not-allowed' : 'default',
   
-      return { ...provided, opacity, transition };
-    }
-  }
+        // ':active': {
+        //   ...styles[':active'],
+        //   backgroundColor: !isDisabled && (isSelected ? data.color : color.alpha(0.3).css()),
+        // },
+      };
+    },
+};
   return (
 
     <>
@@ -171,6 +199,7 @@ function Table({ columns, data }) {
                       className="react-select select-table"
                       classNamePrefix="react-select"
                       name="pageSelect"
+                      styles={customStyles}
                       value={pageSelect}
                       onChange={(value) => {
                         gotoPage(value.value);

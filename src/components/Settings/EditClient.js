@@ -22,7 +22,28 @@ class EditClient extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+        firm:'Example Firm',
+        location:'Seattle, WA',
+        acctName:'',
+        acctNumber:'',
+        clearerNumber:'',
+        contrabrokerNumber:'',
+        backExecNumber:'',
+        maincontact: {
+          name: 'Jane Doe',
+          position:'Position Title',
+          email:'example@firm.com'
+        },
+        secondarycontact1: {
+          name: 'Mark Teddy',
+          position:'Position Title',
+          email:'example@firm.com'
+        },
+        secondarycontact2: {
+          name: 'Phil Todd',
+          position:'Position Title',
+          email:'example@firm.com'
+        }
     };
   }
 
@@ -37,7 +58,7 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            value={this.state.firm}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
@@ -47,7 +68,7 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            value={this.state.location}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
@@ -60,7 +81,7 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            value={this.state.acctName}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
@@ -70,7 +91,7 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            value={this.state.acctNumber}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
@@ -80,7 +101,7 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            value={this.state.clearerNumber}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
@@ -90,7 +111,7 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            value={this.state.contrabrokerNumber}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
@@ -100,7 +121,7 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            value={this.state.backExecNumber}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
@@ -114,7 +135,7 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            defaultValue={this.state.maincontact.name}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
@@ -124,7 +145,7 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            defaultValue={this.state.maincontact.position}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
@@ -134,13 +155,10 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            defaultValue={this.state.maincontact.email}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
-        </Col>
-        <Col md="2">
-            <i className="fa fa-trash white" style={{marginTop:'2rem'}} />
         </Col>
       </Row>
       <Row>
@@ -149,7 +167,7 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            defaultValue={this.state.secondarycontact1.name}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
@@ -159,7 +177,7 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            defaultValue={this.state.secondarycontact1.position}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
@@ -169,13 +187,42 @@ class EditClient extends React.Component {
             <Input
             type="text"
             className='bgtext'
-            defaultValue={this.state.firm}
+            defaultValue={this.state.secondarycontact1.email}
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
         </Col>
-        <Col md="2">
-            <i className="fa fa-trash white" style={{marginTop:'2rem'}} />
+      </Row>
+      <Row>
+        <Col md="4">
+            <p className="input-category">Name</p>
+            <Input
+            type="text"
+            className='bgtext'
+            defaultValue={this.state.secondarycontact2.name}
+            name="cusip"
+            onChange={(e) => this.props.handleChange(e)}
+            />
+        </Col>
+        <Col md="3">
+            <p className="input-category">Position</p>
+            <Input
+            type="text"
+            className='bgtext'
+            defaultValue={this.state.secondarycontact2.position}
+            name="cusip"
+            onChange={(e) => this.props.handleChange(e)}
+            />
+        </Col>
+        <Col md="3">
+            <p className="input-category">Email</p>
+            <Input
+            type="text"
+            className='bgtext'
+            defaultValue={this.state.secondarycontact2.email}
+            name="cusip"
+            onChange={(e) => this.props.handleChange(e)}
+            />
         </Col>
       </Row>
       <br/>
