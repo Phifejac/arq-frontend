@@ -31,8 +31,7 @@ import EditTransaction from "./EditTransaction";
 import Transaction from "./Transaction";
 import {updateTransaction, deleteTransaction} from "../../../../api/http"
 
-const dataTable = [
-];
+const dataTable = [];
 
 class SearchResults extends React.Component {
   constructor(props) {

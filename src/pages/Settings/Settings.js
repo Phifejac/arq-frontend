@@ -21,7 +21,7 @@ class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab:'clients'
+      tab:'history'
     };
   }
 
@@ -30,9 +30,8 @@ class Settings extends React.Component {
       <>
         <div className="content" style={{paddingLeft:'2.5rem', backgroundColor:'#202125', paddingTop:'1rem', paddingTop:'6rem'}}>
         <div style={{}}>
-            <span className={this.state.tab === 'account' ? 'smalltab-active' : 'smalltab'} onClick={() => this.setState({tab: 'account'})}>Account</span>
-            <span className={this.state.tab === 'clients' ? 'smalltab-active' : 'smalltab'} onClick={() => this.setState({tab: 'clients'})}>Clients</span>
             <span className={this.state.tab === 'history' ? 'smalltab-active' : 'smalltab'} onClick={() => this.setState({tab: 'history'})}>Audits</span>
+            <span className={this.state.tab === 'clients' ? 'smalltab-active' : 'smalltab'} onClick={() => this.setState({tab: 'clients'})}>Clients</span>
         </div>
 
         {this.state.tab === 'clients' ? <Clients/> :''}
