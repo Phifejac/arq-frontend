@@ -100,6 +100,45 @@ export const getLogs = async () => {
   }
 }
 
+export const getClients = async () => {
+  try {
+    const res = await axios.get(`/api/clients`);
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+// delete client
+export const deleteClient = async (info) => {
+  try {
+    const res = await axios.delete(`/api/clients`, {params: info});
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+// update client
+export const updateClient = async (info) => {
+  try {
+    const res = await axios.put(`/api/clients`, info);
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+// add client
+export const addClient = async (info) => {
+  try {
+    const res = await axios.post(`/api/clients`, info);
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
 
 export const getOpenPositions = async () => {
   try {

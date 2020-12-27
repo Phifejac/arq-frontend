@@ -22,28 +22,10 @@ class EditClient extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        firm:'Example Firm',
-        location:'Seattle, WA',
-        acctName:'',
-        acctNumber:'',
-        clearerNumber:'',
-        contrabrokerNumber:'',
-        backExecNumber:'',
-        maincontact: {
-          name: 'Jane Doe',
-          position:'Position Title',
-          email:'example@firm.com'
-        },
-        secondarycontact1: {
-          name: 'Mark Teddy',
-          position:'Position Title',
-          email:'example@firm.com'
-        },
-        secondarycontact2: {
-          name: 'Phil Todd',
-          position:'Position Title',
-          email:'example@firm.com'
-        }
+        client_name:this.props.client.client_name,
+        contra_broker:this.props.client.contra_broker,
+        inventory: this.props.client.inventory,
+        back_execution:this.props.client.back_execution,
     };
   }
 
@@ -53,50 +35,50 @@ class EditClient extends React.Component {
       <>
       <label style={{color:'#f1f1f1', fontWeight:'bold'}}>Firm Details</label>
       <Row>
-        <Col md="4">
-            <p className="input-category">Firm</p>
+        <Col md="6">
+            <p className="input-category">Client Name</p>
             <Input
             type="text"
             className='bgtext'
-            value={this.state.firm}
-            name="cusip"
-            onChange={(e) => this.props.handleChange(e)}
+            value={this.state.client_name}
+            name="client_name"
+            onChange={(e) => {this.props.handleChange(e); this.setState({client_name: e.target.value})}}
             />
         </Col>
-        <Col md="4">
-            <p className="input-category">Location</p>
+        <Col md="6">
+            <p className="input-category">Contrabroker #</p>
             <Input
             type="text"
             className='bgtext'
-            value={this.state.location}
-            name="cusip"
-            onChange={(e) => this.props.handleChange(e)}
+            value={this.state.contra_broker}
+            name="contra_broker"
+            onChange={(e) => {this.props.handleChange(e); this.setState({contra_broker: e.target.value})}}
             />
         </Col>
       </Row>
       <br/>
       <Row>
-        <Col md="3">
-            <p className="input-category">Acct Name</p>
+        <Col md="6">
+            <p className="input-category">Inventory #</p>
             <Input
             type="text"
             className='bgtext'
-            value={this.state.acctName}
-            name="cusip"
-            onChange={(e) => this.props.handleChange(e)}
+            value={this.state.inventory}
+            name="inventory"
+            onChange={(e) => {this.props.handleChange(e); this.setState({inventory: e.target.value})}}
             />
         </Col>
-        <Col md="3">
-            <p className="input-category">Acct Number</p>
+        <Col md="6">
+            <p className="input-category">Back Execution #</p>
             <Input
             type="text"
             className='bgtext'
-            value={this.state.acctNumber}
-            name="cusip"
-            onChange={(e) => this.props.handleChange(e)}
+            value={this.state.back_execution}
+            name="back_execution"
+            onChange={(e) => {this.props.handleChange(e); this.setState({back_execution: e.target.value})}}
             />
         </Col>
-        <Col md="2">
+        {/* <Col md="2">
             <p className="input-category">Clearer #</p>
             <Input
             type="text"
@@ -125,10 +107,10 @@ class EditClient extends React.Component {
             name="cusip"
             onChange={(e) => this.props.handleChange(e)}
             />
-        </Col>
+        </Col> */}
       </Row>
       <br/>
-      <label style={{color:'#f1f1f1', fontWeight:'bold'}}>Contacts <i className="fa fa-plus white" style={{marginLeft:'1rem'}} /></label>
+      {/* <label style={{color:'#f1f1f1', fontWeight:'bold'}}>Contacts <i className="fa fa-plus white" style={{marginLeft:'1rem'}} /></label>
       <Row>
         <Col md="4">
             <p className="input-category">Name</p>
@@ -224,7 +206,7 @@ class EditClient extends React.Component {
             onChange={(e) => this.props.handleChange(e)}
             />
         </Col>
-      </Row>
+      </Row> */}
       <br/>
       </>
     );
