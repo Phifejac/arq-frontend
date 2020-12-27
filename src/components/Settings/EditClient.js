@@ -59,7 +59,7 @@ class EditClient extends React.Component {
       <br/>
       <Row>
         <Col md="6">
-            <p className="input-category">Inventory #</p>
+            <p className="input-category">Inventory</p>
             <Input
             type="text"
             className='bgtext'
@@ -69,7 +69,7 @@ class EditClient extends React.Component {
             />
         </Col>
         <Col md="6">
-            <p className="input-category">Back Execution #</p>
+            <p className="input-category">Back Execution</p>
             <Input
             type="text"
             className='bgtext'

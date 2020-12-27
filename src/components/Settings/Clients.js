@@ -228,11 +228,11 @@ class Clients extends React.Component {
                   accessor: "contra_broker",
                 },
                 {
-                  Header: "Inventory #",
+                  Header: "Inventory",
                   accessor: "inventory",
                 },
                 {
-                  Header: "Back Execution #",
+                  Header: "Back Execution",
                   accessor: 'back_execution',
                 },
                 {
