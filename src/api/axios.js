@@ -8,6 +8,6 @@ const ngrok = "https://f9d53fee5f26.ngrok.io"
 const devProxy = `http://localhost:${devPort}/`
 const prodURL = "https://arq-analytics-backend.herokuapp.com/"
 
-const baseURL = devProxy;
+const baseURL = prodURL;
 
 export default axios.create({ baseURL });
