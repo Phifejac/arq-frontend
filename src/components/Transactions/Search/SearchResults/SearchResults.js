@@ -251,7 +251,7 @@ class SearchResults extends React.Component {
       "time": this.state.time,
       "price": this.state.price,
       "qty": this.state.qty,
-      "username": sessionStorage.getItem("username"),
+      "username": localStorage.getItem("username"),
       "action": action
     }
     this.loading()
@@ -375,7 +375,7 @@ class SearchResults extends React.Component {
       "security": this.state.security,
       "price": this.state.price,
       "time": this.state.time,
-      "username": sessionStorage.getItem("username"),
+      "username": localStorage.getItem("username"),
       "action": "deleted"
     }
     this.loading()
