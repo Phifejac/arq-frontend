@@ -70,7 +70,7 @@ class Login extends React.Component {
                           <i className="nc-icon nc-single-02" />
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input placeholder="Email..." type="email" />
+                      <Input placeholder="Email..." type="email" style={{color:'black'}}/>
                     </InputGroup>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">
@@ -83,6 +83,7 @@ class Login extends React.Component {
                         placeholder="Password"
                         type="password"
                         autoComplete="off"
+                        style={{color:'black'}}
                       />
                     </InputGroup>
                     <br />
@@ -110,8 +111,7 @@ class Login extends React.Component {
         <div
           className="full-page-background"
           style={{
-            // backgroundImage: `url(${require("assets/img/calendar.png")})`,
-            backgroundColor:'#202225'
+            backgroundImage: `linear-gradient(to right, #4A8FE290, #1070e690, #1070e6)`,
           }}
         />
       </div>
