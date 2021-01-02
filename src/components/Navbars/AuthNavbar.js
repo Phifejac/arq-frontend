@@ -68,11 +68,11 @@ class AuthNavbar extends React.Component {
             navbar
           >
             <Nav navbar>
-              <NavItem>
-                <NavLink to="/auth/login" className="nav-link">
-                  <i className="nc-icon nc-tap-01" />
-                  Login
-                </NavLink>
+              <NavItem style={{color:'white'}}>
+                {/* <NavLink className="nav-link"> */}
+                  {/* <i className="nc-icon nc-tap-01" /> */}
+                  Arq Advisors LLC.
+                {/* </NavLink> */}
               </NavItem>
             </Nav>
           </Collapse>
