@@ -179,6 +179,8 @@ class EditTransaction extends React.Component {
                 </Row>
               </FormGroup>
             </Col>
+            <br></br>
+            <br></br>
           </Col>
       </>
     );
