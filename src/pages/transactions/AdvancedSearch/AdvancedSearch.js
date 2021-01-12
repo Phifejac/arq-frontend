@@ -10,6 +10,7 @@ import AdvancedSearchResults from "components/Transactions/AdvancedSearch/Advanc
 
 // api imports
 import { getTransactions } from "../../../api/http"
+import TagsInput from "react-tagsinput";
 
 
 class AdvancedSearch extends Component {
@@ -27,7 +28,6 @@ class AdvancedSearch extends Component {
       excounterparty: null,
       singleSelect: null,
       multipleSelect: null,
-      tagsinput: ["Amsterdam", "Washington", "Sydney", "Beijing"],
       collapse: false,
       typeOpen:true,
       queryParameters : {},
@@ -59,7 +59,6 @@ class AdvancedSearch extends Component {
     this.setState({ type: 'option'})
   }
 
-
   executeSearch = async (parameters) => {
     this.setState({ loading : true });
     const newTransactions = await getTransactions(parameters);
@@ -76,7 +75,7 @@ class AdvancedSearch extends Component {
             </Row>
             <Col lg='12'>
               <div style={{zIndex:-1, paddingTop:'2rem', marginLeft:'-2rem'}}>
-                <AdvancedSearchResults transactions={this.state.transactions} />
+                <AdvancedSearchResults transactions={this.state.transactions}/>
               </div>  
             </Col> 
           </div>

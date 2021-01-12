@@ -38,6 +38,7 @@ class SearchResults extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this)
     this.handleDateChange = this.handleDateChange.bind(this)
+    this.handleRedoChange = this.handleRedoChange.bind(this)
     this.state = {
       alert: null,
       id: null,
@@ -49,6 +50,7 @@ class SearchResults extends React.Component {
       trade_date: null,
       time: null,
       price: null,
+      redo_day:null,
       qty: null,
       data: dataTable.map((prop, key) => {
         return {
@@ -153,6 +155,12 @@ class SearchResults extends React.Component {
       this.setState({trade_date: this.dateToString(e._d)})
     } catch(e) {}
   }
+  handleRedoChange(e) {
+    try {
+      console.log(e)
+      this.setState({redo_day: e})
+    } catch(e) {}
+  }
   dateToString(date) {
     const dd = String(date.getDate()).padStart(2, '0');
     const mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -194,6 +202,7 @@ class SearchResults extends React.Component {
               transaction={empty}
               handleChange={this.handleChange}
               handleDateChange={this.handleDateChange}
+              handleRedoChange={this.handleRedoChange}
             />
           </div>
         </ReactBSAlert>
@@ -233,6 +242,7 @@ class SearchResults extends React.Component {
               transaction={transaction}
               handleChange={this.handleChange}
               handleDateChange={this.handleDateChange}
+              handleRedoChange={this.handleRedoChange}
             />
           </div>
         </ReactBSAlert>
@@ -254,6 +264,8 @@ class SearchResults extends React.Component {
       "username": localStorage.getItem("username"),
       "action": action
     }
+    if (action === "edited") {body["redo_day"] = this.state.redo_day}
+    console.log(this.state.redo_day, 'in functions')
     this.loading()
     const update = await updateTransaction(body)
     this.successEdit()
@@ -393,6 +405,7 @@ class SearchResults extends React.Component {
     return (
       <>
       {this.state.alert}
+      {console.log(this.state.redo_day)}
         <div className="content" style={{marginTop:'-.5rem'}}>
             <Col>
               <div style={{position:'absolute', zIndex:+1, top:-5}}>

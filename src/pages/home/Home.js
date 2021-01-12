@@ -52,6 +52,7 @@ class Home extends React.Component {
   handleTagsinput = (tagsinput) => {
     this.setState({ tagsinput });
   };
+  
   render() {
 
     const statistics = this.state.statistics
@@ -76,7 +77,7 @@ class Home extends React.Component {
 
           <div style={{ paddingTop: '3rem' }}>
             <h1 className='head1'>Today's Transactions</h1>
-            <AdvancedSearchResults transactions={this.state.transactions} />
+            <AdvancedSearchResults transactions={this.state.transactions}/>
           </div>
           
         </div>

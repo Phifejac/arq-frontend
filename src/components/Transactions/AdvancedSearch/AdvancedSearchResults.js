@@ -41,6 +41,7 @@ class AdvancedSearchResults extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this)
     this.handleDateChange = this.handleDateChange.bind(this)
+    this.handleRedoChange = this.handleRedoChange.bind(this)
     this.state = {
       alert: null,
       id: null,
@@ -53,6 +54,7 @@ class AdvancedSearchResults extends React.Component {
       time: null,
       price: null,
       qty: null,
+      redo_day: null,
       data: dataTable.map((prop, key) => {
         return {
           id: key,
@@ -156,6 +158,11 @@ class AdvancedSearchResults extends React.Component {
       this.setState({trade_date: this.dateToString(e._d)})
     } catch(e) {}
   }
+  handleRedoChange(e) {
+    try {
+      this.setState({redo_day: e})
+    } catch(e) {}
+  }
   dateToString(date) {
     const dd = String(date.getDate()).padStart(2, '0');
     const mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -197,6 +204,7 @@ class AdvancedSearchResults extends React.Component {
               transaction={empty}
               handleChange={this.handleChange}
               handleDateChange={this.handleDateChange}
+              handleRedoChange={this.handleRedoChange}
             />
           </div>
         </ReactBSAlert>
@@ -237,6 +245,7 @@ class AdvancedSearchResults extends React.Component {
               transaction={transaction}
               handleChange={this.handleChange}
               handleDateChange={this.handleDateChange}
+              handleRedoChange={this.handleRedoChange}
             />
           </div>
         </ReactBSAlert>
@@ -258,6 +267,7 @@ class AdvancedSearchResults extends React.Component {
       "username": localStorage.getItem("username"),
       "action": action
     }
+    if (action === "edited") {body["redo_day"] = this.state.redo_day}
     this.loading()
     const update = await updateTransaction(body)
     this.successEdit()

@@ -138,6 +138,7 @@ class EditTransaction extends React.Component {
                                       }}
                                       name="trade_date"
                                       onChange={(e) => this.props.handleDateChange(e)}
+                                      onFocus={(e) => this.props.handleRedoChange(this.state.trade_date)}
                                       timeFormat={false}
                                     />
                           </Col>   
