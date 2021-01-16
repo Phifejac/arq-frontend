@@ -87,9 +87,12 @@ class AdvancedSearchInputs extends React.Component {
 
     const parameters = {}
 
-    if (this.state.start_date) {
+    if (this.state.start_date && this.state.end_date) {
       parameters["start_date"] = formatDate(new Date(this.state.start_date));
       parameters["end_date"] = formatDate(new Date(this.state.end_date));
+    } else {
+      alert("Please fill in both a start date and an end date.")
+      return 
     }
     if (this.state.client) parameters["client"] = this.state.client.label;
     if (this.state.cusip) parameters["cusip"] = this.state.cusip;
