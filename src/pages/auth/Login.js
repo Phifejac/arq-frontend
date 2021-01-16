@@ -70,7 +70,7 @@ class Login extends React.Component {
                           <i className="nc-icon nc-single-02" />
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input placeholder="Email..." type="email" style={{color:'black'}}/>
+                      <Input placeholder="Username" type="email" style={{color:'black'}}/>
                     </InputGroup>
                     <InputGroup>
                       <InputGroupAddon addonType="prepend">

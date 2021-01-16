@@ -53,10 +53,13 @@ class PnLSearchBar extends React.Component {
 
     const parameters = {}
 
-    if (this.state.start_date) {
+    if (this.state.start_date && this.state.end_date) {
       parameters["start_date"] = formatDate(new Date(this.state.start_date));
       parameters["end_date"] = formatDate(new Date(this.state.end_date));
       parameters["type"] = "day"
+    } else {
+      alert("Please fill in both a start date and an end date.")
+      return
     }
     if (this.state.client ) parameters["client"] = this.state.client.label;
     if (this.state.cusip) parameters["cusip"] = this.state.cusip;
@@ -71,6 +74,7 @@ class PnLSearchBar extends React.Component {
   }
 
   render() {
+    console.log(this.state.start_date, this.state.end_date)
     const { from, to } = this.state;
     const modifiers = { start: from, end: to };
     return (
@@ -163,7 +167,7 @@ class PnLSearchBar extends React.Component {
                                 />}</span>
                       </div>
                       <div className='button-red' onClick={this.handleResetClick}>
-                        <span>Clear</span>
+                        <span onClick={() => window.location.reload()}>Clear</span>
                       </div>
                     </div>
                 </div>
